@@ -1,8 +1,39 @@
 ActiveAdmin.register Post do
 
-  permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :target_id, :category_id, :link, :city_id, :user_id
+  #permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :target_id, :category_id, :link, :city_id, :user_id
 
-  form do |f|
+  before_create do |post|
+    post.user = current_user
+  end
+
+  index do
+    column :id
+    column :title
+    column :category_id
+    column :user
+    actions
+  end
+
+  show do |p|
+    attributes_table do
+      row :title
+      row :project_type
+      row :description
+      row :benefit
+      row :solved_problems
+      row :target
+      row :category
+      row :link
+      row :user
+      p.images.each do |image|
+        row :image do
+          image_tag(image.file.url(:thumb))
+        end
+      end
+    end
+  end
+  
+  form html: { multipart: true } do |f|
     f.inputs 'Details' do
       f.semantic_errors
       f.input :title, :require => true
@@ -13,6 +44,13 @@ ActiveAdmin.register Post do
       f.input :description, :require => true
       f.input :benefit, :require => true
       f.input :solved_problems, :require => true
+    end
+    f.inputs "Images" do
+      f.has_many :images do |i|
+        i.input :file, as: :file, label: false, hint: i.object.new_record? ? i.template.content_tag(:span, "No Image Yet") : image_tag(i.object.file.url(:thumb))
+        i.input :cover, as: :boolean, label: "Cover"
+        i.input :_destroy, as: :boolean, label: "Destroy?" unless i.object.new_record?
+      end 
     end
     f.actions
   end

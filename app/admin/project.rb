@@ -1,7 +1,7 @@
 ActiveAdmin.register Project do
 
   #permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :image_attributes, :target_id, :category_id, :link, :city_id, :user_id
-
+  
   before_create do |project|
     project.user = current_user
   end
@@ -17,6 +17,14 @@ ActiveAdmin.register Project do
   show do |p|
     attributes_table do
       row :title
+      row :description
+      row :city
+      row :benefit
+      row :solved_problems
+      row :target
+      row :category
+      row :link
+      row :user
       p.images.each do |image|
         row :image do
           image_tag(image.file.url(:thumb))
@@ -39,7 +47,8 @@ ActiveAdmin.register Project do
     end
     f.inputs "Images" do
       f.has_many :images do |i|
-        i.input :file, as: :file, hint: i.object.new_record? ? i.template.content_tag(:span, "No Image Yet") : image_tag(i.object.file.url(:thumb))
+        i.input :file, as: :file, label: false, hint: i.object.new_record? ? i.template.content_tag(:span, "No Image Yet") : image_tag(i.object.file.url(:thumb))
+        i.input :cover, as: :boolean, label: "Cover"
         i.input :_destroy, as: :boolean, label: "Destroy?" unless i.object.new_record?
       end 
     end

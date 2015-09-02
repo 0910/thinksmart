@@ -1,0 +1,102 @@
+/featured projects
+
+.row.cyan
+	.col-sm-6.col-md-6.featured.size-big
+		.row.cyan.featured-titles
+			%ul.slider
+				- @projects.each do |project|
+					%li
+						.title
+							%h1
+								Buenos Aires cambia el uso horario para aprovechar la luz natural.
+							%p
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat tortor neque, vitae elementum ante sodales at. Nunc tempus, ante at commodo euismod, nisi neque posuere lectus, in malesuada justo sem eu risus. Nulla quis erat interdum, condimentum lacus eu, euismod sem. Maecenas interdum venenatis justo quis aliquet...
+							.row
+								.col-xs-6.col-sm-6.col-md-6
+									%p.user
+										by Pablo Hernandez
+								.col-xs-6.col-sm-6.col-md-6
+									%button.btn.btn-primary
+										T
+							.row
+								.col-xs-6.col-md-6
+									%img(src="assets/icons2.png")
+								
+								.col-xs-6.col-sm-6.col-md-6
+									%p
+										25 de Junio de 2015
+	.col-md-6.featured-slide
+		.row
+			%ul.slider
+				- @projects.each do |project|
+					%li
+						.row.slide
+							.col-sm-12.col-md-12
+								.row.photo
+									- project.images.each do |image|
+										- if project.images.empty?
+											%p caca
+											= image_tag('image-not-available.jpg')
+										- else
+											- if image.cover == true
+												= image_tag(image.file.url(:medium))
+
+/ projects list
+
+.row.section_title
+	%h1
+		Proyectos
+		%span
+			Actuales
+.row
+	.projects
+		.row
+			- @projects.each do |project|
+				.col-md-6.item
+					.col-sm-6.col-md-6.info
+						.row
+							= link_to(project.title, project_path(project))
+							.row
+								.col-xs-6.col-sm-6.col-md-6
+									%p.user
+										#{project.user.email}
+								.col-xs-6.col-sm-6.col-md-6
+									%button.btn.btn-primary
+										T
+							.row
+								.col-xs-6.col-md-6
+									%img(src="assets/icons2.png")
+								.col-xs-6.col-sm-6.col-md-6
+									%p
+										#{project.created_at.to_formatted_s(:long)}
+					.col-sm-6.col-md-6.photo
+						.row
+							- project.images.each do |image|
+								- if project.images.empty?
+									%p caca
+									= image_tag('image-not-available.jpg')
+								- else
+									- if image.cover == true
+										= image_tag(image.file.url(:small))
+
+/javascript functions
+
+:javascript
+	$(function() {
+		$('.featured-slide .slider').bxSlider({
+			auto: true,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←'
+		});
+		$('.featured-titles .slider').bxSlider({
+			auto: true,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+			pager:false,
+			controls:false
+		});
+	});

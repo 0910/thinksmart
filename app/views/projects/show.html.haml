@@ -1,0 +1,56 @@
+/project slider
+
+.row.cyan
+	.col-md-6.featured-slide
+		.row
+			%ul.slider
+				- @project.images.each do |image|
+					%li
+						.row.slide
+							.col-sm-12.col-md-12
+								.row.photo
+									- if @project.images.empty?
+										= image_tag('image-not-available.jpg')
+									- else
+										= image_tag(image.file.url(:medium))
+	.col-md-6
+.row
+	.col-md-6
+		%h1
+			#{@project.title}
+		%p
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat tortor neque, vitae elementum ante sodales at. Nunc tempus, ante at commodo euismod, nisi neque posuere lectus, in malesuada justo sem eu risus. Nulla quis erat interdum, condimentum lacus eu, euismod sem. Maecenas interdum venenatis justo quis aliquet...
+		.row
+			.col-xs-6.col-sm-6.col-md-6
+				%p.user
+					#{@project.user.email}
+			.col-xs-6.col-sm-6.col-md-6
+				%button.btn.btn-primary
+					T
+		.row
+			.col-xs-6.col-md-6
+				%img(src="assets/icons2.png")
+			
+			.col-xs-6.col-sm-6.col-md-6
+				%p
+					#{@project.created_at.to_formatted_s(:long)}
+									
+										
+									
+
+
+
+
+/javascript functions
+
+:javascript
+	$(function() {
+		$('.featured-slide .slider').bxSlider({
+			auto: true,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←'
+		});
+	});
