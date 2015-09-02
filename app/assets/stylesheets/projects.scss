@@ -1,0 +1,115 @@
+/* 01. Index */
+
+.projects_resume{
+	background-color: #2C2C2C;
+	color: #fff;
+	.title{
+		padding:3em;
+		border-bottom: 1px solid #424242;
+		h1{
+			font-size: 1.769em;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+			span{
+				font-weight: 600;
+			}
+		}
+	}
+	.photo img{
+		width: 100%;
+		height: auto;
+	}
+	.info{
+		padding: 3em;
+		h2{
+			font-size: 1.75em;
+			font-weight: 100;
+			color: #fff;
+			letter-spacing: -0.038em;
+		}
+		p{
+			margin-top: 1.35em;
+			color: #c0c0c0;
+			font-weight: 100;
+			font-size: 1.058em;
+			letter-spacing: -0.038em;
+		}
+		button{
+			margin-top: 1em;
+			font-weight: 100;
+			font-size: 1.058em;
+			letter-spacing: -0.038em;
+		}
+		img{
+			margin-top: 1.35em;
+			padding-right: 1em;
+		}
+	}
+}
+
+/* 02. Show */
+
+.projects{
+	background-color: #fff;
+	color: #101010;
+	.title{
+		padding:3em;
+		h1{
+			font-size: 1.769em;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+			span{
+				font-weight: 600;
+			}
+		}
+	}
+	.item{
+		border-bottom: 1px solid #cfcfcf;
+		.photo img{
+			width: 100%;
+			height: auto;
+		}
+		.info{
+			float: left;
+			padding: 3em;
+			a{
+				font-size: 1.75em;
+				font-weight: 100;
+				color: #101010;
+				letter-spacing: -0.038em;
+				line-height: 1;
+			}
+			p{
+				margin: 1.35em 0 0 1em;
+				color: #a0a0a0;
+				font-weight: 100;
+				font-size: 1.058em;
+				letter-spacing: -0.038em;
+			}
+			p.user{
+				margin: 1em 0 0 0;
+			}
+			button{
+				margin-top: .5em;
+				font-weight: 100;
+				font-size: 1.058em;
+				letter-spacing: -0.038em;
+			}
+			img.icons{
+				margin-top: 1.35em;
+				padding: 0.2em 1em 0.2em 0;
+			}
+		}
+		.photo{
+			float: right;
+		}
+	}
+	.item:nth-child(3n), .item:nth-child(4n){
+		.info{
+			float: right;
+		}
+		.photo{
+			float: left;
+		}
+	}
+}

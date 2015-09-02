@@ -1,0 +1,267 @@
+/* 01. Splash */
+
+body.home{
+	.navigation{
+		position: fixed;
+		background-color: transparent;
+		.logo{
+	        float: left;
+	        background-position: top center;
+	    }
+	}
+}
+.splash{
+	width: 100%;
+	height: 100%;
+	background-attachment: fixed;
+	background-position: center center;
+	background-size: cover;
+	.center{
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		margin: 0;
+		transform:translate(0px,-50%);
+		text-align: center;
+		h1{
+			color:#fff;
+			font-weight: 100;
+			font-size: 4em;
+			letter-spacing: -0.05em;
+		}
+		h1 span{
+			font-weight: 600;
+		}
+		button{
+			margin-top: 3em;
+			font-size: 1.5em;
+		}
+	}
+}
+
+/* 02. Featured */
+
+.cyan{
+	background-color: #4BB3D2;
+}
+.start{
+	margin-top: -8em;
+	position: relative;
+	z-index: 99;
+	.title{
+		background-color: #fff;
+		padding:3em;
+		border-bottom: 1px solid #cfcfcf;
+		text-align: center;
+		h1{
+			font-size: 1.769em;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+			span{
+				font-weight: 600;
+			}
+		}
+	}
+}
+.featured{
+	background-color: #4BB3D2;
+	.title{
+		padding: 3em;
+		h1{
+			font-weight: 400;
+			font-size: 2.25em;
+			color: #fff;
+		}
+		p{
+			font-weight: 100;
+			font-size: 1.058em;
+			letter-spacing: -0.038em;
+			margin-top: 1.5em;
+			color: #fff;
+		}
+		p.user{
+			line-height: 1;
+		}
+		img.icons{
+			margin-top: 1.5em;
+			padding: 0.2em 1em 0.2em 0;
+		}
+		button{
+			margin-top: 1.5em;
+			padding-right: 1em;
+		}
+	}
+	.photo img{
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+/* 03. City */
+
+.city-resume{
+	background-color: #FCFCFC;
+	padding: 3em;
+	.title{
+		margin-bottom: 1em;
+	}
+	h1{
+		font-size: 3.5em;
+		letter-spacing: -0.05em;
+		font-weight: 100;
+		color: #2C2C2C;
+	}
+	h2{
+		color: #7C7C7C;
+		font-size: 1.2em;
+		font-weight: 100;
+	}
+	h2 span{
+		font-weight: 600;
+	}
+}
+
+/* 04. News */
+
+.news{
+	.title{
+		background-color: #fff;
+		padding:3em;
+		border-bottom: 1px solid #cfcfcf;
+		h1{
+			font-size: 1.769em;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+			span{
+				font-weight: 600;
+			}
+		}
+	}
+	.photo img{
+		width: 100%;
+		height: auto;
+	}
+	.info{
+		padding: 3em;
+		h2{
+			font-size: 1.75em;
+			font-weight: 100;
+			color: #2C2C2C;
+			letter-spacing: -0.038em;
+		}
+		p{
+			margin-top: 1.35em;
+			color: #909090;
+			font-weight: 100;
+			font-size: 1.058em;
+			letter-spacing: -0.038em;
+		}
+		button{
+			margin-top: 1em;
+			font-weight: 100;
+			font-size: 1.058em;
+			letter-spacing: -0.038em;
+		}
+		img{
+			margin-top: 1.35em;
+			padding-right: 1em;
+		}
+	}
+}
+
+
+
+.chart{
+	text-align: center;
+}
+.circliful {
+    position: relative; 
+}
+
+.circle-text, .circle-info, .circle-text-half, .circle-info-half {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.circle-info, .circle-info-half {
+	color: #999;
+}
+
+.circliful .fa {
+	margin: -10px 3px 0 3px;
+	position: relative;
+	bottom: 4px;
+}
+.population{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	.men{
+		background-color: #D3D3D3;
+		position: relative;
+		img{
+			width: 100%;
+			height: auto;
+			position: relative;
+			z-index: 1;
+		}
+		.percent{
+			position: absolute;
+			top: 0;
+			width: 46%;
+			height: 100%;
+			background-color: #4BB3D2;
+		} 
+	}
+	.women{
+		background-color: #D3D3D3;
+		position: relative;
+		img{
+			width: 100%;
+			height: auto;
+			position: relative;
+			z-index: 1;
+		}
+		.percent{
+			position: absolute;
+			top: 0;
+			width: 53%;
+			height: 100%;
+			background-color: #E86767;
+		} 
+	}
+}
+
+/* 06. About */
+
+.about{
+	background-color: #F3F3F3;
+	.box{
+		text-align: center;
+		padding: 6em 3em;
+		img{
+			margin-bottom: 1em;
+		}
+		h1{
+	        color: #2C2C2C;
+	        font-size: 1.846em;
+	        font-weight: 100;
+	        letter-spacing: -0.038em;
+	        margin-bottom: 1.5em;
+	        span{
+	            font-weight: 600;
+	        }
+	    }
+		p{
+			color: #505050;
+			font-size: 1.154em;
+			letter-spacing: -0.038em;
+			line-height: 1.75;
+			text-align: left;
+		}
+	}
+}
