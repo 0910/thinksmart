@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+
+@font-face {
+  font-family: "thinksmart";
+  src:url(asset-path("thinksmart.eot"));
+  src:url(asset-path("thinksmart.eot") + "?#iefix") format("embedded-opentype"),
+    url(asset-path("thinksmart.woff")) format("woff"),
+    url(asset-path("thinksmart.ttf")) format("truetype"),
+    url(asset-path("thinksmart.svg") + "#thinksmart") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.icon{
+  font-size: 1em;
+}
+[data-icon]:before {
+  font-family: "thinksmart" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "thinksmart" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bubble-comment-streamline-talk:before {
+  content: "a";
+}
+.icon-map-pin-streamline:before {
+  content: "b";
+}
+.icon-map-streamline-user:before {
+  content: "c";
+}
+.icon-man-people-streamline-user:before {
+  content: "d";
+}
+.icon-link-streamline:before {
+  content: "e";
+}
+.icon-like-love-streamline:before {
+  content: "f";
+}
+.icon-earth-globe-streamline:before {
+  content: "g";
+}
+.icon-envellope-mail-streamline:before {
+  content: "h";
+}

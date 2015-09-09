@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-
-  resources :projects, only: [:show, :index]
-
+ 
   resources :posts, only: [:show, :index]
 
-  resources :city, only: [:show, :index]
+  resources :cities, only: [:show, :index]
+
+  resources :projects, only: [:show, :index] do
+    collection do
+      get "transport"
+      get "development"
+      get "environment"
+      get "people"
+      get "community"
+      get "innovation"
+    end
+  end
 
   get 'home/index'
 

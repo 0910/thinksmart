@@ -1,0 +1,104 @@
+.row.featured.cyan
+	.col-md-6.featured-slide
+		.row
+			%ul.slider
+				- @posts.each do |post|
+					%li
+						.row.slide
+							.col-sm-12.col-md-12
+								.row.photo
+									- if post.images.empty?
+										= image_tag('image-not-available.jpg')
+									- else
+										- post.images.each do |image|
+											- if image.cover == true
+												= image_tag(image.file.url(:large))
+	.col-md-6.featured-titles							
+		.row
+			%ul.slider
+				- @posts.each do |post|
+					%li
+						.row.slide.info
+							.col-sm-12.col-md-12
+								.row
+									%h1
+										#{truncate(post.title, :length => 70)}
+									%p
+										#{simple_format truncate(post.description, :length => 600)}
+								.row
+									.col-xs-12.col-md-3
+										.action
+											%a.icon.icon-map-streamline-user
+										.action
+											%a.icon.icon-like-love-streamline
+										.action
+											%a.icon.icon-envellope-mail-streamline
+									.col-xs-12.col-md-9
+										%p.user
+											#{post.user.email}
+										%p.date
+											#{post.created_at.to_date.to_formatted_s(:long)}
+
+/ posts list
+
+.row
+	.col-md-12.posts-list
+		.row.title
+			.col-md-12
+				%h1
+					Publicaciones en
+					%span
+						Buenos Aires.
+		.row
+			- @posts.each do |post|
+				.col-md-3.item
+					.row.photo
+						- if post.images.empty?
+							= image_tag('image-not-available.jpg')
+						- else
+							- post.images.each do |image|
+								- if image.cover == true
+									= image_tag(image.file.url(:small))
+					.row.info
+						.row.header
+							= link_to(truncate(post.title, :length => 70), post_path(post))
+						.row
+							.col-xs-6.col-sm-6.col-md-6
+								%p.user
+									#{post.user.email}
+							.col-xs-6.col-sm-6.col-md-6
+								%button.btn.btn-primary
+									#{post.category.name}
+						.row.actions
+							.col-xs-6.col-md-6
+								.action
+									%a.icon.icon-map-streamline-user
+								.action
+									%a.icon.icon-like-love-streamline
+								.action
+									%a.icon.icon-envellope-mail-streamline
+							.col-xs-6.col-md-6
+								%p.date
+									#{post.created_at.to_date.to_formatted_s(:long)}
+
+/javascript functions
+
+:javascript
+	$(function() {
+		$('.featured-slide .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←'
+		});
+		$('.featured-titles .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+			pager:false,
+			controls:false
+		});
+	});

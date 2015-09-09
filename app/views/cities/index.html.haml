@@ -1,0 +1,48 @@
+/ cities list
+
+.row
+	.col-md-12.cities-list
+		.row.title
+			.col-md-12
+				%h1
+					Ciudades
+					%span
+						Inteligentes.
+		.row
+			- @cities.each do |city|
+				.col-md-4.item
+					= link_to(city_path(city)) do
+						.row.photo
+							- if city.images.empty?
+								= image_tag('image-not-available.jpg')
+							- else
+								- city.images.each do |image|
+									- if image.cover == true
+										= image_tag(image.file.url(:small))
+							%h1
+								#{city.name}
+						
+				
+					
+
+/javascript functions
+
+:javascript
+	$(function() {
+		$('.featured-slide .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←'
+		});
+		$('.featured-titles .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+			pager:false,
+			controls:false
+		});
+	});

@@ -1,30 +1,60 @@
+.row.categories
+	.col-md-2
+		= link_to transport_projects_path, class: 'cat transport' do
+			.col-md-3.icon
+				= image_tag('cat_icons/transport.svg')
+			.col-md-9.text
+				%p
+					Transporte
+					%br
+					y movilidad
+	.col-md-2
+		= link_to development_projects_path, class: 'cat development' do
+			.col-md-3.icon
+				= image_tag('cat_icons/development.svg')
+			.col-md-9.text
+				%p
+					Desarrollo
+					%br
+					urbano
+	.col-md-2
+		= link_to environment_projects_path, class: 'cat environment' do
+			.col-md-3.icon
+				= image_tag('cat_icons/environment.svg')
+			.col-md-9.text
+				%p
+					Medio ambiente
+					%br
+					y recursos nat.
+	.col-md-2
+		= link_to people_projects_path, class: 'cat people' do
+			.col-md-3.icon
+				= image_tag('cat_icons/people.svg')
+			.col-md-9.text
+				%p
+					Desarrollo de
+					%br
+					las personas
+	.col-md-2
+		= link_to community_projects_path, class: 'cat community' do
+			.col-md-3.icon
+				= image_tag('cat_icons/community.svg')
+			.col-md-9.text
+				%p
+					Comunidad
+	.col-md-2
+		= link_to innovation_projects_path, class: 'cat innovation' do
+			.col-md-3.icon
+				= image_tag('cat_icons/innovation.svg')
+			.col-md-9.text
+				%p
+					Innovacion
+					%br
+					y desarrollo
+
 /featured projects
 
-.row.cyan
-	.col-sm-6.col-md-6.featured.size-big
-		.row.cyan.featured-titles
-			%ul.slider
-				- @projects.each do |project|
-					%li
-						.title
-							%h1
-								Buenos Aires cambia el uso horario para aprovechar la luz natural.
-							%p
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat tortor neque, vitae elementum ante sodales at. Nunc tempus, ante at commodo euismod, nisi neque posuere lectus, in malesuada justo sem eu risus. Nulla quis erat interdum, condimentum lacus eu, euismod sem. Maecenas interdum venenatis justo quis aliquet...
-							.row
-								.col-xs-6.col-sm-6.col-md-6
-									%p.user
-										by Pablo Hernandez
-								.col-xs-6.col-sm-6.col-md-6
-									%button.btn.btn-primary
-										T
-							.row
-								.col-xs-6.col-md-6
-									%img(src="assets/icons2.png")
-								
-								.col-xs-6.col-sm-6.col-md-6
-									%p
-										25 de Junio de 2015
+.row.featured.cyan
 	.col-md-6.featured-slide
 		.row
 			%ul.slider
@@ -33,58 +63,89 @@
 						.row.slide
 							.col-sm-12.col-md-12
 								.row.photo
-									- project.images.each do |image|
-										- if project.images.empty?
-											%p caca
-											= image_tag('image-not-available.jpg')
-										- else
+									- if project.images.empty?
+										= image_tag('image-not-available.jpg')
+									- else
+										- project.images.each do |image|
 											- if image.cover == true
-												= image_tag(image.file.url(:medium))
+												= image_tag(image.file.url(:large))
+	.col-md-6.featured-titles							
+		.row
+			%ul.slider
+				- @projects.each do |project|
+					%li
+						.row.slide.info
+							.col-sm-12.col-md-12
+								.row
+									%h1
+										#{truncate(project.title, :length => 70)}
+									%p
+										#{simple_format truncate(project.description, :length => 600)}
+								.row
+									.col-xs-12.col-md-3
+										.action
+											%a.icon.icon-map-streamline-user
+										.action
+											%a.icon.icon-like-love-streamline
+										.action
+											%a.icon.icon-envellope-mail-streamline
+									.col-xs-12.col-md-9
+										%p.user
+											#{project.user.email}
+										%p.date
+											#{project.created_at.to_date.to_formatted_s(:long)}
 
 / projects list
 
-.row.section_title
-	%h1
-		Proyectos
-		%span
-			Actuales
 .row
-	.projects
+	.col-md-12.projects-list
+		.row.title
+			.col-md-12
+				%h1
+					Proyectos en
+					%span
+						Buenos Aires.
 		.row
 			- @projects.each do |project|
 				.col-md-6.item
-					.col-sm-6.col-md-6.info
-						.row
-							= link_to(project.title, project_path(project))
+					.row
+						.col-sm-6.col-md-6.info
 							.row
-								.col-xs-6.col-sm-6.col-md-6
-									%p.user
-										#{project.user.email}
-								.col-xs-6.col-sm-6.col-md-6
-									%button.btn.btn-primary
-										T
-							.row
-								.col-xs-6.col-md-6
-									%img(src="assets/icons2.png")
-								.col-xs-6.col-sm-6.col-md-6
-									%p
-										#{project.created_at.to_formatted_s(:long)}
-					.col-sm-6.col-md-6.photo
-						.row
-							- project.images.each do |image|
+								.row.header
+									= link_to(truncate(project.title, :length => 70), project_path(project))
+								.row
+									.col-xs-6.col-sm-6.col-md-6
+										%p.user
+											#{project.user.email}
+									.col-xs-6.col-sm-6.col-md-6
+										%button.btn.btn-primary
+											#{project.category.name}
+								.row.actions
+									.col-xs-6.col-md-6
+										.action
+											%a.icon.icon-map-streamline-user
+										.action
+											%a.icon.icon-like-love-streamline
+										.action
+											%a.icon.icon-envellope-mail-streamline
+									.col-xs-6.col-md-6
+										%p.date
+											#{project.created_at.to_date.to_formatted_s(:long)}
+						.col-sm-6.col-md-6
+							.row.photo
 								- if project.images.empty?
-									%p caca
 									= image_tag('image-not-available.jpg')
 								- else
-									- if image.cover == true
-										= image_tag(image.file.url(:small))
+									- project.images.each do |image|
+										- if image.cover == true
+											= image_tag(image.file.url(:small))
 
 /javascript functions
 
 :javascript
 	$(function() {
 		$('.featured-slide .slider').bxSlider({
-			auto: true,
+			auto: false,
 			pause: 5000,
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',
@@ -92,7 +153,7 @@
 				prevText: '←'
 		});
 		$('.featured-titles .slider').bxSlider({
-			auto: true,
+			auto: false,
 			pause: 5000,
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',

@@ -32,6 +32,7 @@ gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem 'bxslider-rails'
 gem 'paperclip'
+gem 'geocoder'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

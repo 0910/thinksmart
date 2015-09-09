@@ -35,6 +35,7 @@ ActiveAdmin.register City do
     f.inputs "Images" do
       f.has_many :images do |i|
         i.input :file, as: :file, label: false, hint: i.object.new_record? ? i.template.content_tag(:span, "No Image Yet") : image_tag(i.object.file.url(:thumb))
+        i.input :cover, as: :boolean, label: "Cover"
         i.input :_destroy, as: :boolean, label: "Destroy?" unless i.object.new_record?
       end 
     end

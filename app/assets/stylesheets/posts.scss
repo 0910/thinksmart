@@ -1,3 +1,82 @@
-// Place all the styles related to the post controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* 01. Posts */
+
+.posts-list{
+	.title{
+		h1{
+			font-size: 1.5em;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+			span{
+				font-weight: 600;
+			}
+		}
+	}
+	.slide{
+		background-color: #fff;
+		border-top: 1px solid #cfcfcf;
+	}
+	.photo{
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+	.info{
+		border-right: 1px solid #cfcfcf;
+		padding: 2.5em;
+		height: 240px;
+		position: relative;
+		.header{
+			margin-bottom: .25em;
+			a{
+				font-size: 1.375em;
+				font-weight: 100;
+				color: #101010;
+				letter-spacing: -0.038em;
+				line-height: 1;
+			}
+			a:hover{
+				text-decoration: underline;
+			}
+		}
+		p{
+			margin: .5em 0 0 .75em;
+			color: #a0a0a0;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+		}
+		.actions{
+			position: absolute;
+			bottom: 0;
+			left:0;
+			padding: 0 2.5em 2.5em 2.5em;
+			position: absolute;
+			width: 100%;
+			.action{
+				margin-top: .5em;
+				a{
+					font-size: 1.15em;
+				}
+			}
+		}
+		p.user{
+			margin: .5em 0 0 0;
+		}
+		button{
+			margin-top: .25em;
+			font-weight: 100;
+			letter-spacing: -0.038em;
+		}
+	}
+}
+
+/* 02. Posts Index */
+
+.posts.index{
+	.posts-list{
+		background-color: #fcfcfc;
+		.item{
+			background-color: #fff;
+		}
+	}
+}

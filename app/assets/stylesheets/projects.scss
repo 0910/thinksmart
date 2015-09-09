@@ -1,61 +1,108 @@
-/* 01. Index */
+/* 01. Projects */
 
-.projects_resume{
-	background-color: #2C2C2C;
-	color: #fff;
+.projects-list{
 	.title{
-		padding:3em;
-		border-bottom: 1px solid #424242;
 		h1{
-			font-size: 1.769em;
+			font-size: 1.5em;
 			font-weight: 100;
 			letter-spacing: -0.038em;
 			span{
-				font-weight: 600;
+				font-weight: 400;
 			}
 		}
 	}
-	.photo img{
-		width: 100%;
-		height: auto;
+	.slide{
+		border-top: 1px solid #424242;
 	}
-	.info{
-		padding: 3em;
-		h2{
-			font-size: 1.75em;
-			font-weight: 100;
-			color: #fff;
-			letter-spacing: -0.038em;
-		}
-		p{
-			margin-top: 1.35em;
-			color: #c0c0c0;
-			font-weight: 100;
-			font-size: 1.058em;
-			letter-spacing: -0.038em;
-		}
-		button{
-			margin-top: 1em;
-			font-weight: 100;
-			font-size: 1.058em;
-			letter-spacing: -0.038em;
-		}
+	.photo{
 		img{
-			margin-top: 1.35em;
-			padding-right: 1em;
+			width: 100%;
+			height: auto;
+		}
+	}
+	.item{
+		.info{
+			padding: 2.5em;
+			height: 240px;
+			position: relative;
+			.header{
+				margin-bottom: .25em;
+				a{
+					font-family: 'Roboto', helvetica, arial, sans-serif;
+					font-size: 1.375em;
+					font-weight: 100;
+					line-height: 1;
+					color: #101010;
+				}
+				a:hover{
+					text-decoration: underline;
+				}
+			}
+			p{
+				margin: .5em 0 0 .75em;
+				color: #a0a0a0;
+				font-weight: 100;
+				letter-spacing: -0.038em;
+			}
+			.actions{
+				position: absolute;
+				bottom: 0;
+				left:0;
+				padding: 0 2.5em 2.5em 2.5em;
+				position: absolute;
+				width: 100%;
+				.action{
+					margin-top: .5em;
+					a{
+						font-size: 1.15em;
+						color: #a0a0a0;
+					}
+				}
+			}
+			p.user{
+				margin: .5em 0 0 0;
+			}
+			button{
+				margin-top: .25em;
+				font-weight: 100;
+				letter-spacing: -0.038em;
+			}
+		}
+	}
+	
+}
+/* 02. Projects Index */
+
+.projects.index{
+	.projects-list{
+		background-color: #fcfcfc;
+		.item{
+			border-top: 1px solid #cfcfcf;
+			background-color: #fff;
+		}
+		.item:nth-child(3n), .item:nth-child(4n){
+			.photo{
+				float: left;
+			}
+			.info{
+				float: right;
+			}
 		}
 	}
 }
 
-/* 02. Show */
+/* 03. Project Show */
 
-.projects{
+.projects.show{
 	background-color: #fff;
 	color: #101010;
+	.section_title{
+		border:none;
+	}
 	.title{
 		padding:3em;
 		h1{
-			font-size: 1.769em;
+			font-size: 1.5em;
 			font-weight: 100;
 			letter-spacing: -0.038em;
 			span{
@@ -63,53 +110,88 @@
 			}
 		}
 	}
-	.item{
-		border-bottom: 1px solid #cfcfcf;
-		.photo img{
-			width: 100%;
-			height: auto;
-		}
+	.project{
+		background-color: #FCFCFC;
 		.info{
-			float: left;
-			padding: 3em;
-			a{
-				font-size: 1.75em;
-				font-weight: 100;
-				color: #101010;
-				letter-spacing: -0.038em;
-				line-height: 1;
+			background-color: #F0F4F5;
+			display: flex;
+			align-items:center;
+			.category{
+				img{
+					width: 100%;
+					height: auto;
+				}
+			}
+			.target{
+				background-color: #F0F4F5;
+				text-align: center;
+				text-transform: uppercase;
+				color: #2C2C2C;
+			}
+		}
+		.subcategories{
+			padding:3em;
+			p{
+				color: #424242;
+
+			}
+		}
+		.grey{
+			background-color: #2C2C2C;
+		}
+		.detail{
+			background-color: #fff;
+			padding:3em;
+			h1{
+				font-size: 2.250em;
+				margin-bottom: .5em;
 			}
 			p{
-				margin: 1.35em 0 0 1em;
-				color: #a0a0a0;
-				font-weight: 100;
-				font-size: 1.058em;
-				letter-spacing: -0.038em;
+				margin-top: 1em;
+				color: #606060;
+				font-size: 1em;
+				font-weight: 200;
+				line-height: 1.75;
+			}
+			p.date{
+				margin: 0 0 0 1.25em;
+				float: left;
+				color: #101010;
 			}
 			p.user{
-				margin: 1em 0 0 0;
+				border-left:1px solid #ccc;
+				padding-left:1.25em;
+				float: left;
+				color: #101010;
+				margin-top:0px;
 			}
-			button{
-				margin-top: .5em;
+			.action{
+				a{
+					font-size: 1.25em;
+				}
+			}
+		}
+		.extend{
+			color: #fff;
+			padding: 3em;
+			.box{
+				border-bottom: 1px solid #505050;
+   				margin-bottom: 1.5em;
+    			padding-bottom: 1.5em;
+				h3{
 				font-weight: 100;
-				font-size: 1.058em;
-				letter-spacing: -0.038em;
+				}
+				p, a{
+					color: #c0c0c0;
+					margin-top: .5em;
+					font-weight: 200;
+					display: block;
+				}
+				a:hover{
+					color: #fff;
+					text-decoration: underline;
+				}
 			}
-			img.icons{
-				margin-top: 1.35em;
-				padding: 0.2em 1em 0.2em 0;
-			}
-		}
-		.photo{
-			float: right;
-		}
-	}
-	.item:nth-child(3n), .item:nth-child(4n){
-		.info{
-			float: right;
-		}
-		.photo{
-			float: left;
 		}
 	}
 }

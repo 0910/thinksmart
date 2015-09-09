@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thinksmart</title>
+  <title>ThinkSmart</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller_name %>">
+<body class="<%= controller_name %> <%= action_name %>">
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<nav class="navigation">
-	<div class="logo"></div>
-	<div class="menu">
-		<a href="#">BUE</a>
-		<button class="btn btn-default" href="#">Registrate!</button>
-		<a href="#">Sign In</a>
-		<a href="#">Menu</a>
+<nav class="row navigation">
+	<div class="col-xs-12 col-md-6">
+		<div class="logo"></div>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<div class="menu">
+			<a href="#"><span class="icon icon-earth-globe-streamline"></span>BUE</a>
+			<!--<button class="btn btn-default" href="#">Registrate!</button>-->
+			<!--<a href="#">Sign In</a>-->
+			<a href="#">Menu</a>
+		</div>
 	</div>
 </nav>
 <%= yield %>

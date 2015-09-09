@@ -1,3 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+body{
+	font-family: 'Open sans', helvetica, arial, sans-serif;
+}
 form{
 	fieldset{
 		ol{
@@ -13,5 +17,110 @@ form{
 	}
 	fieldset.inputs{
 		box-shadow: none;
+	}
+}
+/* 01. Header */
+
+#header {
+    background-color: #4bb3d2;
+    background-image: none;
+    border-bottom: 0px;
+    box-shadow: none;
+    display: table;
+    height: 60px;
+    overflow: visible;
+    padding: 0;
+    position: inherit;
+    text-shadow: none;
+    width: 100%;
+    z-index: 900;
+    .header-item{
+    	top: 0;
+    }
+    ul.tabs{
+    	li{
+    		display: table-cell;
+    		padding:21px 0;
+    		margin:0;
+    		a{
+    			padding: 23px 14px;
+    			border-radius: 0px;
+    			text-transform: uppercase;
+    		}
+    	}
+    	li:hover, li.current{
+    		a{
+    			background-color: #fff;
+    			color: #4bb3d2;
+    		}
+    	}
+    }
+    a, a:link{
+    	color: #fff;
+    }
+    #utility_nav{
+    	border-left: 1px solid rgba(255,255,255,0.5);
+    }
+}
+
+/* 02. Title Bar */
+
+#title_bar {
+    background-color: #F0F4F5;
+    background-image: none;
+    border:none;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #5e6469;
+    font-weight: normal;
+    line-height: 18px;
+    margin: 0;
+    padding: 20px 30px;
+    position: relative;
+    text-shadow: none;
+    width: 100%;
+    z-index: 800;
+    h2{
+    	font-weight: 400;
+    	text-transform: uppercase;
+    }
+    .action_items{
+    	span.action_item{
+    		a{
+			    background-color: #4BB97D;
+			    background-image: none;
+			    border: medium none;
+			    border-radius: 5px;
+			    box-shadow: none;
+			    color: #fff;
+			    font-family: "Open sans",helvetica,arial,sans-serif;
+			    font-size: 1em;
+			    font-weight: 400;
+			    line-height: 12px;
+			    padding: 14px 21px;
+			    text-decoration: none;
+			    text-shadow: none;
+			    text-transform: uppercase;
+			}
+    	}
+    }
+}
+
+/* 03. Tables */
+
+table.index_table{
+	th, th.sorted-asc, th.sorted-desc{
+	    background-color: transparent;
+	    background-image: none;
+	    border:none;
+	    border-bottom: 2px solid #ccc;
+	    box-shadow: none;
+	    color: #5e6469;
+	    font-weight: 400;
+	    line-height: 18px;
+	    text-shadow: none;
+	}
+	th:last-child{
+		border-right:none;
 	}
 }
