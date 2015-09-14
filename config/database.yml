@@ -4,14 +4,17 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: thinksmart_development
+  pool: 5
+  username: root
+  password: pranayama.777
+  socket: /tmp/mysql.sock
 
 production:
   adapter: mysql2
@@ -21,3 +24,4 @@ production:
   pool: 5
   username: thinksmart_production
   password: pranayama.777
+  socket: /tmp/mysql.sock
