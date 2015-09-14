@@ -264,7 +264,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   morrisjs-rails
-  mysql2
+  mysql2 (= 0.4.0)
   paperclip
   rails (= 4.2.1)
   raphael-rails
