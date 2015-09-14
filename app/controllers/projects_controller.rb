@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   	@project = Project.find(params[:id])
   end
   def transport
-  	@projects = Project.where('category_id = 1')
+  	@projects = city.projects.where('category_id = 1')
   	render :index
   end
   def development

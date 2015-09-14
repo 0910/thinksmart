@@ -1,0 +1,62 @@
+!!!
+%html
+	%head
+		%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+			%title
+				ThinkSmart
+			= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+			= javascript_include_tag 'application', 'data-turbolinks-track' => true
+			= csrf_meta_tags
+			= yield(:head)
+
+	%body{:class => "#{controller_name} #{action_name}"}
+	.wrapper
+		%nav.row.navigation
+			.col-xs-12.col-md-6
+				.logo
+			.col-xs-12.col-md-6
+				.menu
+					= link_to(cities_path) do
+						%span.icon.icon-earth-globe-streamline
+						BUE
+					%a.toggle-nav(href="#")
+						Menu
+		.site-menu
+			%a.toggle-nav(href="#")
+				X
+			= link_to('Home', root_path)
+			= link_to('Ciudades', cities_path)
+			- unless @hide_city_menu
+				= link_to('Publicaciones', city_posts_path(city))
+				= link_to('Proyectos', city_projects_path(city))
+			%a
+				About
+			%a.mini
+				Contacto
+			%a.mini
+				Preguntas Frecuentes
+			%a.mini
+				Terminos y Condiciones
+		.site-canvas
+			= yield
+			.row.footer
+				.row
+					%h1
+						Building better cities together
+				.row
+					%a
+						Home
+					%a
+						About
+					%a
+						Noticias
+					%a
+						Proyectos
+					%a
+						Contacto
+				.row
+					%p
+						Todavia no estas registrado?
+						%button.btn.btn-default
+							Registrate Ahora
+						en ThinkSmart

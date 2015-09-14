@@ -2,6 +2,16 @@ ActiveAdmin.register Project do
 
   #permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :image_attributes, :target_id, :category_id, :link, :city_id, :user_id
   
+  controller do
+    def scoped_collection
+      if current_user.moderator?
+        current_user.projects
+      else
+        Project
+      end
+    end
+  end
+
   before_create do |project|
     project.user = current_user
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909174302) do
+ActiveRecord::Schema.define(version: 20150914123553) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150909174302) do
     t.datetime "updated_at",  null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "slug"
   end
 
   create_table "images", force: :cascade do |t|
@@ -143,6 +144,8 @@ ActiveRecord::Schema.define(version: 20150909174302) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

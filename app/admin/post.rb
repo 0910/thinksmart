@@ -2,6 +2,16 @@ ActiveAdmin.register Post do
 
   #permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :target_id, :category_id, :link, :city_id, :user_id
 
+  controller do
+    def scoped_collection
+      if current_user.moderator?
+        current_user.posts
+      else
+        Post
+      end
+    end
+  end
+
   before_create do |post|
     post.user = current_user
   end

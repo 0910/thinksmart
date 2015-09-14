@@ -18,4 +18,5 @@
 //= require raphael
 //= require morris
 //= require bxslider
+//= require magic
 //= require_tree .

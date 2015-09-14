@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   def index
-  	@projects = Project.all.reverse_order
-  	@posts = Post.all.reverse_order
+  	if coords = request.location.try(:coords)
+  		if city = City.near(coords, 20).first
+  			return redirect_to(city_path(city))
+  		end
+  	end
+  	redirect_to(cities_path)
   end
 end

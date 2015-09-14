@@ -1,6 +1,6 @@
 .row.categories
 	.col-md-2
-		= link_to transport_projects_path, class: 'cat transport' do
+		= link_to transport_city_projects_path, class: 'cat transport' do
 			.col-md-3.icon
 				= image_tag('cat_icons/transport.svg')
 			.col-md-9.text
@@ -9,7 +9,7 @@
 					%br
 					y movilidad
 	.col-md-2
-		= link_to development_projects_path, class: 'cat development' do
+		= link_to development_city_projects_path, class: 'cat development' do
 			.col-md-3.icon
 				= image_tag('cat_icons/development.svg')
 			.col-md-9.text
@@ -18,7 +18,7 @@
 					%br
 					urbano
 	.col-md-2
-		= link_to environment_projects_path, class: 'cat environment' do
+		= link_to environment_city_projects_path, class: 'cat environment' do
 			.col-md-3.icon
 				= image_tag('cat_icons/environment.svg')
 			.col-md-9.text
@@ -27,7 +27,7 @@
 					%br
 					y recursos nat.
 	.col-md-2
-		= link_to people_projects_path, class: 'cat people' do
+		= link_to people_city_projects_path, class: 'cat people' do
 			.col-md-3.icon
 				= image_tag('cat_icons/people.svg')
 			.col-md-9.text
@@ -36,14 +36,14 @@
 					%br
 					las personas
 	.col-md-2
-		= link_to community_projects_path, class: 'cat community' do
+		= link_to community_city_projects_path, class: 'cat community' do
 			.col-md-3.icon
 				= image_tag('cat_icons/community.svg')
 			.col-md-9.text
 				%p
 					Comunidad
 	.col-md-2
-		= link_to innovation_projects_path, class: 'cat innovation' do
+		= link_to innovation_city_projects_path, class: 'cat innovation' do
 			.col-md-3.icon
 				= image_tag('cat_icons/innovation.svg')
 			.col-md-9.text
@@ -91,7 +91,7 @@
 											%a.icon.icon-envellope-mail-streamline
 									.col-xs-12.col-md-9
 										%p.user
-											#{project.user.email}
+											#{project.user.name}
 										%p.date
 											#{project.created_at.to_date.to_formatted_s(:long)}
 
@@ -112,11 +112,11 @@
 						.col-sm-6.col-md-6.info
 							.row
 								.row.header
-									= link_to(truncate(project.title, :length => 70), project_path(project))
+									= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
 								.row
 									.col-xs-6.col-sm-6.col-md-6
 										%p.user
-											#{project.user.email}
+											#{project.user.name}
 									.col-xs-6.col-sm-6.col-md-6
 										%button.btn.btn-primary
 											#{project.category.name}

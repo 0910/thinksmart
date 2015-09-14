@@ -27,12 +27,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'devise'
+gem 'cancancan', '~> 1.10'
 
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem 'bxslider-rails'
 gem 'paperclip'
 gem 'geocoder'
+gem 'friendly_id'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,5 +1,5 @@
 ActiveAdmin.register City do
-
+  menu :if => proc{ can?(:manage, 'Admin' ) }
   #permit_params :name, :population, :man, :woman, :ranking, :smart_index, :visitors, :commitment
   
   show do |p|
@@ -24,6 +24,9 @@ ActiveAdmin.register City do
     f.inputs 'Details' do
       f.semantic_errors
       f.input :name, :require => true
+      f.input :slug, :require => true
+      f.input :latitude, :require => true
+      f.input :longitude, :require => true
       f.input :population, :require => true
       f.input :man, :require => true
       f.input :woman, :require => true

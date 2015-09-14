@@ -1,0 +1,312 @@
+/ Splash Screen
+
+.splash
+	.center
+		%h1
+			Think
+			%span
+				Smart
+			es una red social
+			%br
+			de ciudadanos y ciudades.
+		%p
+			Sumate y ayudanos a generar conciencia
+			%br
+			sobre el espacio que habitamos!
+		%button.btn.btn-default
+			Be Smart!
+
+/ City Selector
+
+.row.start
+	.col-md-6.search
+		.title
+			%h1
+				%i.icon.icon-earth-globe-streamline
+				Busca publicaciones, proyectos o ciudades.
+		
+	.col-md-6.location
+		.title
+			= link_to(cities_path) do
+				%i.icon.icon-earth-globe-streamline
+				Estas en Buenos Aires,
+				%span
+					Argentina.
+				%span.caret
+
+.row.city-resume
+	.col-md-3
+		.row
+			%h2
+				Indice Smart City
+		.row
+			%h1
+				5 /
+				%span
+					10 ciudades.
+		
+	.col-md-6
+		.row
+			%h2 
+				Poblacion
+				%span
+					3.085.275 hab.
+		.row.population
+			.col-md-6
+				.row
+					.col-md-12
+						.col-xs-7.col-sm-7.col-md-7
+							.row.men
+								= image_tag('men.png')
+								.percent
+						.col-xs-5.col-sm-5.col-md-5
+							%h3
+								46.49%
+							%p
+								hombres
+			.col-md-6
+				.row
+					.col-md-12
+						.col-xs-7.col-sm-7.col-md-7
+							.row.women
+								= image_tag('women.png')
+								.percent
+						.col-xs-5.col-sm-5.col-md-5
+							%h3
+								46.49%
+							%p
+								mujeres
+	.col-md-3
+		.row
+			.col-xs-6.col-md-4.chart
+				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "participacion", "data-percent" => "35", "data-text" => "35%", "data-width" => "7"}
+			.col-xs-6.col-md-4.chart
+				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "smart develop", "data-percent" => "15", "data-text" => "15%", "data-width" => "7"}
+			.col-xs-6.col-md-4.chart
+				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "visitantes", "data-percent" => "15", "data-text" => "15%", "data-width" => "7"}
+
+.row.title
+	.col-md-12
+		%h1
+			Destacados en
+			%span
+				Esta ciudad.
+.row.featured.cyan
+	.col-md-6.featured-titles							
+		.row
+			.row
+				%ul.slider
+					- @projects.each do |project|
+						%li
+							.row.slide.info
+								.col-sm-12.col-md-12
+									.row
+										%h1
+											#{truncate(project.title, :length => 70)}
+										%p
+											#{simple_format truncate(project.description, :length => 600)}
+									.row
+										.col-xs-12.col-md-3
+											.action
+												%a.icon.icon-map-streamline-user
+											.action
+												%a.icon.icon-like-love-streamline
+											.action
+												%a.icon.icon-envellope-mail-streamline
+										.col-xs-12.col-md-9
+											%p.user
+												#{project.user.email}
+											%p.date
+												#{project.created_at.to_date.to_formatted_s(:long)}
+	.col-md-6.featured-slide
+		.row
+			%ul.slider
+				- @projects.each do |project|
+					%li
+						.row.slide
+							.col-sm-12.col-md-12
+								.row.photo
+									- if project.images.empty?
+										= image_tag('image-not-available.jpg')
+									- else
+										- project.images.each do |image|
+											- if image.cover == true
+												= image_tag(image.file.url(:large))
+
+/ Posts & Projects
+
+.row
+	.col-md-6.posts-list
+		.row.title
+			.col-md-10
+				%h1
+					Novedades en
+					%span
+						Buenos Aires.
+			.col-md-1.hidden-xs	
+				#prev-news
+			.col-md-1.hidden-xs	
+				#next-news
+		.row.sliderbox
+			%ul.slider
+				- @posts.in_groups_of(2, false).each do |slide|
+					%li.slide
+						- slide.each do |post|
+							.col-md-6
+								.row.photo
+									- if post.images.empty?
+										= image_tag('image-not-available.jpg')
+									- else
+										- post.images.each do |image|
+											- if image.cover == true
+												= image_tag(image.file.url(:small))
+								.row.info
+									.row.header
+										= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
+									.row
+										.col-xs-6.col-sm-6.col-md-6
+											%p.user
+												#{post.user.email}
+										.col-xs-6.col-sm-6.col-md-6
+											%button.btn.btn-primary
+												#{post.category.name}
+									.row.actions
+										.col-xs-6.col-md-6
+											.action
+												%a.icon.icon-map-streamline-user
+											.action
+												%a.icon.icon-like-love-streamline
+											.action
+												%a.icon.icon-envellope-mail-streamline
+										.col-xs-6.col-md-6
+											%p.date
+												#{post.created_at.to_date.to_formatted_s(:long)}
+	.col-md-6.projects-list
+		.row.title
+			.col-md-10
+				%h1
+					Proyectos en
+					%span
+						Buenos Aires.
+			.col-md-1.hidden-xs	
+				#prev-projects
+			.col-md-1.hidden-xs	
+				#next-projects
+		.row.sliderbox
+			%ul.slider
+				- @projects.in_groups_of(2, false).each do |slide|
+					%li.slide
+						- slide.each do |project|
+							.col-md-12.item
+								.row
+									.col-sm-6.col-md-6.info
+										.row
+											.row.header
+												= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+											.row
+												.col-xs-6.col-sm-6.col-md-6
+													%p.user
+														#{project.user.email}
+												.col-xs-6.col-sm-6.col-md-6
+													%button.btn.btn-primary
+														#{project.category.name}
+											.row.actions
+												.col-xs-6.col-md-6
+													.action
+														%a.icon.icon-map-streamline-user
+													.action
+														%a.icon.icon-like-love-streamline
+													.action
+														%a.icon.icon-envellope-mail-streamline
+												.col-xs-6.col-md-6
+													%p.date
+														#{project.created_at.to_date.to_formatted_s(:long)}
+									.col-sm-6.col-md-6
+										.row.photo
+											- if project.images.empty?
+												= image_tag('image-not-available.jpg')
+											- else
+												- project.images.each do |image|
+													- if image.cover == true
+														= image_tag(image.file.url(:small))
+
+.row.about
+	.col-md-4.box
+		= image_tag('about.png')
+
+		%h1
+			Que es 
+			%span
+				ThinkSmart?
+		%p
+			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
+			<br/><br/>
+			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
+	.col-md-4.box
+		= image_tag('about.png')
+		%h1
+			Por que es
+			%span
+				importante?
+		%p
+			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
+			<br/><br/>
+			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
+	.col-md-4.box
+		= image_tag('about.png')
+		%h1
+			Como puedo
+			%span
+				participar?
+		%p
+			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
+			<br/><br/>
+			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
+:javascript
+	$(function() {
+		$('.splash').parallax("50%", 0.1);
+		$('.circle').circliful();
+		$('.featured-slide .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←'
+		});
+		$('.featured-titles .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+			pager:false,
+			controls:false
+		});
+		$('.posts-list .slider').bxSlider({
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+			nextSelector: '#next-news',
+				prevSelector: '#prev-news',
+				nextText: '→',
+				prevText: '←',
+				pager: false
+
+		});
+		$('.projects-list .slider').bxSlider({
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+			nextSelector: '#next-projects',
+				prevSelector: '#prev-projects',
+				nextText: '→',
+				prevText: '←',
+				pager: false
+		});
+		});
+		$(window).on("scroll", function() {
+		if ($(this).scrollTop() > 100) {
+			$('.navigation').addClass('white');
+		}
+		else {
+			$('.navigation').removeClass('white');
+		}
+		});
