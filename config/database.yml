@@ -24,10 +24,9 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  host: b5oxbr2zss.database.windows.net
   database: thinksmart_production
   pool: 5
-  username: thinksmart_production@b5oxbr2zss
+  username: root
   password: pranayama.777
   socket: /var/run/mysqld/mysqld.sock
-  azure: true
+  port: 3306
