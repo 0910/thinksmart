@@ -43,6 +43,10 @@ group :development do
     gem 'mysql2', '~> 0.3.13'
 end
 
+group :production do
+    gem 'mysql2', '~> 0.3.13'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
