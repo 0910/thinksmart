@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'mysql2', '0.4.0'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
@@ -42,6 +40,7 @@ group :development do
     gem 'capistrano-rbenv'
     gem 'capistrano-rails'
     gem 'capistrano-bundler'
+    gem 'mysql2', '~> 0.3.13'
 end
 
 # Use ActiveModel has_secure_password
