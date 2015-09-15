@@ -34,4 +34,4 @@ production:
   pool: 5
   username: thinksmart_production
   password: pranayama.777
-  socket: /tmp/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
