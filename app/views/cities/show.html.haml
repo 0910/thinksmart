@@ -1,20 +1,21 @@
 / Splash Screen
 
-.splash
-	.center
-		%h1
-			Think
-			%span
-				Smart
-			es una red social
-			%br
-			de ciudadanos y ciudades.
-		%p
-			Sumate y ayudanos a generar conciencia
-			%br
-			sobre el espacio que habitamos!
-		%button.btn.btn-default
-			Be Smart!
+- city.images.each do |image|
+	.splash{:style => "background-image: url(#{image.file.url(:high)}"}
+		.center
+			%h1
+				Think
+				%span
+					Smart
+				es una red social
+				%br
+				de ciudadanos y ciudades.
+			%p
+				Sumate y ayudanos a generar conciencia
+				%br
+				sobre el espacio que habitamos!
+			%button.btn.btn-default
+				Be Smart!
 
 / City Selector
 

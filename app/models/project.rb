@@ -10,6 +10,4 @@ class Project < ActiveRecord::Base
   validates :title, presence: true
   validates :title, uniqueness: true
   validates :description, presence: true
-  validates :benefit, presence: true
-  validates :solved_problems, presence: true
 end

@@ -52,8 +52,8 @@ ActiveAdmin.register Project do
       f.input :target_id, :as => :select, :collection => Target.all, :include_blank => false, :require => true
       f.input :city_id, :as => :select, :collection => City.all, :include_blank => false, :require => true
       f.input :description, :require => true
-      f.input :benefit, :require => true
-      f.input :solved_problems, :require => true
+      f.input :benefit
+      f.input :solved_problems
     end
     f.inputs "Images" do
       f.has_many :images do |i|

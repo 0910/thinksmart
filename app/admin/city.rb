@@ -2,6 +2,15 @@ ActiveAdmin.register City do
   menu :if => proc{ can?(:manage, 'Admin' ) }
   #permit_params :name, :population, :man, :woman, :ranking, :smart_index, :visitors, :commitment
   
+  index do
+    column :id
+    column :name
+    column :slug
+    column :created_at
+    column :updated_at
+    actions
+  end
+
   show do |p|
     attributes_table do
       row :name
