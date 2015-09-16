@@ -51,7 +51,7 @@ end
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-gem 'raindrops', '~> 0.10.0'
+gem 'raindrops'
 gem 'unicorn'
 
 # Use Capistrano for deployment
