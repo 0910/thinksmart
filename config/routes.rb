@@ -11,7 +11,16 @@ Rails.application.routes.draw do
         get "innovation"
       end
     end
-    resources :posts, only: [:show, :index]
+    resources :posts, only: [:show, :index] do
+      collection do
+        get "transport"
+        get "development"
+        get "environment"
+        get "people"
+        get "community"
+        get "innovation"
+      end
+    end
   end
 
   get 'home/index'

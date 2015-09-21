@@ -4,16 +4,9 @@
 	.splash{:style => "background-image: url(#{image.file.url(:high)}"}
 		.center
 			%h1
-				Think
-				%span
-					Smart
-				es una red social
-				%br
-				de ciudadanos y ciudades.
+				#{city.title}
 			%p
-				Sumate y ayudanos a generar conciencia
-				%br
-				sobre el espacio que habitamos!
+				#{city.subtitle}
 			%button.btn.btn-default
 				Be Smart!
 
@@ -30,9 +23,9 @@
 		.title
 			= link_to(cities_path) do
 				%i.icon.icon-earth-globe-streamline
-				Estas en Buenos Aires,
+				Estas en 
 				%span
-					Argentina.
+					#{city.name}, #{city.country}
 				%span.caret
 
 .row.city-resume
@@ -42,16 +35,16 @@
 				Indice Smart City
 		.row
 			%h1
-				5 /
+				#{city.ranking} /
 				%span
-					10 ciudades.
+					#{@cities.size} ciudades.
 		
 	.col-md-6
 		.row
 			%h2 
 				Poblacion
 				%span
-					3.085.275 hab.
+					#{city.population} hab.
 		.row.population
 			.col-md-6
 				.row
@@ -62,7 +55,7 @@
 								.percent
 						.col-xs-5.col-sm-5.col-md-5
 							%h3
-								46.49%
+								#{city.man}
 							%p
 								hombres
 			.col-md-6
@@ -74,7 +67,7 @@
 								.percent
 						.col-xs-5.col-sm-5.col-md-5
 							%h3
-								46.49%
+								#{city.woman}
 							%p
 								mujeres
 	.col-md-3
@@ -116,7 +109,8 @@
 												%a.icon.icon-envellope-mail-streamline
 										.col-xs-12.col-md-9
 											%p.user
-												#{project.user.email}
+												%i.icon.icon-man-people-streamline-user
+												#{project.user.name}
 											%p.date
 												#{project.created_at.to_date.to_formatted_s(:long)}
 	.col-md-6.featured-slide
@@ -126,13 +120,12 @@
 					%li
 						.row.slide
 							.col-sm-12.col-md-12
-								.row.photo
-									- if project.images.empty?
-										= image_tag('image-not-available.jpg')
-									- else
-										- project.images.each do |image|
-											- if image.cover == true
-												= image_tag(image.file.url(:large))
+								- if project.images.empty?
+									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- project.images.each do |image|
+										- if image.cover == true
+											.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
 
 / Posts & Projects
 
@@ -154,20 +147,20 @@
 					%li.slide
 						- slide.each do |post|
 							.col-md-6
-								.row.photo
-									- if post.images.empty?
-										= image_tag('image-not-available.jpg')
-									- else
-										- post.images.each do |image|
-											- if image.cover == true
-												= image_tag(image.file.url(:small))
+								- if post.images.empty?
+									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
+										- if image.cover == true
+											.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
 								.row.info
 									.row.header
 										= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
 									.row
 										.col-xs-6.col-sm-6.col-md-6
 											%p.user
-												#{post.user.email}
+												%i.icon.icon-man-people-streamline-user
+												#{post.user.name}
 										.col-xs-6.col-sm-6.col-md-6
 											%button.btn.btn-primary
 												#{post.category.name}
@@ -207,7 +200,8 @@
 											.row
 												.col-xs-6.col-sm-6.col-md-6
 													%p.user
-														#{project.user.email}
+														%i.icon.icon-man-people-streamline-user
+														#{project.user.name}
 												.col-xs-6.col-sm-6.col-md-6
 													%button.btn.btn-primary
 														#{project.category.name}
@@ -223,13 +217,12 @@
 													%p.date
 														#{project.created_at.to_date.to_formatted_s(:long)}
 									.col-sm-6.col-md-6
-										.row.photo
-											- if project.images.empty?
-												= image_tag('image-not-available.jpg')
-											- else
-												- project.images.each do |image|
-													- if image.cover == true
-														= image_tag(image.file.url(:small))
+										- if project.images.empty?
+											.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+										- else
+											- project.images.each do |image|
+												- if image.cover == true
+													.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
 
 .row.about
 	.col-md-4.box
@@ -267,21 +260,27 @@
 	$(function() {
 		$('.splash').parallax("50%", 0.1);
 		$('.circle').circliful();
-		$('.featured-slide .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←'
-		});
-		$('.featured-titles .slider').bxSlider({
-			auto: false,
+		var slider = $('.featured-titles .slider').bxSlider({
+			auto: true,
 			pause: 5000,
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',
 			pager:false,
 			controls:false
+		});
+		$('.featured-slide .slider').bxSlider({
+			auto: true,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←',
+			onSlidePrev: function(){
+				slider.goToPrevSlide();
+			},
+			onSlideNext: function(){
+				slider.goToNextSlide();
+			}
 		});
 		$('.posts-list .slider').bxSlider({
 			useCSS:true,

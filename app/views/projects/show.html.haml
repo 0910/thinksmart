@@ -2,18 +2,20 @@
 
 .project
 	.row
-		.col-md-7.featured-slide
+		.col-md-7.featured
 			.row
 				%ul.slider
-					- @project.images.each do |image|
+					- if @project.images.empty?
 						%li
 							.row.slide
 								.col-sm-12.col-md-12
-									.row.photo
-										- if @project.images.empty?
-											= image_tag('image-not-available.jpg')
-										- else
-											= image_tag(image.file.url(:large))
+									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+					- else
+						- @project.images.each do |image|
+							%li
+								.row.slide
+									.col-sm-12.col-md-12
+										.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
 		.col-md-5
 			.row.info
 				.col-md-7.category
@@ -44,7 +46,8 @@
 						#{@project.created_at.to_date.to_formatted_s(:long)}
 				.col-md-6
 					%p.user
-						by: #{@project.user.name}
+						%i.icon.icon-man-people-streamline-user
+						#{@project.user.name}
 
 		.col-md-5.extend
 			.box
@@ -68,7 +71,7 @@
 
 :javascript
 	$(function() {
-		$('.featured-slide .slider').bxSlider({
+		$('.featured .slider').bxSlider({
 			auto: true,
 			pause: 5000,
 			useCSS:true,

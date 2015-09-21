@@ -4,8 +4,9 @@ class CitiesController < ApplicationController
   	@cities = City.all
   end
   def show
+    @cities = City.all
   	@projects = city.projects.all.reverse_order
-  	@posts = city.projects.all.reverse_order
+  	@posts = city.posts.all.reverse_order
   end
   def city_id
     params[:id]

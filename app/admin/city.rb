@@ -5,6 +5,7 @@ ActiveAdmin.register City do
   index do
     column :id
     column :name
+    column :country
     column :slug
     column :created_at
     column :updated_at
@@ -14,6 +15,10 @@ ActiveAdmin.register City do
   show do |p|
     attributes_table do
       row :name
+      row :country
+      row :slug
+      row :title
+      row :subtitle
       row :population
       row :man
       row :woman
@@ -33,9 +38,12 @@ ActiveAdmin.register City do
     f.inputs 'Details' do
       f.semantic_errors
       f.input :name, :require => true
+      f.input :country, :require => true
       f.input :slug, :require => true
       f.input :latitude, :require => true
       f.input :longitude, :require => true
+      f.input :title, :require => true
+      f.input :subtitle, :require => true
       f.input :population, :require => true
       f.input :man, :require => true
       f.input :woman, :require => true

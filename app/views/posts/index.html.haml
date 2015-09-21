@@ -1,3 +1,57 @@
+.row.categories
+	.col-md-2
+		= link_to transport_city_posts_path, class: 'cat transport' do
+			.col-md-3.icon
+				= image_tag('cat_icons/transport.svg')
+			.col-md-9.text
+				%p
+					Transporte
+					%br
+					y movilidad
+	.col-md-2
+		= link_to development_city_posts_path, class: 'cat development' do
+			.col-md-3.icon
+				= image_tag('cat_icons/development.svg')
+			.col-md-9.text
+				%p
+					Desarrollo
+					%br
+					urbano
+	.col-md-2
+		= link_to environment_city_posts_path, class: 'cat environment' do
+			.col-md-3.icon
+				= image_tag('cat_icons/environment.svg')
+			.col-md-9.text
+				%p
+					Medio ambiente
+					%br
+					y recursos nat.
+	.col-md-2
+		= link_to people_city_posts_path, class: 'cat people' do
+			.col-md-3.icon
+				= image_tag('cat_icons/people.svg')
+			.col-md-9.text
+				%p
+					Desarrollo de
+					%br
+					las personas
+	.col-md-2
+		= link_to community_city_posts_path, class: 'cat community' do
+			.col-md-3.icon
+				= image_tag('cat_icons/community.svg')
+			.col-md-9.text
+				%p
+					Comunidad
+	.col-md-2
+		= link_to innovation_city_posts_path, class: 'cat innovation' do
+			.col-md-3.icon
+				= image_tag('cat_icons/innovation.svg')
+			.col-md-9.text
+				%p
+					Innovacion
+					%br
+					y desarrollo
+
 .row.featured.cyan
 	.col-md-6.featured-slide
 		.row
@@ -6,13 +60,12 @@
 					%li
 						.row.slide
 							.col-sm-12.col-md-12
-								.row.photo
-									- if post.images.empty?
-										= image_tag('image-not-available.jpg')
-									- else
-										- post.images.each do |image|
-											- if image.cover == true
-												= image_tag(image.file.url(:large))
+								- if post.images.empty?
+									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
+										- if image.cover == true
+											.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
 	.col-md-6.featured-titles							
 		.row
 			%ul.slider
@@ -52,16 +105,15 @@
 		.row
 			- @posts.each do |post|
 				.col-md-3.item
-					.row.photo
-						- if post.images.empty?
-							= image_tag('image-not-available.jpg')
-						- else
-							- post.images.each do |image|
-								- if image.cover == true
-									= image_tag(image.file.url(:small))
+					- if post.images.empty?
+						.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+					- else
+						- post.images.each do |image|
+							- if image.cover == true
+								.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
 					.row.info
 						.row.header
-							= link_to(truncate(post.title, :length => 70), post_path(post))
+							= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
 						.row
 							.col-xs-6.col-sm-6.col-md-6
 								%p.user
@@ -85,20 +137,26 @@
 
 :javascript
 	$(function() {
-		$('.featured-slide .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←'
-		});
-		$('.featured-titles .slider').bxSlider({
+		var slider = $('.featured-titles .slider').bxSlider({
 			auto: false,
 			pause: 5000,
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',
 			pager:false,
 			controls:false
+		});
+		$('.featured-slide .slider').bxSlider({
+			auto: false,
+			pause: 5000,
+			useCSS:true,
+			easing: 'cubic-bezier(.74,.14,.44,.71)',
+				nextText: '→',
+				prevText: '←',
+			onSlidePrev: function(){
+				slider.goToPrevSlide();
+			},
+			onSlideNext: function(){
+				slider.goToNextSlide();
+			}
 		});
 	});

@@ -33,6 +33,7 @@ gem 'bxslider-rails'
 gem 'paperclip'
 gem 'geocoder'
 gem 'friendly_id'
+gem 'country_select'
 
 
 group :development do

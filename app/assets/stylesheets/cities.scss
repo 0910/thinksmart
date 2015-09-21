@@ -1,5 +1,6 @@
 /* 01. Projects */
 
+
 .cities-list{
 	}
 	.photo{
@@ -23,3 +24,40 @@
     		font-size: 2.25em;
 		}
 	}
+.cities.show{
+	.posts-list{
+		.title{
+			h1{
+				text-align: left;
+			}
+		}
+	}
+	.projects-list{
+		background-color: #2c2c2c;
+		.title{
+			text-align: left;
+			background-color: #2c2c2c;
+			h1{
+				color: #fff;
+				text-align: left;
+			}
+		}
+		.item{
+			.info{
+				.header{
+					a{
+						color: #fff;
+					}
+				}
+			}
+		}
+		.item:nth-child(even){
+			.photo{
+				float: left;
+			}
+			.info{
+				float: right;
+			}
+		}
+	}
+}

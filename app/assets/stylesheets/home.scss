@@ -197,17 +197,19 @@ body.home{
 
 /* 03. Posts */
 
-.home.index{
+.home.show{
 	.posts-list{
 		.title{
-			text-align: left;
+			h1{
+				text-align: left;
+			}
 		}
 	}
 }
 
 /* 04. Projects */
 
-.home.index{
+.home.show{
 	.projects-list{
 		background-color: #2c2c2c;
 		.title{
@@ -215,6 +217,7 @@ body.home{
 			background-color: #2c2c2c;
 			h1{
 				color: #fff;
+				text-align: left;
 			}
 		}
 		.item{
