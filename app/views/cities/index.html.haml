@@ -12,15 +12,16 @@
 			- @cities.each do |city|
 				.col-md-4.item
 					= link_to(city_path(city)) do
-						.row.photo
-							- if city.images.empty?
-								= image_tag('image-not-available.jpg')
-							- else
-								- city.images.each do |image|
-									- if image.cover == true
-										= image_tag(image.file.url(:small))
-							%h1
-								#{city.name}
+						- if city.images.empty?
+							.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+								%h1
+									#{city.name}
+						- else
+							- city.images.each do |image|
+								- if image.cover == true
+									.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
+										%h1
+											#{city.name}
 						
 				
 					

@@ -54,7 +54,7 @@
 
 /featured projects
 
-.row.featured.cyan
+.row.featured
 	.col-md-6.featured-slide
 		.row
 			%ul.slider
@@ -72,27 +72,32 @@
 		.row
 			%ul.slider
 				- @projects.each do |project|
-					%li
-						.row.slide.info
-							.col-sm-12.col-md-12
-								.row
-									%h1
-										#{truncate(project.title, :length => 70)}
-									%p
-										#{simple_format truncate(project.description, :length => 600)}
-								.row
-									.col-xs-12.col-md-3
+					%li.slide
+						.info
+							.row
+								%p.date
+									#{project.created_at.to_date.to_formatted_s(:long)}
+							.row
+								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+								%p
+									#{simple_format truncate(project.description, :length => 420)}
+							.row.bottom
+								.col-md-4
+									= link_to(city_project_path(city,project), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{project.category.name}.svg"}
+										#{project.category.name}
+								.col-md-4
+									.actions
 										.action
 											%a.icon.icon-map-streamline-user
 										.action
 											%a.icon.icon-like-love-streamline
 										.action
 											%a.icon.icon-envellope-mail-streamline
-									.col-xs-12.col-md-9
-										%p.user
-											#{project.user.name}
-										%p.date
-											#{project.created_at.to_date.to_formatted_s(:long)}
+								.col-md-4
+									%p.user
+										%i.icon.icon-man-people-streamline-user
+										= link_to(project.user.name, '#')
 
 / projects list
 
@@ -110,33 +115,35 @@
 					.row
 						.col-sm-6.col-md-6.info
 							.row
-								.row.header
-									= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
-								.row
-									.col-xs-6.col-sm-6.col-md-6
-										%p.user
-											#{project.user.name}
-									.col-xs-6.col-sm-6.col-md-6
-										%button.btn.btn-primary
-											#{project.category.name}
-								.row.actions
-									.col-xs-6.col-md-6
+								.col-xs-6.col-md-6
+									%p.date
+										#{project.created_at.to_date.to_formatted_s(:long)}
+								.col-xs-6.col-md-6
+									= link_to(city_project_path(city,project), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{project.category.name}.svg"}
+										#{project.category.name}
+							.row.header
+								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+							.row.bottom	
+								.col-xs-6.col-md-6
+									.actions
 										.action
 											%a.icon.icon-map-streamline-user
 										.action
 											%a.icon.icon-like-love-streamline
 										.action
 											%a.icon.icon-envellope-mail-streamline
-									.col-xs-6.col-md-6
-										%p.date
-											#{project.created_at.to_date.to_formatted_s(:long)}
+								.col-xs-6.col-md-6
+									%p.user
+										%i.icon.icon-man-people-streamline-user
+										= link_to(project.user.name, '#')
 						.col-sm-6.col-md-6
 							- if project.images.empty?
 								.row.photo{:style => "background-image: url(image-not-available.jpg)"}
 							- else
 								- project.images.each do |image|
 									- if image.cover == true
-										.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
+										.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
 
 /javascript functions
 

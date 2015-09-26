@@ -9,24 +9,21 @@
 				#{city.subtitle}
 			%button.btn.btn-default
 				Be Smart!
-
-/ City Selector
-
-.row.start
-	.col-md-6.search
-		.title
-			%h1
-				%i.icon.icon-earth-globe-streamline
-				Busca publicaciones, proyectos o ciudades.
-		
-	.col-md-6.location
-		.title
-			= link_to(cities_path) do
-				%i.icon.icon-earth-globe-streamline
-				Estas en 
-				%span
-					#{city.name}, #{city.country}
-				%span.caret
+		.row.start
+			.col-md-6.search
+				.title
+					%h1
+						%i.icon.icon-earth-globe-streamline
+						Busca publicaciones, proyectos o ciudades.
+				
+			.col-md-6.location
+				.title
+					= link_to(cities_path) do
+						%i.icon.icon-earth-globe-streamline
+						Estas en 
+						%span
+							#{city.name}, #{city.country}
+						%span.caret
 
 .row.city-resume
 	.col-md-3
@@ -79,40 +76,38 @@
 			.col-xs-6.col-md-4.chart
 				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "visitantes", "data-percent" => "15", "data-text" => "15%", "data-width" => "7"}
 
-.row.title
-	.col-md-12
-		%h1
-			Destacados en
-			%span
-				Esta ciudad.
-.row.featured.cyan
+.row.featured
 	.col-md-6.featured-titles							
 		.row
-			.row
-				%ul.slider
-					- @projects.each do |project|
-						%li
-							.row.slide.info
-								.col-sm-12.col-md-12
-									.row
-										%h1
-											#{truncate(project.title, :length => 70)}
-										%p
-											#{simple_format truncate(project.description, :length => 600)}
-									.row
-										.col-xs-12.col-md-3
-											.action
-												%a.icon.icon-map-streamline-user
-											.action
-												%a.icon.icon-like-love-streamline
-											.action
-												%a.icon.icon-envellope-mail-streamline
-										.col-xs-12.col-md-9
-											%p.user
-												%i.icon.icon-man-people-streamline-user
-												#{project.user.name}
-											%p.date
-												#{project.created_at.to_date.to_formatted_s(:long)}
+			%ul.slider
+				- @projects.each do |project|
+					%li.slide
+						.info
+							.row
+								%p.date
+									#{project.created_at.to_date.to_formatted_s(:long)}
+							.row
+								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+								%p
+									#{simple_format truncate(project.description, :length => 420)}
+							.row.bottom
+								.col-md-4
+									= link_to(city_project_path(city,project), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{project.category.name}.svg"}
+										#{project.category.name}
+								.col-md-4
+									.actions
+										.action
+											%a.icon.icon-map-streamline-user
+										.action
+											%a.icon.icon-like-love-streamline
+										.action
+											%a.icon.icon-envellope-mail-streamline
+								.col-md-4
+									%p.user
+										%i.icon.icon-man-people-streamline-user
+										= link_to(project.user.name, '#')
+											
 	.col-md-6.featured-slide
 		.row
 			%ul.slider
@@ -130,51 +125,6 @@
 / Posts & Projects
 
 .row
-	.col-md-6.posts-list
-		.row.title
-			.col-md-10
-				%h1
-					Novedades en
-					%span
-						Buenos Aires.
-			.col-md-1.hidden-xs	
-				#prev-news
-			.col-md-1.hidden-xs	
-				#next-news
-		.row.sliderbox
-			%ul.slider
-				- @posts.in_groups_of(2, false).each do |slide|
-					%li.slide
-						- slide.each do |post|
-							.col-md-6
-								- if post.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- post.images.each do |image|
-										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
-								.row.info
-									.row.header
-										= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
-									.row
-										.col-xs-6.col-sm-6.col-md-6
-											%p.user
-												%i.icon.icon-man-people-streamline-user
-												#{post.user.name}
-										.col-xs-6.col-sm-6.col-md-6
-											%button.btn.btn-primary
-												#{post.category.name}
-									.row.actions
-										.col-xs-6.col-md-6
-											.action
-												%a.icon.icon-map-streamline-user
-											.action
-												%a.icon.icon-like-love-streamline
-											.action
-												%a.icon.icon-envellope-mail-streamline
-										.col-xs-6.col-md-6
-											%p.date
-												#{post.created_at.to_date.to_formatted_s(:long)}
 	.col-md-6.projects-list
 		.row.title
 			.col-md-10
@@ -195,27 +145,28 @@
 								.row
 									.col-sm-6.col-md-6.info
 										.row
-											.row.header
-												= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
-											.row
-												.col-xs-6.col-sm-6.col-md-6
-													%p.user
-														%i.icon.icon-man-people-streamline-user
-														#{project.user.name}
-												.col-xs-6.col-sm-6.col-md-6
-													%button.btn.btn-primary
-														#{project.category.name}
-											.row.actions
-												.col-xs-6.col-md-6
+											.col-xs-6.col-md-6
+												%p.date
+													#{project.created_at.to_date.to_formatted_s(:long)}
+											.col-xs-6.col-md-6
+												= link_to(city_project_path(city,project), class: 'cat-icon') do
+													#{image_tag "cat_icons/#{project.category.name}.svg"}
+													#{project.category.name}
+										.row.header
+											= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+										.row.bottom	
+											.col-xs-6.col-md-6
+												.actions
 													.action
 														%a.icon.icon-map-streamline-user
 													.action
 														%a.icon.icon-like-love-streamline
 													.action
 														%a.icon.icon-envellope-mail-streamline
-												.col-xs-6.col-md-6
-													%p.date
-														#{project.created_at.to_date.to_formatted_s(:long)}
+											.col-xs-6.col-md-6
+												%p.user
+													%i.icon.icon-man-people-streamline-user
+													= link_to(project.user.name, '#')
 									.col-sm-6.col-md-6
 										- if project.images.empty?
 											.row.photo{:style => "background-image: url(image-not-available.jpg)"}
@@ -223,6 +174,53 @@
 											- project.images.each do |image|
 												- if image.cover == true
 													.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
+	.col-md-6.posts-list
+		.row.title
+			.col-md-10
+				%h1
+					Novedades en
+					%span
+						Buenos Aires.
+			.col-md-1.hidden-xs	
+				#prev-news
+			.col-md-1.hidden-xs	
+				#next-news
+		.row.sliderbox
+			%ul.slider
+				- @posts.in_groups_of(2, false).each do |slide|
+					%li.slide
+						- slide.each do |post|
+							.col-md-6.item
+								- if post.images.empty?
+									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
+										- if image.cover == true
+											.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
+								.row.info
+									.row
+										.col-xs-6.col-md-6
+											%p.date
+												#{post.created_at.to_date.to_formatted_s(:long)}
+										.col-xs-6.col-md-6
+											= link_to(city_post_path(city,post), class: 'cat-icon') do
+												#{image_tag "cat_icons/#{post.category.name}.svg"}
+												#{post.category.name}
+									.row.header
+										= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
+									.row.bottom	
+										.col-xs-6.col-md-6
+											.actions
+												.action
+													%a.icon.icon-map-streamline-user
+												.action
+													%a.icon.icon-like-love-streamline
+												.action
+													%a.icon.icon-envellope-mail-streamline
+										.col-xs-6.col-md-6
+											%p.user
+												%i.icon.icon-man-people-streamline-user
+												= link_to(post.user.name, '#')
 
 .row.about
 	.col-md-4.box
@@ -261,7 +259,7 @@
 		$('.splash').parallax("50%", 0.1);
 		$('.circle').circliful();
 		var slider = $('.featured-titles .slider').bxSlider({
-			auto: true,
+			auto: false,
 			pause: 5000,
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',
@@ -269,7 +267,7 @@
 			controls:false
 		});
 		$('.featured-slide .slider').bxSlider({
-			auto: true,
+			auto: false,
 			pause: 5000,
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',
@@ -300,13 +298,13 @@
 				nextText: '→',
 				prevText: '←',
 				pager: false
-		});
+			});
 		});
 		$(window).on("scroll", function() {
-		if ($(this).scrollTop() > 100) {
-			$('.navigation').addClass('white');
-		}
-		else {
-			$('.navigation').removeClass('white');
-		}
+			if ($(this).scrollTop() > 100) {
+				$('.navigation').addClass('white');
+			}
+			else {
+				$('.navigation').removeClass('white');
+			}
 		});

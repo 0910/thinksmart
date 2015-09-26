@@ -4,10 +4,10 @@
 	.title{
 		h1{
 			font-size: 1.5em;
-			font-weight: 100;
+			font-weight: 300;
 			letter-spacing: -0.038em;
 			span{
-				font-weight: 400;
+				font-weight: 500;
 			}
 		}
 	}
@@ -30,7 +30,7 @@
 				a{
 					font-family: 'Roboto', helvetica, arial, sans-serif;
 					font-size: 1.375em;
-					font-weight: 100;
+					font-weight: 300;
 					line-height: 1;
 					color: #101010;
 				}
@@ -41,26 +41,60 @@
 			p{
 				margin: .5em 0 0 .75em;
 				color: #a0a0a0;
-				font-weight: 100;
-				letter-spacing: -0.038em;
+				font-weight: 300;
+				font-size: .9em;
 			}
-			.actions{
+			p.date{
+				margin:0 0 0.5em;
+			}
+			.cat-icon{
+				margin: 0;
+				display: inline-block;
+				color: #ccc;
+				float: right;
+				font-size: .75em;
+				img{
+					width: 20px;
+					height: auto;
+					float: left;
+					margin-right: .5em;
+				}
+			}
+			.bottom{
 				position: absolute;
 				bottom: 0;
 				left:0;
 				padding: 0 2.5em 2.5em 2.5em;
 				position: absolute;
 				width: 100%;
-				.action{
-					margin-top: .5em;
-					a{
-						font-size: 1.15em;
-						color: #a0a0a0;
-					}
-				}
+				.actions{
+	                border:1px solid #9c9c9c;
+	                border-radius: 20px;
+	                display: inline-block;
+	                padding: 0 .25em;
+	                .action{
+	                    padding: 0 .75em;
+	                    a.icon{
+	                        font-size: 1em;
+	                        color: #9c9c9c;
+	                        margin: 0.25em 0;
+	                        float: left;
+	                        p{
+	                            float: right;
+	                            margin: -0.175em 0 0 .3em;
+	                            padding: 0;
+	                            color: #9c9c9c;
+	                            font-size: .9em;
+	                        }
+	                    }
+	                }
+	                .action:last-child{
+	                    border:none;
+	                }
+	            }
 			}
 			p.user{
-				margin: .5em 0 0 0;
+				margin: .35em 0 0 .5em;
 			}
 			button{
 				margin-top: .25em;
@@ -96,94 +130,72 @@
 .projects.show{
 	background-color: #fff;
 	color: #101010;
-	.section_title{
-		border:none;
-	}
-	.title{
-		padding:3em;
-		h1{
-			font-size: 1.5em;
-			font-weight: 100;
-			letter-spacing: -0.038em;
-			span{
-				font-weight: 600;
-			}
-		}
-	}
-	.project{
-		background-color: #FCFCFC;
+	.featured{
+		border-bottom: 0px;
 		.info{
-			background-color: #F0F4F5;
-			display: flex;
-			align-items:center;
-			.category{
-				img{
-					width: 100%;
-					height: auto;
-				}
-			}
-			.target{
-				background-color: #F0F4F5;
-				text-align: center;
+			padding-bottom:2.5em;
+		}
+		.bottom{
+			position: relative;
+			bottom: inherit;
+			margin-top: 1em;
+		}
+	}
+	.grey{
+		background-color: #4c4c4c;
+		margin-bottom: -9900px;
+    	min-height: 1px;
+    	padding-bottom: 10000px;
+    	position: relative;
+    	z-index: -1;
+    	.icons{
+    		padding: 5em 4.5em 0;
+    	}
+    	.category, .target, .health{
+    		text-align: center;
+    		padding: 0 .5em;
+    		h1{
+    			color: #fff;
+    			font-size: 3em;
+    			margin-top: -2em;
+    			text-align: center;
+    			font-weight: 400;
+    		}
+    		p{
+    			text-align: center;
+				font-size: .8em;
+				color: #fff;
 				text-transform: uppercase;
-				color: #2C2C2C;
-			}
-		}
-		.subcategories{
-			padding:3em;
-			p{
-				color: #424242;
-
-			}
-		}
-		.grey{
-			background-color: #2C2C2C;
-		}
-		.detail{
-			background-color: #fff;
-			padding:3em;
-			h1{
-				font-size: 2.250em;
-				margin-bottom: .5em;
-			}
-			p{
-				margin-top: 1em;
-				color: #606060;
-				font-size: 1em;
-				line-height: 1.5;
-			}
-			p.date{
-				margin: 0 0 0 1.25em;
-				float: left;
-				color: #101010;
-			}
-			p.user{
-				border-left:1px solid #ccc;
-				padding-left:1.25em;
-				float: left;
-				color: #101010;
-				margin-top:0px;
-			}
-			.action{
-				a{
-					font-size: 1.25em;
-				}
+    		}
+    	}
+    	.health p{
+    		margin-top: 4.5em;
+    	}
+    	.cat-icon{
+			width: 100%;			
+			img{
+				width: 100%;
+				height: auto;
 			}
 		}
 		.extend{
 			color: #fff;
-			padding: 3em;
+			padding: 5em;
 			.box{
-				border-bottom: 1px solid #505050;
-   				margin-bottom: 1.5em;
-    			padding-bottom: 1.5em;
+				border-bottom: 1px solid #acacac;
+				margin-bottom: 1.5em;
+				padding-bottom: 1.5em;
+				ul{
+					padding: 0 0 0 1em;
+				}
 				h3{
-				font-weight: 100;
+					font-weight: 300;
+					font-size: 1.125em;
 				}
 				p, a{
 					color: #c0c0c0;
 					margin-top: .5em;
-					font-weight: 200;
+					font-weight: 300;
 					display: block;
 				}
 				a:hover{

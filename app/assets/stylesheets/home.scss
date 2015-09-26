@@ -1,20 +1,5 @@
 /* 01. Splash */
 
-body.home{
-	.navigation{
-		position: fixed;
-		background-color: transparent;
-		.logo{
-	        float: left;
-	        background-position: top center;
-	    }
-	}
-	.menu{
-		a{
-			color:#fff;
-		}
-	}
-}
 .splash{
 	position:relative;
 	width: 100%;
@@ -32,8 +17,9 @@ body.home{
 		text-align: center;
 		h1{
 			color:#fff;
-			font-weight: 100;
-			font-size: 4em;
+			font-weight: 400;
+			font-size: 5.750em;
+			letter-spacing:-0.038em;
 		}
 		h1 span{
 			font-weight: 300;
@@ -52,29 +38,31 @@ body.home{
 	}
 }
 .start{
-    margin-top: -6.8em;
-    position: relative;
+    background-color: rgba(44,44,44,0.9);
+    position: absolute;
     z-index: 99;
+    width: 100%;
+    bottom: 0;
     .location{
         background-color: #fff;
         a{
-            font-size: 1.5em;
-            font-weight: 100;
+            font-size: 1.25em;
+            font-weight: 300;
             letter-spacing: -0.038em;
             line-height:1;
-            color:#101010;
+            color:#2c2c2c;
             span{
-                font-weight: 400;
+                font-weight: 500;
             }
         }
     }
     .search{
-        background-color: rgba(44,44,44,0.9);
         .title{
         	text-align: left;
         	background-color: transparent;
             h1{
                 color: #fff;
+                font-size: 1.25em;
             }
         }
     }
@@ -82,11 +70,11 @@ body.home{
         padding:2.5em;
         text-align: left;
         h1{
-            font-size: 1.5em;
-            font-weight: 100;
+            font-size: 1.25em;
+            font-weight: 300;
             letter-spacing: -0.038em;
             span{
-                font-weight: 400;
+                font-weight: 500;
             }
         }
     }
@@ -95,10 +83,10 @@ body.home{
 /* 02. City */
 
 .city-resume{
-	background-color: #FCFCFC;
+	background-color: #fefefe;
 	padding: 2.5em;
-	border-top: 1px solid #cfcfcf;
-	border-bottom: 1px solid #cfcfcf;
+	border-top: 1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
 	.title{
 		margin-bottom: 1em;
 	}
