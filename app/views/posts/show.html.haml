@@ -2,7 +2,7 @@
 
 .post
 	.row
-		.col-md-7.featured
+		.col-md-8.featured
 			.row
 				%ul.slider
 					- if @post.images.empty?
@@ -27,43 +27,55 @@
 						%p
 							#{simple_format(@post.description)}
 					.row.bottom
-						.col-md-4
+						.col-xs-6.col-sm-4.col-md-4
 							= link_to(city_post_path(city,@post), class: 'cat-icon') do
 								#{image_tag "cat_icons/#{@post.category.name}.svg"}
 								#{@post.category.name}
-						.col-md-4
-							.actions
-								.action
-									%a.icon.icon-map-streamline-user
-								.action
-									%a.icon.icon-like-love-streamline
-								.action
-									%a.icon.icon-envellope-mail-streamline
-						.col-md-4
+						.col-sm-4.col-md-4.hidden-xs
+							.actions-box
+								.actions
+									.action
+										%a.icon.icon-map-streamline-user
+									.action
+										%a.icon.icon-like-love-streamline
+									.action
+										%a.icon.icon-envellope-mail-streamline
+						.col-xs-6.col-sm-4.col-md-4
 							%p.user
 								%i.icon.icon-man-people-streamline-user
 								= link_to(@post.user.name, '#')
 
-		.col-md-5.grey
-			.row.info
+		.col-md-4.grey
+			.col-xs-12.col-sm-3.col-md-12.info
 				.icons
-					.col-md-4.category
-						= link_to(city_post_path(city,@post), class: 'cat-icon') do
-							#{image_tag "cat_icons/#{@post.category.name}.svg"}
+					.row
+						.col-xs-4.col-sm-12.col-md-4.category
+							= link_to(city_post_path(city,@post), class: 'cat-icon') do
+								#{image_tag "cat_icons/#{@post.category.name}.svg"}
+								%p.visible-sm
+									#{@post.category.name}
+						.col-xs-4.col-sm-12.col-md-4.target
+							.cat-icon
+								#{image_tag "cat_icons/target.svg"}
+								%p.visible-sm
+									Adultos, Niños
+						.col-xs-4.col-sm-12.col-md-4.health
+							.cat-icon
+								#{image_tag "cat_icons/health.svg"}
+								%h1
+									60%
+								%p.visible-sm
+									Status
+					.row.hidden-sm
+						.col-xs-4.col-sm-12.col-md-4.category
 							%p #{@post.category.name}
-					.col-md-4.target
-						.cat-icon
-							#{image_tag "cat_icons/target.svg"}
+						.col-xs-4.col-sm-12.col-md-4.target
 							%p
 								Adultos, Niños
-					.col-md-4.health
-						.cat-icon
-							#{image_tag "cat_icons/health.svg"}
-							%h1
-								60%
+						.col-xs-4.col-sm-12.col-md-4.health
 							%p
 								Status
-			.row.extend
+			.col-xs-12.col-sm-9.col-md-12.extend
 				.box
 					%h3
 						Areas en la que aplica

@@ -12,18 +12,21 @@
 	%body{:class => "#{controller_name} #{action_name}"}
 	.wrapper
 		%nav.row.navigation
-			.col-xs-12.col-md-4
+			.col-xs-6.col-sm-4.col-md-4
 				= link_to(root_path) do
 					.logo
-			.col-xs-12.col-md-4
-			.col-xs-12.col-md-4
+			.col-md-4.visible-lg
+			.col-xs-6.col-sm-8.col-md-4
 				.menu
 					- unless @hide_city_menu
 						= link_to(cities_path) do
 							%span.icon.icon-earth-globe-streamline
-							#{city.name}, #{city.country}
+							%span.hidden-xs
+								#{city.name}, #{city.country}
 					%a.toggle-nav(href="#")
-						Menu
+						%span.icon-menu
+						%span.hidden-xs
+							Menu
 		.site-menu
 			%a.toggle-nav(href="#")
 				X
@@ -46,17 +49,6 @@
 				.row
 					%h1
 						Building better cities together
-				.row
-					%a
-						Home
-					%a
-						About
-					%a
-						Noticias
-					%a
-						Proyectos
-					%a
-						Contacto
 				.row
 					%p
 						Todavia no estas registrado?

@@ -10,15 +10,15 @@
 	.center{
 		position: absolute;
 		top: 50%;
-		left: 0;
-		width: 100%;
+		left: 50%;
+		width: 75%;
 		margin: 0;
-		transform:translate(0px,-50%);
+		transform:translate(-50%,-50%);
 		text-align: center;
 		h1{
 			color:#fff;
-			font-weight: 400;
-			font-size: 5.750em;
+			font-weight: 200;
+			font-size: 3.750em;
 			letter-spacing:-0.038em;
 		}
 		h1 span{
@@ -27,7 +27,8 @@
 		p{
 			color: #fff;
 			font-weight: 300;
-			font-size: 1.25em;
+			font-size: 1.5em;
+			margin-top:0;
 		}
 		button{
 			font-size: 1.25em;
@@ -83,10 +84,19 @@
 /* 02. City */
 
 .city-resume{
-	background-color: #fefefe;
+	background-color: #fcfcfc;
 	padding: 2.5em;
-	border-top: 1px solid #f3f3f3;
-	border-bottom: 1px solid #f3f3f3;
+	.box{
+		border-bottom: 1px solid #f3f3f3;
+		padding: 1em 0;
+	}
+	.box:first-child{
+		padding-top: 0;
+	}
+	.box:last-child{
+		padding-bottom: 0;
+		border-bottom: 0px;
+	}
 	.title{
 		margin-bottom: 1em;
 	}
@@ -115,7 +125,6 @@
 }
 .circliful {
     position: relative; 
-    margin:0 auto;
 }
 
 .circle-text, .circle-info, .circle-text-half, .circle-info-half {
@@ -130,6 +139,8 @@
 	color: #999;
 	font-size: 0.65em;
     text-transform: uppercase;
+    margin-top: 6em;
+    font-weight: 300;
 }
 
 .circliful .fa {
@@ -234,7 +245,7 @@
 	background-color: #F3F3F3;
 	.box{
 		text-align: center;
-		padding: 6em 3em;
+		padding: 3em;
 		img{
 			margin-bottom: 1em;
 		}
@@ -250,10 +261,52 @@
 	    }
 		p{
 			color: #505050;
-			font-size: 1.154em;
+			font-size: 1em;
 			letter-spacing: -0.038em;
 			line-height: 1.75;
 			text-align: left;
+		}
+	}
+	.box:nth-child(1){
+		background-color: #fefefe;
+	}
+	.box:nth-child(2){
+		background-color: #fcfcfc;
+	}
+	.box:nth-child(3){
+		background-color: #f7f7fc;
+	}
+}
+
+@media (min-width: 768px){
+	.splash{
+		.center{
+			h1{
+				font-size:5.750em;
+			}
+		}
+	}
+	.circliful {
+	    margin:-0.750em auto;
+	}
+	.circle-info, .circle-info-half {
+	    margin-top: 4.5em;
+	}
+	.city-resume{
+		.box{
+			border:0;
+			border-right: 1px solid #f3f3f3;
+			padding: 0 2.5em;
+		}
+		.box:first-child{
+			border:0;
+			border-right: 1px solid #f3f3f3;
+			padding: 0 2.5em 0 0;
+		}
+		.box:last-child{
+			border:0;
+			padding-bottom: 0;
+			padding: 0 0 0 2.5em;
 		}
 	}
 }

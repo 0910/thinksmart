@@ -10,7 +10,7 @@
 						Inteligentes.
 		.row
 			- @cities.each do |city|
-				.col-md-4.item
+				.col-xs-12.col-sm-6.col-md-4.item
 					= link_to(city_path(city)) do
 						- if city.images.empty?
 							.row.photo{:style => "background-image: url(image-not-available.jpg)"}

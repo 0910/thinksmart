@@ -1,16 +1,24 @@
 /* 01. Projects */
 
-
+body.cities.index{
+	.title{
+		border-bottom: 1px solid #f3f3f3;
+	}
+}
 body.cities.show{
 	.navigation{
 		background-color:transparent;
 		border-bottom:0px;
 		.logo{
-	        background-image: url(logo.png);
+	        background-image: url(logo.svg);
 	    }
 	}
 	.navigation.white{
 		background-color:#fff;
+		border-bottom: 1px solid #f3f3f3;
+		.logo{
+	        background-image: url(logo_cyan.svg);
+	    }
 		a{
 	        color: #4BB3D2;
 	    }
@@ -28,7 +36,6 @@ body.cities.show{
 	}
 }
 .cities-list{
-	}
 	.photo{
 		position: relative;
 		height: 320px;
@@ -54,6 +61,7 @@ body.cities.show{
     		font-size: 2.25em;
 		}
 	}
+}
 .cities.show{
 	.posts-list{
 		.title{
@@ -81,12 +89,18 @@ body.cities.show{
 				}
 			}
 		}
-		.item:nth-child(odd){
-			.photo{
-				
-			}
-			.info{
-				float: right;
+	}
+}
+@media (min-width: 768px){
+	body.cities.show{
+		.projects-list{
+			.item:nth-child(odd){
+				.photo{
+					
+				}
+				.info{
+					float: right;
+				}
 			}
 		}
 	}

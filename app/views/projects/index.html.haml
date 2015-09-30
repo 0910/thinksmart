@@ -1,52 +1,52 @@
 .row.categories
-	.col-md-2
+	.col-xs-2.col-sm-2.col-md-2
 		= link_to transport_city_projects_path, class: 'cat transport' do
-			.col-md-3.icon
+			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/transport.svg')
-			.col-md-9.text
+			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Transporte
 					%br
 					y movilidad
-	.col-md-2
+	.col-xs-2.col-sm-2.col-md-2
 		= link_to development_city_projects_path, class: 'cat development' do
-			.col-md-3.icon
+			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/development.svg')
-			.col-md-9.text
+			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Desarrollo
 					%br
 					urbano
-	.col-md-2
+	.col-xs-2.col-sm-2.col-md-2
 		= link_to environment_city_projects_path, class: 'cat environment' do
-			.col-md-3.icon
+			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/environment.svg')
-			.col-md-9.text
+			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Medio ambiente
 					%br
 					y recursos nat.
-	.col-md-2
+	.col-xs-2.col-sm-2.col-md-2
 		= link_to people_city_projects_path, class: 'cat people' do
-			.col-md-3.icon
+			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/people.svg')
-			.col-md-9.text
+			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Desarrollo de
 					%br
 					las personas
-	.col-md-2
+	.col-xs-2.col-sm-2.col-md-2
 		= link_to community_city_projects_path, class: 'cat community' do
-			.col-md-3.icon
+			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/community.svg')
-			.col-md-9.text
+			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Comunidad
-	.col-md-2
+	.col-xs-2.col-sm-2.col-md-2
 		= link_to innovation_city_projects_path, class: 'cat innovation' do
-			.col-md-3.icon
+			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/innovation.svg')
-			.col-md-9.text
+			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Innovacion
 					%br
@@ -82,11 +82,11 @@
 								%p
 									#{simple_format truncate(project.description, :length => 420)}
 							.row.bottom
-								.col-md-4
+								.col-xs-6.col-sm-4.col-md-4
 									= link_to(city_project_path(city,project), class: 'cat-icon') do
 										#{image_tag "cat_icons/#{project.category.name}.svg"}
 										#{project.category.name}
-								.col-md-4
+								.col-sm-4.col-md-4.hidden-xs.actions-box
 									.actions
 										.action
 											%a.icon.icon-map-streamline-user
@@ -94,7 +94,7 @@
 											%a.icon.icon-like-love-streamline
 										.action
 											%a.icon.icon-envellope-mail-streamline
-								.col-md-4
+								.col-xs-6.col-sm-4.col-md-4
 									%p.user
 										%i.icon.icon-man-people-streamline-user
 										= link_to(project.user.name, '#')
