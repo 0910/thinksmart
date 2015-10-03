@@ -226,7 +226,9 @@ a:focus {
     padding: 1.5em 2.5em;
     .cat{
         display: flex;
+        display: -webkit-flex;
         align-items: center;
+        -webkit-align-items:center;
             .icon{
             img{
                 width: 85%;

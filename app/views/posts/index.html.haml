@@ -65,7 +65,7 @@
 								- else
 									- post.images.each do |image|
 										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
+											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 	.col-md-6.featured-titles							
 		.row
 			%ul.slider
@@ -115,7 +115,7 @@
 					- else
 						- post.images.each do |image|
 							- if image.cover == true
-								.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
+								.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
 					.row.info
 						.row
 							.col-xs-6.col-md-6

@@ -19,7 +19,7 @@
 						- else
 							- city.images.each do |image|
 								- if image.cover == true
-									.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
+									.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
 										%h1
 											#{city.name}
 						

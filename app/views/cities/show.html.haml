@@ -1,7 +1,7 @@
 / Splash Screen
 
 - city.images.each do |image|
-	.splash{:style => "background-image: url(#{image.file.url(:high)}"}
+	.splash{:style => "background-image: url(#{image.file.url(:high)})"}
 		.center
 			%h1
 				#{city.title}
@@ -121,7 +121,7 @@
 								- else
 									- project.images.each do |image|
 										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
+											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 
 / Posts & Projects
 
@@ -174,7 +174,7 @@
 										- else
 											- project.images.each do |image|
 												- if image.cover == true
-													.row.photo{:style => "background-image: url(#{image.file.url(:large)}"}
+													.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 	.col-xs-12.col-sm-12.col-md-6.posts-list
 		.row.title
 			.col-sm-10.col-md-10
@@ -197,7 +197,7 @@
 								- else
 									- post.images.each do |image|
 										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:small)}"}
+											.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
 								.row.info
 									.row
 										.col-xs-6.col-md-6
