@@ -11,6 +11,7 @@ set :stage,           :production
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/ubuntu/#{fetch(:application)}"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 set :scm, :git
 set :branch, :master
