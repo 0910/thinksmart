@@ -10,4 +10,5 @@ class Project < ActiveRecord::Base
   validates :title, presence: true
   validates :title, uniqueness: true
   validates :description, presence: true
+  scope :category_id, -> (category_id) { where category_id: category_id }
 end

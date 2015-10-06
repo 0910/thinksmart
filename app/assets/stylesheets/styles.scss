@@ -21,11 +21,15 @@
          url(asset-path('DINPro-Bold.ttf'))  format('truetype'),
          url(asset-path('DINPro-Bold.svg') + "#DINPro-Bold") format('svg');
 }
-
+html{
+    height: 100%;
+    min-height:100%;
+}
 body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
+    min-height:100%;
 	margin:0;
 	font-family: 'Roboto', helvetica, arial, sans-serif;
 	font-size: 13px;
@@ -177,6 +181,9 @@ a:focus {
         color: #4BB3D2;
         border-color: #4BB3D2;
     }
+    .categories{
+        opacity: 1;
+    }
 }
 .navbar{
 	margin: 0;
@@ -222,16 +229,21 @@ a:focus {
 }
 
 .categories{
-    border-bottom: 1px solid #f3f3f3;
-    padding: 1.5em 2.5em;
+    opacity: 0;
+    -webkit-transition: all 800ms cubic-bezier(.77, 0, .175, 1);
+    -moz-transition: all 800ms cubic-bezier(.77, 0, .175, 1);
+    -o-transition: all 800ms cubic-bezier(.77, 0, .175, 1);
+    -ms-transition: all 800ms cubic-bezier(.77, 0, .175, 1);
+    transition: all 800ms cubic-bezier(.77, 0, .175, 1);
     .cat{
         display: flex;
         display: -webkit-flex;
         align-items: center;
         -webkit-align-items:center;
-            .icon{
+        .icon{
+            text-align: center;
             img{
-                width: 85%;
+                width: 62%;
                 height: auto;
             }
         }
@@ -260,6 +272,19 @@ a:focus {
     }
     .cat.innovation{
         color: #EAC324;
+    }
+}
+.categories.full{
+    border-bottom: 1px solid #f3f3f3;
+    padding: 1.5em 2.5em;
+    opacity: 1;
+    .cat{
+        .icon{
+            img{
+                width: 85%;
+                height: auto;
+            }
+        }
     }
 }
 /* 03. Buttons */

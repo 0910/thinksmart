@@ -15,8 +15,73 @@
 				.col-xs-6.col-sm-4.col-md-4
 					= link_to(root_path) do
 						.logo
-				.col-md-4.visible-lg
-				.col-xs-6.col-sm-8.col-md-4
+				- unless @hide_city_menu
+					- if @cat_menu_alt
+						.col-md-4.visible-lg
+							.row.categories
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to city_path(:category_id => 1), class: 'cat transport' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/transport.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to city_path(:category_id => 2), class: 'cat development' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/development.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to city_path(:category_id => 3), class: 'cat environment' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/environment.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to city_path(:category_id => 4), class: 'cat people' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/people.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to city_path(:category_id => 5), class: 'cat community' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/community.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to city_path(:category_id => 6), class: 'cat innovation' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/innovation.svg')
+					- else
+						.col-md-4.visible-lg
+							.row.categories
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to transport_city_projects_path, class: 'cat transport' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/transport.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to development_city_projects_path, class: 'cat development' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/development.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to environment_city_projects_path, class: 'cat environment' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/environment.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to people_city_projects_path, class: 'cat people' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/people.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to community_city_projects_path, class: 'cat community' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/community.svg')
+										
+								.col-xs-2.col-sm-2.col-md-2
+									= link_to innovation_city_projects_path, class: 'cat innovation' do
+										.col-xs-12.col-sm-6.col-md-12.icon
+											= image_tag('cat_icons/innovation.svg')
+								
+				.col-xs-6.col-sm-8.col-md-4.pull-right
 					.menu
 						- unless @hide_city_menu
 							= link_to(cities_path) do

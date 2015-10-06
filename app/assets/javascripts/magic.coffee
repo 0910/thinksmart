@@ -9,6 +9,13 @@ ready = ->
       $('.wrapper').addClass 'show-nav'
       $('.site-menu').addClass 'show'
     return
+    
+  $(window).on 'scroll', ->
+      if $(this).scrollTop() > 100
+        $('.navigation').addClass 'white'
+      else
+        $('.navigation').removeClass 'white'
+      return
 
   $ ->
 
@@ -19,5 +26,6 @@ ready = ->
       toggleNav()
       return
     return
+
 $(document).ready(ready);
 $(document).on('page:load', ready);

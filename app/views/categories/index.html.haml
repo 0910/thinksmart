@@ -1,6 +1,6 @@
-.row.categories.full
+.row.categories
 	.col-xs-2.col-sm-2.col-md-2
-		= link_to transport_city_posts_path, class: 'cat transport' do
+		= link_to transport_city_categories_path, class: 'cat transport' do
 			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/transport.svg')
 			.col-sm-6.col-md-9.text.visible-lg
@@ -9,7 +9,7 @@
 					%br
 					y movilidad
 	.col-xs-2.col-sm-2.col-md-2
-		= link_to development_city_posts_path, class: 'cat development' do
+		= link_to development_city_categories_path, class: 'cat development' do
 			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/development.svg')
 			.col-sm-6.col-md-9.text.visible-lg
@@ -18,7 +18,7 @@
 					%br
 					urbano
 	.col-xs-2.col-sm-2.col-md-2
-		= link_to environment_city_posts_path, class: 'cat environment' do
+		= link_to environment_city_categories_path, class: 'cat environment' do
 			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/environment.svg')
 			.col-sm-6.col-md-9.text.visible-lg
@@ -27,7 +27,7 @@
 					%br
 					y recursos nat.
 	.col-xs-2.col-sm-2.col-md-2
-		= link_to people_city_posts_path, class: 'cat people' do
+		= link_to people_city_categories_path, class: 'cat people' do
 			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/people.svg')
 			.col-sm-6.col-md-9.text.visible-lg
@@ -36,14 +36,14 @@
 					%br
 					las personas
 	.col-xs-2.col-sm-2.col-md-2
-		= link_to community_city_posts_path, class: 'cat community' do
+		= link_to community_city_categories_path, class: 'cat community' do
 			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/community.svg')
 			.col-sm-6.col-md-9.text.visible-lg
 				%p
 					Comunidad
 	.col-xs-2.col-sm-2.col-md-2
-		= link_to innovation_city_posts_path, class: 'cat innovation' do
+		= link_to innovation_city_categories_path, class: 'cat innovation' do
 			.col-xs-12.col-sm-6.col-md-3.icon
 				= image_tag('cat_icons/innovation.svg')
 			.col-sm-6.col-md-9.text.visible-lg
@@ -52,38 +52,40 @@
 					%br
 					y desarrollo
 
-.row.featured.cyan
+/featured projects
+
+.row.featured
 	.col-md-6.featured-slide
 		.row
 			%ul.slider
-				- @posts.each do |post|
+				- @projects.each do |project|
 					%li
 						.row.slide
 							.col-sm-12.col-md-12
-								- if post.images.empty?
+								- if project.images.empty?
 									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
 								- else
-									- post.images.each do |image|
+									- project.images.each do |image|
 										- if image.cover == true
 											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 	.col-md-6.featured-titles							
 		.row
 			%ul.slider
-				- @posts.each do |post|
+				- @projects.each do |project|
 					%li.slide
 						.info
 							.row
 								%p.date
-									#{post.created_at.to_date.to_formatted_s(:long)}
+									#{project.created_at.to_date.to_formatted_s(:long)}
 							.row
-								= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
+								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
 								%p
-									#{simple_format truncate(post.description, :length => 420)}
+									#{simple_format truncate(project.description, :length => 420)}
 							.row.bottom
 								.col-xs-6.col-sm-4.col-md-4
-									= link_to(city_post_path(city,post), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{post.category.name}.svg"}
-										#{post.category.name}
+									= link_to(city_project_path(city,project), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{project.category.name}.svg"}
+										#{project.category.name}
 								.col-sm-4.col-md-4.hidden-xs.actions-box
 									.actions
 										.action
@@ -95,41 +97,35 @@
 								.col-xs-6.col-sm-4.col-md-4
 									%p.user
 										%i.icon.icon-man-people-streamline-user
-										= link_to(post.user.name, '#')
+										= link_to(project.user.name, '#')
 
-/ posts list
+/ projects list
 
 .row
-	.col-md-12.posts-list
+	.col-md-12.projects-list
 		.row.title
 			.col-md-12
 				%h1
-					Publicaciones en
+					Proyectos en
 					%span
 						Buenos Aires.
 		.row
-			- @posts.each do |post|
-				.col-xs-12.col-sm-6.col-md-3.item
-					- if post.images.empty?
-						.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-					- else
-						- post.images.each do |image|
-							- if image.cover == true
-								.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
-					.row.info
-						.row
-							.col-xs-6.col-md-6
-								%p.date
-									#{post.created_at.to_date.to_formatted_s(:long)}
-							.col-xs-6.col-md-6
-								= link_to(city_post_path(city,post), class: 'cat-icon') do
-									#{image_tag "cat_icons/#{post.category.name}.svg"}
-									#{post.category.name}
-						.row.header
-							= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
-						.row.bottom	
-							.col-xs-6.col-md-6
-								.actions-box
+			- @projects.each do |project|
+				.col-md-6.item
+					.row
+						.col-sm-6.col-md-6.info
+							.row
+								.col-xs-6.col-md-6
+									%p.date
+										#{project.created_at.to_date.to_formatted_s(:long)}
+								.col-xs-6.col-md-6
+									= link_to(city_project_path(city,project), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{project.category.name}.svg"}
+										#{project.category.name}
+							.row.header
+								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+							.row.bottom	
+								.col-xs-6.col-md-6
 									.actions
 										.action
 											%a.icon.icon-map-streamline-user
@@ -137,10 +133,17 @@
 											%a.icon.icon-like-love-streamline
 										.action
 											%a.icon.icon-envellope-mail-streamline
-							.col-xs-6.col-md-6
-								%p.user
-									%i.icon.icon-man-people-streamline-user
-									= link_to(post.user.name, '#')
+								.col-xs-6.col-md-6
+									%p.user
+										%i.icon.icon-man-people-streamline-user
+										= link_to(project.user.name, '#')
+						.col-sm-6.col-md-6
+							- if project.images.empty?
+								.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+							- else
+								- project.images.each do |image|
+									- if image.cover == true
+										.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 
 /javascript functions
 
