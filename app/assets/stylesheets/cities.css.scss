@@ -10,14 +10,14 @@ body.cities.show{
 		background-color:transparent;
 		border-bottom:0px;
 		.logo{
-	        background-image: image-url("logo.svg");
+	        background-image: asset-url("logo.svg");
 	    }
 	}
 	.navigation.white{
 		background-color:#fff;
 		border-bottom: 1px solid #f3f3f3;
 		.logo{
-	        background-image: image-url("logo_cyan.svg");
+	        background-image: asset-url("logo_cyan.svg");
 	    }
 		a{
 	        color: #4BB3D2;

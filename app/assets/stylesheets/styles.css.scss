@@ -134,7 +134,7 @@ a:focus {
         float: left;
         background-position: top center;
         background-repeat: no-repeat;
-        background-image: image-url("logo_cyan.svg");
+        background-image: asset-url("logo_cyan.svg");
         background-size:cover;
         width: 100%;
         max-width: 203px;
@@ -172,7 +172,7 @@ a:focus {
     background-color: #fff;
     border-bottom: 1px solid #f3f3f3;
     .logo{
-        background-image: image-url("logo_cyan.svg");
+        background-image: asset-url("logo_cyan.svg");
     }
     a{
         color: #4BB3D2;
