@@ -48,6 +48,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       sudo 'service unicorn_thinksmart start'
       sudo 'service nginx restart'
+      sudo 'mkdir -p shared/pids shared/sockets shared/log'
     end
   end
 
