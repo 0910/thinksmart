@@ -1,5 +1,5 @@
 # set path to application
-app_dir = "/home/ubuntu/thinksmart"
+app_dir = "/home/ubuntu/thinksmart/current"
 shared_dir = "#{app_dir}/shared"
 working_directory app_dir
 
