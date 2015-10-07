@@ -47,7 +47,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      sudo 'service unicorn_thinksmart start'
+      sudo 'service unicorn_thinksmart restart'
       sudo 'service nginx restart'
     end
   end

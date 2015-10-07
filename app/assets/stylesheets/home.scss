@@ -172,9 +172,14 @@
 		.percent{
 			position: absolute;
 			top: 0;
-			width: 46%;
+			width: 0px;
 			height: 100%;
 			background-color: #4BB3D2;
+			-webkit-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    -moz-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    -o-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    -ms-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
 		} 
 	}
 	.women{
@@ -189,9 +194,14 @@
 		.percent{
 			position: absolute;
 			top: 0;
-			width: 53%;
+			width: 0px;
 			height: 100%;
 			background-color: #E86767;
+			-webkit-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    -moz-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    -o-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    -ms-transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
+		    transition: all 2000ms cubic-bezier(.77, 0, .175, 1);
 		} 
 	}
 }
