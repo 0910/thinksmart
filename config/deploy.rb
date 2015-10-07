@@ -8,11 +8,13 @@ set :rbenv_ruby, '2.2.1'
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
+set :rails_env,       :production
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/ubuntu/#{fetch(:application)}"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 set :scm, :git
 set :branch, :master
@@ -44,9 +46,11 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
+      sudo 'service unicorn_thinksmart start'
       sudo 'service nginx restart'
     end
   end
+
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
