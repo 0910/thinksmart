@@ -54,6 +54,7 @@ ActiveAdmin.register Post do
       f.input :description, :require => true
       f.input :benefit, :require => true
       f.input :solved_problems, :require => true
+      f.input :link
     end
     f.inputs "Images" do
       f.has_many :images do |i|

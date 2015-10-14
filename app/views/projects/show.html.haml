@@ -24,6 +24,7 @@
 					.row
 						%h1
 							#{@project.title}
+					.row.hidden-xs	
 						%p
 							#{simple_format(@project.description)}
 					.row.bottom
@@ -96,7 +97,7 @@
 				.box
 					%h3
 						Link al proyecto
-					= link_to('www.link.com', 'www.link.com', target: '_blank')
+					= link_to(@project.link, @project.link, target: '_blank')
 
 
 

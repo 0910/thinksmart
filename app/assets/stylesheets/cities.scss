@@ -7,13 +7,6 @@ body.cities.index{
 }
 body.cities.show{
 	.navigation{
-		background-color:transparent;
-		border-bottom:0px;
-		.logo{
-	        background-image: image-url("logo.svg");
-	    }
-	}
-	.navigation.white{
 		background-color:#fff;
 		border-bottom: 1px solid #f3f3f3;
 		.logo{
@@ -23,13 +16,14 @@ body.cities.show{
 	        color: #4BB3D2;
 	    }
 	}
+	
 	.menu{
 		a{
-			color:#fff;
+			color:#4BB3D2;
 		}
 	}
 	.site-canvas{
-		margin-top: 0;
+		margin-top: 76px;
 	}
 	.featured{
 		.border-bottom:0px;
@@ -103,5 +97,37 @@ body.cities.show{
 				}
 			}
 		}
+	}
+}
+@media (min-width: 1200px){
+	body.cities.show{
+		.site-canvas{
+			margin-top: 0;
+		}
+		.navigation{
+			background-color:transparent;
+			border-bottom:0px;
+			.logo{
+		        background-image: image-url("logo.svg");
+		    }
+		}
+		.navigation.white{
+			background-color:#fff;
+			border-bottom: 1px solid #f3f3f3;
+			.logo{
+		        background-image: image-url("logo_cyan.svg");
+		    }
+			a{
+		        color: #4BB3D2;
+		    }
+		}
+		.menu{
+			a{
+				color:#fff;
+			}
+		}
+		.categories.full{
+	        opacity: 0;
+	    }
 	}
 }

@@ -20,66 +20,150 @@
 						.col-md-4.visible-lg
 							.row.categories
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to city_path(:category_id => 1), class: 'cat transport' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/transport.svg')
+									- if @transport
+										= link_to city_path(:category_id => 1), class: 'cat transport selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/transport.svg')
+											.indicator
+									- else
+										= link_to city_path(:category_id => 1), class: 'cat transport' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/transport.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to city_path(:category_id => 2), class: 'cat development' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/development.svg')
+									- if @development
+										= link_to city_path(:category_id => 2), class: 'cat development selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/development.svg')
+											.indicator
+									- else
+										= link_to city_path(:category_id => 2), class: 'cat development' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/development.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to city_path(:category_id => 3), class: 'cat environment' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/environment.svg')
+									- if @environment
+										= link_to city_path(:category_id => 3), class: 'cat environment selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/environment.svg')
+											.indicator
+									- else
+										= link_to city_path(:category_id => 3), class: 'cat environment' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/environment.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to city_path(:category_id => 4), class: 'cat people' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/people.svg')
+									- if @people
+										= link_to city_path(:category_id => 4), class: 'cat people selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/people.svg')
+											.indicator
+									- else
+										= link_to city_path(:category_id => 4), class: 'cat people' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/people.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to city_path(:category_id => 5), class: 'cat community' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/community.svg')
+									- if @community
+										= link_to city_path(:category_id => 5), class: 'cat community selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/community.svg')
+											.indicator
+									- else
+										= link_to city_path(:category_id => 5), class: 'cat community' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/community.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to city_path(:category_id => 6), class: 'cat innovation' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/innovation.svg')
+									- if @innovation
+										= link_to city_path(:category_id => 6), class: 'cat innovation selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/innovation.svg')
+											.indicator
+									- else
+										= link_to city_path(:category_id => 6), class: 'cat innovation' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/innovation.svg')
+											.indicator
 					- else
 						.col-md-4.visible-lg
 							.row.categories
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to transport_city_projects_path, class: 'cat transport' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/transport.svg')
+									- if @transport
+										= link_to transport_city_projects_path, class: 'cat transport selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/transport.svg')
+											.indicator
+									- else
+										= link_to transport_city_projects_path, class: 'cat transport' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/transport.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to development_city_projects_path, class: 'cat development' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/development.svg')
+									- if @development
+										= link_to development_city_projects_path, class: 'cat development selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/development.svg')
+											.indicator
+									- else
+										= link_to development_city_projects_path, class: 'cat development' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/development.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to environment_city_projects_path, class: 'cat environment' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/environment.svg')
+									- if @environment
+										= link_to environment_city_projects_path, class: 'cat environment selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/environment.svg')
+											.indicator
+									- else
+										= link_to environment_city_projects_path, class: 'cat environment' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/environment.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to people_city_projects_path, class: 'cat people' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/people.svg')
+									- if @people
+										= link_to people_city_projects_path, class: 'cat people selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/people.svg')
+											.indicator
+									- else
+										= link_to people_city_projects_path, class: 'cat people' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/people.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to community_city_projects_path, class: 'cat community' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/community.svg')
+									- if @community
+										= link_to community_city_projects_path, class: 'cat community selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/community.svg')
+											.indicator
+									- else
+										= link_to community_city_projects_path, class: 'cat community' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/community.svg')
+											.indicator
 										
 								.col-xs-2.col-sm-2.col-md-2
-									= link_to innovation_city_projects_path, class: 'cat innovation' do
-										.col-xs-12.col-sm-6.col-md-12.icon
-											= image_tag('cat_icons/innovation.svg')
+									- if @innovation
+										= link_to innovation_city_projects_path, class: 'cat innovation selected' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/innovation.svg')
+											.indicator
+									- else
+										= link_to innovation_city_projects_path, class: 'cat innovation' do
+											.col-xs-12.col-sm-6.col-md-12.icon
+												= image_tag('cat_icons/innovation.svg')
+											.indicator
 								
 				.col-xs-6.col-sm-8.col-md-4.pull-right
 					.menu

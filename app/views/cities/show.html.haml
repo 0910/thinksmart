@@ -1,7 +1,78 @@
 / Splash Screen
-
 - city.images.each do |image|
 	.splash{:style => "background-image: url(#{image.file.url(:high)})"}
+		.row.categories.full
+			.col-xs-2.col-sm-2.col-md-2
+				- if @transport
+					= link_to city_path(:category_id => 1), class: 'cat transport selected' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/transport.svg')
+						.indicator
+				- else
+					= link_to city_path(:category_id => 1), class: 'cat transport' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/transport.svg')
+						.indicator
+					
+			.col-xs-2.col-sm-2.col-md-2
+				- if @development
+					= link_to city_path(:category_id => 2), class: 'cat development selected' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/development.svg')
+						.indicator
+				- else
+					= link_to city_path(:category_id => 2), class: 'cat development' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/development.svg')
+						.indicator
+					
+			.col-xs-2.col-sm-2.col-md-2
+				- if @environment
+					= link_to city_path(:category_id => 3), class: 'cat environment selected' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/environment.svg')
+						.indicator
+				- else
+					= link_to city_path(:category_id => 3), class: 'cat environment' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/environment.svg')
+						.indicator
+					
+			.col-xs-2.col-sm-2.col-md-2
+				- if @people
+					= link_to city_path(:category_id => 4), class: 'cat people selected' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/people.svg')
+						.indicator
+				- else
+					= link_to city_path(:category_id => 4), class: 'cat people' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/people.svg')
+						.indicator
+					
+			.col-xs-2.col-sm-2.col-md-2
+				- if @community
+					= link_to city_path(:category_id => 5), class: 'cat community selected' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/community.svg')
+						.indicator
+				- else
+					= link_to city_path(:category_id => 5), class: 'cat community' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/community.svg')
+						.indicator
+					
+			.col-xs-2.col-sm-2.col-md-2
+				- if @innovation
+					= link_to city_path(:category_id => 6), class: 'cat innovation selected' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/innovation.svg')
+						.indicator
+				- else
+					= link_to city_path(:category_id => 6), class: 'cat innovation' do
+						.col-xs-12.col-sm-6.col-md-12.icon
+							= image_tag('cat_icons/innovation.svg')
+						.indicator
 		.center
 			%h1
 				#{city.title}
@@ -89,6 +160,7 @@
 									#{project.created_at.to_date.to_formatted_s(:long)}
 							.row
 								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+							.row.hidden-xs
 								%p
 									#{simple_format truncate(project.description, :length => 420)}
 							.row.bottom
@@ -269,9 +341,15 @@
 			useCSS:true,
 			easing: 'cubic-bezier(.74,.14,.44,.71)',
 			pager:false,
-			controls:false
+			controls:false,
+			onSlidePrev: function(){
+				slider2.goToPrevSlide();
+			},
+			onSlideNext: function(){
+				slider2.goToNextSlide();
+			}
 		});
-		$('.featured-slide .slider').bxSlider({
+		var slider2 = $('.featured-slide .slider').bxSlider({
 			auto: false,
 			pause: 5000,
 			useCSS:true,

@@ -54,6 +54,7 @@ ActiveAdmin.register Project do
       f.input :description, :require => true
       f.input :benefit
       f.input :solved_problems
+      f.input :link
     end
     f.inputs "Images" do
       f.has_many :images do |i|
