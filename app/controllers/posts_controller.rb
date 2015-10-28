@@ -1,32 +1,46 @@
 class PostsController < ApplicationController
   def index
-  	@posts = Post.all.reverse_order
+    @posts = Post.all.reverse_order.where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('priority_id = 3')
   end
   def show
   	@post = Post.find(params[:id])
+    @targets = Target.find(params[:id])
   end
   def transport
-  	@posts = city.posts.where('category_id = 1')
+    @transport = true
+  	@posts = city.posts.where('category_id = 1').where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('category_id = 1').where('priority_id = 3')
   	render :index
   end
   def development
-  	@posts = city.posts.where('category_id = 2')
+    @development = true
+  	@posts = city.posts.where('category_id = 2').where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('category_id = 2').where('priority_id = 3')
   	render :index
   end
   def environment
-  	@posts = city.posts.where('category_id = 3')
+    @environment = true
+  	@posts = city.posts.where('category_id = 3').where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('category_id = 3').where('priority_id = 3')
   	render :index
   end
   def people
-  	@posts = city.posts.where('category_id = 4')
+    @people = true
+  	@posts = city.posts.where('category_id = 4').where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('category_id = 4').where('priority_id = 3')
   	render :index
   end
   def community
-  	@posts = city.posts.where('category_id = 5')
+    @community = true
+  	@posts = city.posts.where('category_id = 5').where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('category_id = 5').where('priority_id = 3')
   	render :index
   end
   def innovation
-  	@posts = city.posts.where('category_id = 6')
+    @innovation = true
+  	@posts = city.posts.where('category_id = 6').where.not('priority_id = 3')
+    @posts_home = Post.all.reverse_order.where('category_id = 6').where('priority_id = 3')
   	render :index
   end
 end

@@ -108,7 +108,15 @@ a:hover, a:focus {
 a:focus {
     outline: 0px;
 }
-
+.row.information{
+    background-color: #c6dab7;
+    text-align: center;
+    p{
+        color: #fff;
+        margin: 0;
+        padding:15px 0;
+    }
+}
 
 /* 02. Nav */
 

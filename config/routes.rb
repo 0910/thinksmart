@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   end
 
   get 'home/index'
+  # get 'subcategories/update_subcategories', as: 'update_subcategories'
+  get 'update_subcategories', to: 'subcategories#index'
 
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

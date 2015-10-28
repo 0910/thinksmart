@@ -58,21 +58,23 @@
 						.col-xs-4.col-sm-12.col-md-4.target
 							.cat-icon
 								#{image_tag "cat_icons/target.svg"}
-								%p.visible-sm
-									Adultos, Niños
+								- @project.targets.each do |target|
+									%p.visible-sm
+										#{target.name}
 						.col-xs-4.col-sm-12.col-md-4.health
 							.cat-icon
 								#{image_tag "cat_icons/health.svg"}
 								%h1
-									60%
+									#{@project.status}%
 								%p.visible-sm
 									Status
 					.row.hidden-sm
 						.col-xs-4.col-sm-12.col-md-4.category
 							%p #{@project.category.name}
 						.col-xs-4.col-sm-12.col-md-4.target
-							%p
-								Adultos, Niños
+							- @project.targets.each do |target|
+								%p
+									#{target.name}
 						.col-xs-4.col-sm-12.col-md-4.health
 							%p
 								Status

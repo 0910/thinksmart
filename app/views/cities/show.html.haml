@@ -152,7 +152,7 @@
 	.col-md-6.featured-titles							
 		.row
 			%ul.slider
-				- @projects.each do |project|
+				- @projects_home.each do |project|
 					%li.slide
 						.info
 							.row
@@ -181,11 +181,40 @@
 									%p.user
 										%i.icon.icon-man-people-streamline-user
 										= link_to(project.user.name, '#')
+				- @posts_home.each do |post|
+					%li.slide
+						.info
+							.row
+								%p.date
+									#{post.created_at.to_date.to_formatted_s(:long)}
+							.row
+								= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
+							.row.hidden-xs
+								%p
+									#{simple_format truncate(post.description, :length => 420)}
+							.row.bottom
+								.col-xs-6.col-sm-4.col-md-4
+									= link_to(city_post_path(city,post), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{post.category.name}.svg"}
+										#{post.category.name}
+								.col-xs-4.col-sm-4.col-md-4.hidden-xs
+									.actions-box
+										.actions
+											.action
+												%a.icon.icon-map-streamline-user
+											.action
+												%a.icon.icon-like-love-streamline
+											.action
+												%a.icon.icon-envellope-mail-streamline
+								.col-xs-6.col-sm-4.col-md-4
+									%p.user
+										%i.icon.icon-man-people-streamline-user
+										= link_to(post.user.name, '#')
 											
 	.col-md-6.featured-slide
 		.row
 			%ul.slider
-				- @projects.each do |project|
+				- @projects_home.each do |project|
 					%li
 						.row.slide
 							.col-sm-12.col-md-12
@@ -193,6 +222,16 @@
 									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
 								- else
 									- project.images.each do |image|
+										- if image.cover == true
+											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
+				- @posts_home.each do |post|
+					%li
+						.row.slide
+							.col-sm-12.col-md-12
+								- if post.images.empty?
+									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
 										- if image.cover == true
 											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 
@@ -212,7 +251,7 @@
 				#next-projects
 		.row.sliderbox
 			%ul.slider
-				- @projects.in_groups_of(2, false).each do |slide|
+				- @projects_section.in_groups_of(2, false).each do |slide|
 					%li.slide
 						- slide.each do |project|
 							.col-md-12.item
@@ -261,7 +300,7 @@
 				#next-news
 		.row.sliderbox
 			%ul.slider
-				- @posts.in_groups_of(2, false).each do |slide|
+				- @posts_section.in_groups_of(2, false).each do |slide|
 					%li.slide
 						- slide.each do |post|
 							.col-sm-6.col-md-6.item

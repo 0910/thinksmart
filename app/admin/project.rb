@@ -19,7 +19,8 @@ ActiveAdmin.register Project do
   index do
     column :id
     column :title
-    column :category_id
+    column :category
+    column :priority
     column :user
     actions
   end
@@ -31,8 +32,14 @@ ActiveAdmin.register Project do
       row :city
       row :benefit
       row :solved_problems
-      row :target
+      row :targets do 
+        project.targets.collect.each do |t|
+          t.name
+        end
+      end
       row :category
+      row :priority
+      row :status
       row :link
       row :user
       p.images.each do |image|
@@ -47,13 +54,15 @@ ActiveAdmin.register Project do
     f.inputs 'Details' do
       f.semantic_errors
       f.input :title, :require => true
-      f.input :project_type_id, :as => :select, :collection => ProjectType.all, :include_blank => false, :require => true
-      f.input :category_id, :as => :select, :collection => Category.all, :include_blank => false, :require => true
-      f.input :target_id, :as => :select, :collection => Target.all, :include_blank => false, :require => true
-      f.input :city_id, :as => :select, :collection => City.all, :include_blank => false, :require => true
+      f.input :project_type_id, :as => :select2, :collection => ProjectType.all, :include_blank => false, :require => true
+      f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true
+      f.input :priority, :as => :select2, :collection => Priority.all, :include_blank => false, :require => true
+      f.input :targets, :as => :select2_multiple, :collection => Target.all, :include_blank => false, :require => true
+      f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true
       f.input :description, :require => true
       f.input :benefit
       f.input :solved_problems
+      f.input :status
       f.input :link
     end
     f.inputs "Images" do
@@ -65,6 +74,4 @@ ActiveAdmin.register Project do
     end
     f.actions
   end
-
-
 end

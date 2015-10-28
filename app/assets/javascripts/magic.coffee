@@ -1,4 +1,5 @@
 ready = ->
+  $('.information').slideDown().delay(3000).slideUp()
   toggleNav = ->
     if $('.wrapper').hasClass('show-nav')
       # Do things on Nav Close
