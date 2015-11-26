@@ -1,7 +1,5 @@
 class CitiesController < ApplicationController
   def index
-    @hide_city_menu = true
-    @cat_menu_alt = true
   	@cities = City.all
   end
   def show
@@ -17,6 +15,37 @@ class CitiesController < ApplicationController
     @posts_home = city.posts.reverse_order.where('priority_id = 3')
     @posts_section = city.posts.reverse_order.where('priority_id = 2')
     @posts_normal = city.posts.reverse_order.where('priority_id = 1')
+  end
+  def transport
+    @projects_home = city.projects.reverse_order.where(priority_id: 3, category: 1)
+    @posts_home = city.posts.reverse_order.where(priority_id: 3, category: 1)
+    @cities = City.all
+    render :index
+  end
+  def development
+    @projects_home = Projects.reverse_order.where(priority_id: 3, category: 2)
+    @posts_home = Projects.posts.reverse_order.where(priority_id: 3, category: 2)
+    render :index
+  end
+  def environment
+    @projects_home = Projects.reverse_order.where(priority_id: 3, category: 3)
+    @posts_home = Projects.posts.reverse_order.where(priority_id: 3, category: 3)
+    render :index
+  end
+  def people
+    @projects_home = Projects.reverse_order.where(priority_id: 3, category: 4)
+    @posts_home = Projects.posts.reverse_order.where(priority_id: 3, category: 4)
+    render :index
+  end
+  def community
+    @projects_home = Projects.reverse_order.where(priority_id: 3, category: 5)
+    @posts_home = Projects.posts.reverse_order.where(priority_id: 3, category: 6)
+    render :index
+  end
+  def innovation
+    @projects_home = Projects.reverse_order.where(priority_id: 3, category: 6)
+    @posts_home = Projects.posts.reverse_order.where(priority_id: 3, category: 6)
+    render :index
   end
   def city_id
     params[:id]

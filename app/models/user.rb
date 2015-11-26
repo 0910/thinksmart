@@ -1,12 +1,16 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :projects
   has_many :posts
 
   # Utility methods for checking the user roles
+
+  def role?(r)
+    role.include? r.to_s
+  end
   def admin?
     role == 'admin'
   end
@@ -19,7 +23,4 @@ class User < ActiveRecord::Base
     role == 'user'
   end
 
-  def guest?
-    !admin? && !moderator?
-  end
 end

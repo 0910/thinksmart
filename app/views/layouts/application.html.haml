@@ -10,156 +10,61 @@
 			= yield(:head)
 
 	%body{:class => "#{controller_name} #{action_name}"}
+		= render 'registrations/sign_up_modal'
+		= render 'registrations/log_in_modal'
 		.wrapper
 			%nav.row.navigation
-				.col-xs-6.col-sm-4.col-md-4
+				.col-xs-6.col-sm-4.col-md-2
 					= link_to(root_path) do
 						.logo
-				- unless @hide_city_menu
-					- if @cat_menu_alt
-						.col-md-4.visible-lg
-							.row.categories
-								.col-xs-2.col-sm-2.col-md-2
-									- if @transport
-										= link_to city_path(:category_id => 1), class: 'cat transport selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/transport_on.svg')
-									- else
-										= link_to city_path(:category_id => 1), class: 'cat transport' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/transport.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @development
-										= link_to city_path(:category_id => 2), class: 'cat development selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/development_on.svg')
-									- else
-										= link_to city_path(:category_id => 2), class: 'cat development' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/development.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @environment
-										= link_to city_path(:category_id => 3), class: 'cat environment selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/environment_on.svg')
-									- else
-										= link_to city_path(:category_id => 3), class: 'cat environment' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/environment.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @people
-										= link_to city_path(:category_id => 4), class: 'cat people selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/people_on.svg')
-									- else
-										= link_to city_path(:category_id => 4), class: 'cat people' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/people.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @community
-										= link_to city_path(:category_id => 5), class: 'cat community selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/community_on.svg')
-									- else
-										= link_to city_path(:category_id => 5), class: 'cat community' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/community.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @innovation
-										= link_to city_path(:category_id => 6), class: 'cat innovation selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/innovation_on.svg')
-									- else
-										= link_to city_path(:category_id => 6), class: 'cat innovation' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/innovation.svg')
-					- else
-						.col-md-4.visible-lg
-							.row.categories
-								.col-xs-2.col-sm-2.col-md-2
-									- if @transport
-										= link_to transport_city_projects_path, class: 'cat transport selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/transport_on.svg')
-									- else
-										= link_to transport_city_projects_path, class: 'cat transport' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/transport.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @development
-										= link_to development_city_projects_path, class: 'cat development selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/development_on.svg')
-									- else
-										= link_to development_city_projects_path, class: 'cat development' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/development.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @environment
-										= link_to environment_city_projects_path, class: 'cat environment selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/environment_on.svg')
-									- else
-										= link_to environment_city_projects_path, class: 'cat environment' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/environment.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @people
-										= link_to people_city_projects_path, class: 'cat people selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/people_on.svg')
-									- else
-										= link_to people_city_projects_path, class: 'cat people' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/people.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @community
-										= link_to community_city_projects_path, class: 'cat community selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/community_on.svg')
-									- else
-										= link_to community_city_projects_path, class: 'cat community' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/community.svg')
-										
-								.col-xs-2.col-sm-2.col-md-2
-									- if @innovation
-										= link_to innovation_city_projects_path, class: 'cat innovation selected' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/innovation_on.svg')
-									- else
-										= link_to innovation_city_projects_path, class: 'cat innovation' do
-											.col-xs-12.col-sm-6.col-md-12.icon
-												= image_tag('cat_icons/innovation.svg')
-								
-				.col-xs-6.col-sm-8.col-md-4.pull-right
+				
+				.col-xs-6.col-sm-8.col-md-10
 					.menu
-						- unless @hide_city_menu
-							= link_to(cities_path) do
-								%span.icon.icon-earth-globe-streamline
+						= link_to('Descubrir', projects_path)
+						= link_to('Empezar un proyecto', new_project_path)
+						.pull-right
+							- if city
+								= link_to(cities_path) do
+									%span.icon.icon-earth-globe-streamline
+									%span.hidden-xs
+										#{city.name}, #{city.country}
+							- else
+								= link_to(cities_path) do
+									%span.icon.icon-earth-globe-streamline
+									%span.hidden-xs
+										Elegir Ciudad
+							%a.toggle-nav(href="#")
+								%span.icon-menu
 								%span.hidden-xs
-									#{city.name}, #{city.country}
-						%a.toggle-nav(href="#")
-							%span.icon-menu
-							%span.hidden-xs
-								Menu
+									Menu
+							- if user_signed_in?
+								.dropdown
+									%button.dropdown-toggle.btn{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+										#{current_user.name}
+										%span.caret
+									%ul.dropdown-menu
+										%li
+											= link_to('Editar Perfil', edit_user_registration_path)
+										- if current_user.role?(:admin)
+											%li
+												= link_to "Administracion", admin_root_path
+										%li
+											= link_to('Cerrar Sesion', destroy_user_session_path, method: :delete)
+							- else
+								= link_to "Iniciar Sesión", "#login", "data-toggle" => "modal", :class => 'btn btn-default'
+							
 			.site-menu
 				%a.toggle-nav(href="#")
 					X
 				= link_to('Home', root_path)
 				= link_to('Ciudades', cities_path)
-				- unless @hide_city_menu
+				- if city
 					= link_to('Publicaciones', city_posts_path(city))
 					= link_to('Proyectos', city_projects_path(city))
+				- else
+					= link_to('Publicaciones', posts_path)
+					= link_to('Proyectos', projects_path)
+
 				%a
 					About
 				%a.mini

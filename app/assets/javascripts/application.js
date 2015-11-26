@@ -14,10 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require bootstrap
 //= require raphael
 //= require morris
 //= require bxslider
 //= require magic
 //= require select2
+//= require jquery.multiple.select
 //= require_tree .

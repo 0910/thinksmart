@@ -20,6 +20,7 @@ ActiveAdmin.register Project do
     column :id
     column :title
     column :category
+    column :city
     column :priority
     column :user
     actions
@@ -38,6 +39,11 @@ ActiveAdmin.register Project do
         end
       end
       row :category
+      row :subcategories do 
+        project.subcategories.collect.each do |s|
+          s.title
+        end
+      end
       row :priority
       row :status
       row :link
@@ -54,15 +60,17 @@ ActiveAdmin.register Project do
     f.inputs 'Details' do
       f.semantic_errors
       f.input :title, :require => true
+      f.input :status, as: :select2, :collection => ['pending', 'aproved', 'rejected'], :include_blank => false
       f.input :project_type_id, :as => :select2, :collection => ProjectType.all, :include_blank => false, :require => true
       f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true
+      f.input :subcategories, :as => :select2_multiple, :collection => Subcategory.all, :include_blank => false, :require => true
+      f.input :phase_id, :as => :select2, :collection => Phase.all, :include_blank => false, :require => true
       f.input :priority, :as => :select2, :collection => Priority.all, :include_blank => false, :require => true
       f.input :targets, :as => :select2_multiple, :collection => Target.all, :include_blank => false, :require => true
       f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true
       f.input :description, :require => true
       f.input :benefit
       f.input :solved_problems
-      f.input :status
       f.input :link
     end
     f.inputs "Images" do

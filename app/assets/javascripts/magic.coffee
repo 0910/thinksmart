@@ -13,9 +13,9 @@ ready = ->
     
   $(window).on 'scroll', ->
       if $(this).scrollTop() > 100
-        $('.navigation').addClass 'white'
+        $('body.home .navigation').addClass 'white'
       else
-        $('.navigation').removeClass 'white'
+        $('body.home .navigation').removeClass 'white'
       return
 
   $ ->

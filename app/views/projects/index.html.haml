@@ -1,114 +1,228 @@
-.row.categories.full
-	.col-xs-2.col-sm-2.col-md-2
-		- if @transport
-			= link_to city_projects_path, class: 'cat transport selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/transport_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Transporte
-						%br
-						y movilidad
-		- else
-			= link_to transport_city_projects_path, class: 'cat transport' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/transport.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Transporte
-						%br
-						y movilidad
-	.col-xs-2.col-sm-2.col-md-2
-		- if @development
-			= link_to city_projects_path, class: 'cat development selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/development_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo
-						%br
-						urbano
-		- else
-			= link_to development_city_projects_path, class: 'cat development' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/development.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo
-						%br
-						urbano
-	.col-xs-2.col-sm-2.col-md-2
-		- if @environment
-			= link_to city_projects_path, class: 'cat environment selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/environment_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Medio ambiente
-						%br
-						y recursos nat.
-		- else
-			= link_to environment_city_projects_path, class: 'cat environment' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/environment.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Medio ambiente
-						%br
-						y recursos nat.
-	.col-xs-2.col-sm-2.col-md-2
-		- if @people
-			= link_to city_projects_path, class: 'cat people selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/people_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo de
-						%br
-						las personas
-		- else
-			= link_to people_city_projects_path, class: 'cat people' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/people.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo de
-						%br
-						las personas
-	.col-xs-2.col-sm-2.col-md-2
-		- if @community
-			= link_to city_projects_path, class: 'cat community selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/community_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Comunidad
-		- else
-			= link_to community_city_projects_path, class: 'cat community' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/community.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Comunidad
-	.col-xs-2.col-sm-2.col-md-2
-		- if @innovation
-			= link_to city_projects_path, class: 'cat innovation selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/innovation_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Innovacion
-						%br
-						y desarrollo
-		- else
-			= link_to innovation_city_projects_path, class: 'cat innovation' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/innovation.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Innovacion
-						%br
-						y desarrollo
+- if city
+	.row.categories.full
+		.col-xs-2.col-sm-2.col-md-2
+			- if @transport
+				= link_to city_projects_path, class: 'cat transport selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Transporte
+							%br
+							y movilidad
+			- else
+				= link_to transport_city_projects_path, class: 'cat transport' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Transporte
+							%br
+							y movilidad
+		.col-xs-2.col-sm-2.col-md-2
+			- if @development
+				= link_to city_projects_path, class: 'cat development selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							urbano
+			- else
+				= link_to development_city_projects_path, class: 'cat development' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							urbano
+		.col-xs-2.col-sm-2.col-md-2
+			- if @environment
+				= link_to city_projects_path, class: 'cat environment selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Medio ambiente
+							%br
+							y recursos nat.
+			- else
+				= link_to environment_city_projects_path, class: 'cat environment' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Medio ambiente
+							%br
+							y recursos nat.
+		.col-xs-2.col-sm-2.col-md-2
+			- if @people
+				= link_to city_projects_path, class: 'cat people selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/people_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo de
+							%br
+							las personas
+			- else
+				= link_to people_city_projects_path, class: 'cat people' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/people.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo de
+							%br
+							las personas
+		.col-xs-2.col-sm-2.col-md-2
+			- if @community
+				= link_to city_projects_path, class: 'cat community selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Comunidad
+			- else
+				= link_to community_city_projects_path, class: 'cat community' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Comunidad
+		.col-xs-2.col-sm-2.col-md-2
+			- if @innovation
+				= link_to city_projects_path, class: 'cat innovation selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Innovacion
+							%br
+							y desarrollo
+			- else
+				= link_to innovation_city_projects_path, class: 'cat innovation' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Innovacion
+							%br
+							y desarrollo
+- else
+	.row.categories.full
+		.col-xs-2.col-sm-2.col-md-2
+			- if @transport
+				= link_to projects_path, class: 'cat transport selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Transporte
+							%br
+							y movilidad
+			- else
+				= link_to transport_projects_path, class: 'cat transport' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Transporte
+							%br
+							y movilidad
+		.col-xs-2.col-sm-2.col-md-2
+			- if @development
+				= link_to projects_path, class: 'cat development selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							urbano
+			- else
+				= link_to development_projects_path, class: 'cat development' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							urbano
+		.col-xs-2.col-sm-2.col-md-2
+			- if @environment
+				= link_to projects_path, class: 'cat environment selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Medio ambiente
+							%br
+							y recursos nat.
+			- else
+				= link_to environment_projects_path, class: 'cat environment' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Medio ambiente
+							%br
+							y recursos nat.
+		.col-xs-2.col-sm-2.col-md-2
+			- if @people
+				= link_to projects_path, class: 'cat people selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/people_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo de
+							%br
+							las personas
+			- else
+				= link_to people_projects_path, class: 'cat people' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/people.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo de
+							%br
+							las personas
+		.col-xs-2.col-sm-2.col-md-2
+			- if @community
+				= link_to projects_path, class: 'cat community selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Comunidad
+			- else
+				= link_to community_projects_path, class: 'cat community' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Comunidad
+		.col-xs-2.col-sm-2.col-md-2
+			- if @innovation
+				= link_to projects_path, class: 'cat innovation selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Innovacion
+							%br
+							y desarrollo
+			- else
+				= link_to innovation_projects_path, class: 'cat innovation' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Innovacion
+							%br
+							y desarrollo
+
 
 /featured projects
 
@@ -139,15 +253,23 @@
 								%p.date
 									#{project.created_at.to_date.to_formatted_s(:long)}
 							.row
-								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+								- if city
+									= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+								- else
+									= link_to(truncate(project.title, :length => 70), project_path(project))
 							.row.hidden-xs	
 								%p
 									#{simple_format truncate(project.description, :length => 420)}
 							.row.bottom
 								.col-xs-6.col-sm-4.col-md-4
-									= link_to(city_project_path(city,project), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{project.category.name}.svg"}
-										#{project.category.name}
+									- if city
+										= link_to(city_project_path(city,project), class: 'cat-icon') do
+											#{image_tag "cat_icons/#{project.category.name}.svg"}
+											#{project.category.name}
+									- else
+										= link_to(project_path(project), class: 'cat-icon') do
+											#{image_tag "cat_icons/#{project.category.name}.svg"}
+											#{project.category.name}
 								.col-sm-4.col-md-4.hidden-xs.actions-box
 									.actions
 										.action
@@ -167,10 +289,16 @@
 	.col-md-12.projects-list
 		.row.title
 			.col-md-12
-				%h1
-					Proyectos en
-					%span
-						Buenos Aires.
+				- if city
+					%h1
+						Proyectos en
+						%span
+							#{city.name}
+				- else
+					%h1
+						Proyectos en
+						%span
+							Todas las ciudades
 		.row
 			- @projects.each do |project|
 				.col-md-6.item
@@ -181,11 +309,19 @@
 									%p.date
 										#{project.created_at.to_date.to_formatted_s(:long)}
 								.col-xs-6.col-md-6
-									= link_to(city_project_path(city,project), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{project.category.name}.svg"}
-										#{project.category.name}
+									- if city
+										= link_to(city_project_path(city,project), class: 'cat-icon') do
+											#{image_tag "cat_icons/#{project.category.name}.svg"}
+											#{project.category.name}
+									- else
+										= link_to(project_path(project), class: 'cat-icon') do
+											#{image_tag "cat_icons/#{project.category.name}.svg"}
+											#{project.category.name}
 							.row.header
-								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+								- if city
+									= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
+								- else
+									= link_to(truncate(project.title, :length => 70), project_path(project))
 							.row.bottom	
 								.col-xs-6.col-md-6
 									.actions

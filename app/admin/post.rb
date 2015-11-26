@@ -38,6 +38,11 @@ ActiveAdmin.register Post do
         end
       end
       row :category
+      row :subcategories do 
+        posts.subcategories.collect.each do |s|
+          s.title
+        end
+      end
       row :priority
       row :link
       row :user
@@ -55,6 +60,7 @@ ActiveAdmin.register Post do
       f.input :title, :require => true
       f.input :project_type_id, :as => :select2, :collection => ProjectType.all, :include_blank => false, :require => true
       f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true
+      f.input :subcategories, :as => :select2_multiple, :collection => Subcategory.all, :include_blank => false, :require => true
       f.input :priority, :as => :select2, :collection => Priority.all, :include_blank => false, :require => true
       f.input :targets, :as => :select2_multiple, :collection => Target.all, :include_blank => false, :require => true
       f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true

@@ -1,101 +1,125 @@
 / Splash Screen
-- city.images.each do |image|
-	.splash{:style => "background-image: url(#{image.file.url(:high)})"}
-		.row.categories.full
-			.col-xs-2.col-sm-2.col-md-2
-				- if @transport
-					= link_to city_path(:category_id => 1), class: 'cat transport selected' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/transport.svg')
-						.indicator
-				- else
-					= link_to city_path(:category_id => 1), class: 'cat transport' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/transport.svg')
-						.indicator
-					
-			.col-xs-2.col-sm-2.col-md-2
-				- if @development
-					= link_to city_path(:category_id => 2), class: 'cat development selected' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/development.svg')
-						.indicator
-				- else
-					= link_to city_path(:category_id => 2), class: 'cat development' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/development.svg')
-						.indicator
-					
-			.col-xs-2.col-sm-2.col-md-2
-				- if @environment
-					= link_to city_path(:category_id => 3), class: 'cat environment selected' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/environment.svg')
-						.indicator
-				- else
-					= link_to city_path(:category_id => 3), class: 'cat environment' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/environment.svg')
-						.indicator
-					
-			.col-xs-2.col-sm-2.col-md-2
-				- if @people
-					= link_to city_path(:category_id => 4), class: 'cat people selected' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/people.svg')
-						.indicator
-				- else
-					= link_to city_path(:category_id => 4), class: 'cat people' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/people.svg')
-						.indicator
-					
-			.col-xs-2.col-sm-2.col-md-2
-				- if @community
-					= link_to city_path(:category_id => 5), class: 'cat community selected' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/community.svg')
-						.indicator
-				- else
-					= link_to city_path(:category_id => 5), class: 'cat community' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/community.svg')
-						.indicator
-					
-			.col-xs-2.col-sm-2.col-md-2
-				- if @innovation
-					= link_to city_path(:category_id => 6), class: 'cat innovation selected' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/innovation.svg')
-						.indicator
-				- else
-					= link_to city_path(:category_id => 6), class: 'cat innovation' do
-						.col-xs-12.col-sm-6.col-md-12.icon
-							= image_tag('cat_icons/innovation.svg')
-						.indicator
-		.center
-			%h1
-				#{city.title}
-			%p
-				#{city.subtitle}
-			%button.btn.btn-default
-				Be Smart!
-		.row.start
-			.col-xs-12.col-sm-6.col-md-6.search.hidden-xs
-				.title
-					%h1
-						%i.icon.icon-search
-						Busca publicaciones, proyectos o ciudades.
-				
-			.col-xs-12.col-sm-6.col-md-6.location
-				.title
-					= link_to(cities_path) do
-						%i.icon.icon-earth-globe-streamline
-						Estas en 
-						%span
-							#{city.name}, #{city.country}
-						%span.caret
-
+.row
+	- city.images.each do |image|
+		.splash{:style => "background-image: url(#{image.file.url(:high)})"}
+			.center
+				%h1
+					#{city.title}
+				%p
+					#{city.subtitle}
+				%button.btn.btn-default
+					Be Smart!
+.row.categories.full
+	.col-xs-2.col-sm-2.col-md-2
+		- if @transport
+			= link_to root_path, class: 'cat transport selected' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/transport_on.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Transporte
+						%br
+						y movilidad
+		- else
+			= link_to transport_path, class: 'cat transport' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/transport.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Transporte
+						%br
+						y movilidad
+	.col-xs-2.col-sm-2.col-md-2
+		- if @development
+			= link_to root_path, class: 'cat development selected' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/development_on.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Desarrollo
+						%br
+						urbano
+		- else
+			= link_to development_path, class: 'cat development' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/development.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Desarrollo
+						%br
+						urbano
+	.col-xs-2.col-sm-2.col-md-2
+		- if @environment
+			= link_to root_path, class: 'cat environment selected' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/environment_on.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Medio ambiente
+						%br
+						y recursos nat.
+		- else
+			= link_to environment_path, class: 'cat environment' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/environment.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Medio ambiente
+						%br
+						y recursos nat.
+	.col-xs-2.col-sm-2.col-md-2
+		- if @people
+			= link_to root_path, class: 'cat people selected' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/people_on.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Desarrollo de
+						%br
+						las personas
+		- else
+			= link_to people_path, class: 'cat people' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/people.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Desarrollo de
+						%br
+						las personas
+	.col-xs-2.col-sm-2.col-md-2
+		- if @community
+			= link_to root_path, class: 'cat community selected' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/community_on.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Comunidad
+		- else
+			= link_to community_path, class: 'cat community' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/community.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Comunidad
+	.col-xs-2.col-sm-2.col-md-2
+		- if @innovation
+			= link_to root_path, class: 'cat innovation selected' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/innovation_on.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Innovacion
+						%br
+						y desarrollo
+		- else
+			= link_to innovation_path, class: 'cat innovation' do
+				.col-xs-12.col-sm-6.col-md-3.icon
+					= image_tag('cat_icons/innovation.svg')
+				.col-sm-6.col-md-9.text.visible-lg
+					%p
+						Innovacion
+						%br
+						y desarrollo
 .row.city-resume
 	.col-sm-3.col-md-3.box
 		.row
@@ -147,6 +171,14 @@
 				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "smart develop", "data-percent" => "#{city.smart_index}", "data-text" => "#{city.smart_index}%", "data-width" => "7"}
 			.col-xs-4.col-md-4.chart
 				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "visitantes", "data-percent" => "#{city.visitors}", "data-text" => "#{city.visitors}%", "data-width" => "7"}
+.row
+	.col-md-12.cities-list
+		.row.title
+			.col-md-12
+				%h1
+					Destacado en
+					%span
+						#{city.name}
 
 .row.featured
 	.col-md-6.featured-titles							
@@ -244,7 +276,7 @@
 				%h1
 					Proyectos en
 					%span
-						Buenos Aires.
+						#{city.name}
 			.col-sm-1.col-md-1.hidden-xs	
 				#prev-projects
 			.col-sm-1.col-md-1.hidden-xs	
@@ -293,7 +325,7 @@
 				%h1
 					Novedades en
 					%span
-						Buenos Aires.
+						#{city.name}
 			.col-sm-1.col-md-1.hidden-xs	
 				#prev-news
 			.col-sm-1.col-md-1.hidden-xs	
@@ -335,38 +367,6 @@
 												%i.icon.icon-man-people-streamline-user
 												= link_to(post.user.name, '#')
 
-.row.about
-	.col-md-4.box
-		= image_tag('about.png')
-
-		%h1
-			Que es 
-			%span
-				ThinkSmart?
-		%p
-			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
-			<br/><br/>
-			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
-	.col-md-4.box
-		= image_tag('about.png')
-		%h1
-			Por que es
-			%span
-				importante?
-		%p
-			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
-			<br/><br/>
-			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
-	.col-md-4.box
-		= image_tag('about.png')
-		%h1
-			Como puedo
-			%span
-				participar?
-		%p
-			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
-			<br/><br/>
-			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
 :javascript
 	$(function() {
 		windowHeight = $(window).height();
@@ -434,8 +434,6 @@
 			}
 			$('.splash .center').css('opacity',opacity);
 			if ($(this).scrollTop() > 100) {
-				$('.navigation').addClass('white');
-				console.log('1');
 				if (showingStats == false){
 					$('.circle').circliful();
 					men = $('.mengraph').data('value');
@@ -444,8 +442,5 @@
 					$('.women .percent').css('width', women + '%');
 					showingStats = true;
 				}
-			}
-			else {
-				$('.navigation').removeClass('white');
 			}
 		});

@@ -7,10 +7,11 @@ class Ability
       can :manage, :all
     else 
       if user.moderator?
-        can :manage, Post, user_id: user.id
-        can :manage, Project, user_id: user.id
+        can :manage, City
+        can :manage, Post
+        can :manage, Project
       else
-        #
+        cannot :manage, :all
       end
     end
     # Define abilities for the passed in user here. For example:

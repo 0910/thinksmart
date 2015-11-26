@@ -1,0 +1,33 @@
+#login.modal.fade{"tabindex" => "-1", "role" => "dialog"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"data-dismiss" => "modal", "aria-label" => "Close" }
+					%span{ "aria-hidden" => "true" } &times;
+				%h3 Inicia Sesión en Personal Gifter
+			.modal-body
+				= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+					= devise_error_messages!
+					.form-group
+						- if devise_mapping.omniauthable?
+							- resource_class.omniauth_providers.each do |provider|
+								= link_to "Conectar con #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: 'btn btn-primary form-control'
+					%hr
+					.form-group
+						= f.label :email, class: 'control-label'
+						= f.email_field :email, autofocus: true, class: 'form-control'
+					.form-group
+						= f.label :password, 'Contraseña', class: 'control-label'
+						- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+							= link_to "No larecuerdo", new_password_path(resource_name)
+						= f.password_field :password, autocomplete: "off", class: 'form-control'
+					.form-group
+						= f.submit "Iniciar Sesión", class: 'btn btn-success form-control'
+					%hr
+					.form-group
+						- if controller_name != 'sessions'
+							%p
+								¿No tienes cuenta?
+								%button{"data-dismiss" => "modal", "data-toggle" => "modal", "data-target" => "#sign_up"} Crea una aquí
+
+

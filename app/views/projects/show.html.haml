@@ -1,5 +1,9 @@
 /project slider
-
+- if (@project.user = current_user ) && (@project.status = 'pending')
+	.row.pending
+		%p
+			Este Proyecto se encuentra en etapa de aprovacion. Este proceso tarda un maximo de 48hs habiles.
+			= link_to('Editar Proyecto', edit_project_path(@project))
 .project
 	.row
 		.col-md-8.featured
@@ -29,7 +33,7 @@
 							#{simple_format(@project.description)}
 					.row.bottom
 						.col-xs-6.col-sm-4.col-md-4
-							= link_to(city_project_path(city,@project), class: 'cat-icon') do
+							= link_to(project_path(@project), class: 'cat-icon') do
 								#{image_tag "cat_icons/#{@project.category.name}.svg"}
 								#{@project.category.name}
 						.col-sm-4.col-md-4.hidden-xs
@@ -51,7 +55,7 @@
 				.icons
 					.row
 						.col-xs-4.col-sm-12.col-md-4.category
-							= link_to(city_project_path(city,@project), class: 'cat-icon') do
+							= link_to(project_path(@project), class: 'cat-icon') do
 								#{image_tag "cat_icons/#{@project.category.name}.svg"}
 								%p.visible-sm
 									#{@project.category.name}
@@ -65,9 +69,9 @@
 							.cat-icon
 								#{image_tag "cat_icons/health.svg"}
 								%h1
-									#{@project.status}%
+									#{@project.project_type.name}
 								%p.visible-sm
-									Status
+									#{@project.project_type.name}
 					.row.hidden-sm
 						.col-xs-4.col-sm-12.col-md-4.category
 							%p #{@project.category.name}
@@ -77,15 +81,16 @@
 									#{target.name}
 						.col-xs-4.col-sm-12.col-md-4.health
 							%p
-								Status
+								#{@project.project_type.name}
 			.col-xs-12.col-sm-9.col-md-12.extend
 				.box
 					%h3
 						Areas en la que aplica
 					%ul
-						%li
-							%p
-								Infraestructura y servicios para la accesibilidad, la comunicación y el crecimiento de la ciudad.
+						- @project.subcategories.each do |subcategory|
+							%li
+								%p
+									#{subcategory.title}
 				.box
 					%h3
 						Problemas que soluciona

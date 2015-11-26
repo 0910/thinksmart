@@ -4,8 +4,8 @@ ActiveAdmin.register Subcategory do
 		f.inputs 'Sub Category' do
 		  f.semantic_errors
 		  f.input :title, :require => true
-		  f.input :category_id, :as => :select, :collection => Category.all, :include_blank => false, :require => true
-		  f.input :combination, :as => :select, :collection => Category.all, :include_blank => false, :require => true
+		  f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true
+		  f.input :combination, :as => :select2, :collection => Category.all, :include_blank => false, :require => true
 		end
 		f.actions
 	end

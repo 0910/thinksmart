@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028180534) do
+ActiveRecord::Schema.define(version: 20151113193626) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -72,6 +72,22 @@ ActiveRecord::Schema.define(version: 20151028180534) do
   add_index "images", ["project_id"], name: "index_images_on_project_id", using: :btree
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "phases", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "post_subcategories", force: :cascade do |t|
+    t.integer  "post_id",        limit: 4
+    t.integer  "subcategory_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "post_subcategories", ["post_id"], name: "index_post_subcategories_on_post_id", using: :btree
+  add_index "post_subcategories", ["subcategory_id"], name: "index_post_subcategories_on_subcategory_id", using: :btree
+
   create_table "post_targets", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
     t.integer  "target_id",  limit: 4
@@ -111,6 +127,26 @@ ActiveRecord::Schema.define(version: 20151028180534) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "product_subcategories", force: :cascade do |t|
+    t.integer  "product_id",     limit: 4
+    t.integer  "subcategory_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "product_subcategories", ["product_id"], name: "index_product_subcategories_on_product_id", using: :btree
+  add_index "product_subcategories", ["subcategory_id"], name: "index_product_subcategories_on_subcategory_id", using: :btree
+
+  create_table "project_subcategories", force: :cascade do |t|
+    t.integer  "project_id",     limit: 4
+    t.integer  "subcategory_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "project_subcategories", ["project_id"], name: "index_project_subcategories_on_project_id", using: :btree
+  add_index "project_subcategories", ["subcategory_id"], name: "index_project_subcategories_on_subcategory_id", using: :btree
+
   create_table "project_targets", force: :cascade do |t|
     t.integer  "project_id", limit: 4
     t.integer  "target_id",  limit: 4
@@ -138,16 +174,18 @@ ActiveRecord::Schema.define(version: 20151028180534) do
     t.string   "link",             limit: 255
     t.integer  "city_id",          limit: 4
     t.integer  "user_id",          limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "status",           limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "status",           limit: 255,   default: "pending"
     t.integer  "priority_id",      limit: 4
     t.integer  "subcategories_id", limit: 4
     t.integer  "subcategory_id",   limit: 4
+    t.integer  "phase_id",         limit: 4
   end
 
   add_index "projects", ["category_id"], name: "index_projects_on_category_id", using: :btree
   add_index "projects", ["city_id"], name: "index_projects_on_city_id", using: :btree
+  add_index "projects", ["phase_id"], name: "index_projects_on_phase_id", using: :btree
   add_index "projects", ["priority_id"], name: "index_projects_on_priority_id", using: :btree
   add_index "projects", ["project_type_id"], name: "index_projects_on_project_type_id", using: :btree
   add_index "projects", ["subcategories_id"], name: "index_projects_on_subcategories_id", using: :btree
@@ -199,11 +237,16 @@ ActiveRecord::Schema.define(version: 20151028180534) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "post_subcategories", "posts"
+  add_foreign_key "post_subcategories", "subcategories"
   add_foreign_key "post_targets", "posts"
   add_foreign_key "post_targets", "targets"
   add_foreign_key "posts", "priorities"
+  add_foreign_key "project_subcategories", "projects"
+  add_foreign_key "project_subcategories", "subcategories"
   add_foreign_key "project_targets", "projects"
   add_foreign_key "project_targets", "targets"
+  add_foreign_key "projects", "phases"
   add_foreign_key "projects", "priorities"
   add_foreign_key "projects", "subcategories"
   add_foreign_key "relations", "projects"
