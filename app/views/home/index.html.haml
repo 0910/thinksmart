@@ -148,19 +148,20 @@
 					%span
 						Inteligentes.
 		.row
-			- @cities.each do |city|
-				.col-xs-12.col-sm-6.col-md-4.item
-					= link_to(city_path(city)) do
-						- if city.images.empty?
-							.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								%h1
-									#{city.name}
-						- else
-							- city.images.each do |image|
-								- if image.cover == true
-									.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
-										%h1
-											#{city.name}
+			.container
+				- @cities.each do |city|
+					.col-xs-12.col-sm-6.col-md-4.item
+						= link_to(city_path(city)) do
+							- if city.images.empty?
+								.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+									%h1
+										#{city.name}
+							- else
+								- city.images.each do |image|
+									- if image.cover == true
+										.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
+											%h1
+												#{city.name}
 .row
 	.col-md-12.cities-list
 		.row.title
@@ -171,91 +172,92 @@
 						Destacados.
 
 .row.featured
-	.col-md-6.featured-titles							
-		.row
-			%ul.slider
-				- @projects_home.each do |project|
-					%li.slide
-						.info
-							.row
-								%p.date
-									#{project.created_at.to_date.to_formatted_s(:long)}
-							.row
-								= link_to(truncate(project.title, :length => 70), project_path(project))
-							.row.hidden-xs
-								%p
-									#{simple_format truncate(project.description, :length => 420)}
-							.row.bottom
-								.col-xs-6.col-sm-4.col-md-4
-									= link_to(project_path(project), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{project.category.name}.svg"}
-										#{project.category.name}
-								.col-xs-4.col-sm-4.col-md-4.hidden-xs
-									.actions-box
-										.actions
-											.action
-												%a.icon.icon-map-streamline-user
-											.action
-												%a.icon.icon-like-love-streamline
-											.action
-												%a.icon.icon-envellope-mail-streamline
-								.col-xs-6.col-sm-4.col-md-4
-									%p.user
-										%i.icon.icon-man-people-streamline-user
-										= link_to(project.user.name, '#')
-				- @posts_home.each do |post|
-					%li.slide
-						.info
-							.row
-								%p.date
-									#{post.created_at.to_date.to_formatted_s(:long)}
-							.row
-								= link_to(truncate(post.title, :length => 70), post_path(post))
-							.row.hidden-xs
-								%p
-									#{simple_format truncate(post.description, :length => 420)}
-							.row.bottom
-								.col-xs-6.col-sm-4.col-md-4
-									= link_to(post_path(post), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{post.category.name}.svg"}
-										#{post.category.name}
-								.col-xs-4.col-sm-4.col-md-4.hidden-xs
-									.actions-box
-										.actions
-											.action
-												%a.icon.icon-map-streamline-user
-											.action
-												%a.icon.icon-like-love-streamline
-											.action
-												%a.icon.icon-envellope-mail-streamline
-								.col-xs-6.col-sm-4.col-md-4
-									%p.user
-										%i.icon.icon-man-people-streamline-user
-										= link_to(post.user.name, '#')
+	.container
+		.col-md-6.featured-titles							
+			.row
+				%ul.slider
+					- @projects_home.each do |project|
+						%li.slide
+							.info
+								.row
+									%p.date
+										#{project.created_at.to_date.to_formatted_s(:long)}
+								.row
+									= link_to(truncate(project.title, :length => 70), project_path(project))
+								.row.hidden-xs
+									%p
+										#{simple_format truncate(project.description, :length => 420)}
+								.row.bottom
+									.col-xs-6.col-sm-4.col-md-4
+										= link_to(project_path(project), class: 'cat-icon') do
+											#{image_tag "cat_icons/#{project.category.name}.svg"}
+											#{project.category.name}
+									.col-xs-4.col-sm-4.col-md-4.hidden-xs
+										.actions-box
+											.actions
+												.action
+													%a.icon.icon-map-streamline-user
+												.action
+													%a.icon.icon-like-love-streamline
+												.action
+													%a.icon.icon-envellope-mail-streamline
+									.col-xs-6.col-sm-4.col-md-4
+										%p.user
+											%i.icon.icon-man-people-streamline-user
+											= link_to(project.user.name, '#')
+					- @posts_home.each do |post|
+						%li.slide
+							.info
+								.row
+									%p.date
+										#{post.created_at.to_date.to_formatted_s(:long)}
+								.row
+									= link_to(truncate(post.title, :length => 70), post_path(post))
+								.row.hidden-xs
+									%p
+										#{simple_format truncate(post.description, :length => 420)}
+								.row.bottom
+									.col-xs-6.col-sm-4.col-md-4
+										= link_to(post_path(post), class: 'cat-icon') do
+											#{image_tag "cat_icons/#{post.category.name}.svg"}
+											#{post.category.name}
+									.col-xs-4.col-sm-4.col-md-4.hidden-xs
+										.actions-box
+											.actions
+												.action
+													%a.icon.icon-map-streamline-user
+												.action
+													%a.icon.icon-like-love-streamline
+												.action
+													%a.icon.icon-envellope-mail-streamline
+									.col-xs-6.col-sm-4.col-md-4
+										%p.user
+											%i.icon.icon-man-people-streamline-user
+											= link_to(post.user.name, '#')
 											
-	.col-md-6.featured-slide
-		.row
-			%ul.slider
-				- @projects_home.each do |project|
-					%li
-						.row.slide
-							.col-sm-12.col-md-12
-								- if project.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- project.images.each do |image|
-										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-				- @posts_home.each do |post|
-					%li
-						.row.slide
-							.col-sm-12.col-md-12
-								- if post.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- post.images.each do |image|
-										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
+		.col-md-6.featured-slide
+			.row
+				%ul.slider
+					- @projects_home.each do |project|
+						%li
+							.row.slide
+								.col-sm-12.col-md-12
+									- if project.images.empty?
+										.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+									- else
+										- project.images.each do |image|
+											- if image.cover == true
+												.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
+					- @posts_home.each do |post|
+						%li
+							.row.slide
+								.col-sm-12.col-md-12
+									- if post.images.empty?
+										.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+									- else
+										- post.images.each do |image|
+											- if image.cover == true
+												.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
 
 
 .row.about
