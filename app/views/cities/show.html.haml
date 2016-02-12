@@ -1,446 +1,276 @@
 / Splash Screen
-.row
-	- city.images.each do |image|
-		.splash{:style => "background-image: url(#{image.file.url(:high)})"}
-			.center
-				%h1
-					#{city.title}
-				%p
-					#{city.subtitle}
-				%button.btn.btn-default
-					Be Smart!
-.row.categories.full
-	.col-xs-2.col-sm-2.col-md-2
-		- if @transport
-			= link_to root_path, class: 'cat transport selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/transport_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Transporte
-						%br
-						y movilidad
-		- else
-			= link_to transport_path, class: 'cat transport' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/transport.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Transporte
-						%br
-						y movilidad
-	.col-xs-2.col-sm-2.col-md-2
-		- if @development
-			= link_to root_path, class: 'cat development selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/development_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo
-						%br
-						urbano
-		- else
-			= link_to development_path, class: 'cat development' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/development.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo
-						%br
-						urbano
-	.col-xs-2.col-sm-2.col-md-2
-		- if @environment
-			= link_to root_path, class: 'cat environment selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/environment_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Medio ambiente
-						%br
-						y recursos nat.
-		- else
-			= link_to environment_path, class: 'cat environment' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/environment.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Medio ambiente
-						%br
-						y recursos nat.
-	.col-xs-2.col-sm-2.col-md-2
-		- if @people
-			= link_to root_path, class: 'cat people selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/people_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo de
-						%br
-						las personas
-		- else
-			= link_to people_path, class: 'cat people' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/people.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo de
-						%br
-						las personas
-	.col-xs-2.col-sm-2.col-md-2
-		- if @community
-			= link_to root_path, class: 'cat community selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/community_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Comunidad
-		- else
-			= link_to community_path, class: 'cat community' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/community.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Comunidad
-	.col-xs-2.col-sm-2.col-md-2
-		- if @innovation
-			= link_to root_path, class: 'cat innovation selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/innovation_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Innovacion
-						%br
-						y desarrollo
-		- else
-			= link_to innovation_path, class: 'cat innovation' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/innovation.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Innovacion
-						%br
-						y desarrollo
-.row.city-resume
-	.col-sm-3.col-md-3.box
-		.row
-			%h2
-				Indice Smart City
-		.row
-			%h1
-				#{city.ranking} /
-				%span
-					#{@cities.size} ciudades.
-		
-	.col-sm-5.col-md-6.box
-		.row
-			%h2 
-				Poblacion
-				%span
-					#{city.population} hab.
-		.row.population
-			.col-md-6
-				.row.mengraph{"data-value" => "#{city.man}"}
-					.col-md-12
-						.col-xs-7.col-sm-7.col-md-7
-							.row.men
-								= image_tag('men.png')
-								.percent
-						.col-xs-5.col-sm-5.col-md-5
-							%h3
-								#{city.man}%
-							%p
-								hombres
-				
-			.col-md-6
-				.row.womengraph{"data-value" => "#{city.woman}"}
-					.col-md-12
-						.col-xs-7.col-sm-7.col-md-7
-							.row.women
-								= image_tag('women.png')
-								.percent
-						.col-xs-5.col-sm-5.col-md-5
-							%h3
-								#{city.woman}%
-							%p
-								mujeres
-	.col-sm-4.col-md-3.box
-		.row
-			.col-xs-4.col-md-4.chart
-				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "participacion", "data-percent" => "#{city.commitment}", "data-text" => "#{city.commitment}%", "data-width" => "7"}
-			.col-xs-4.col-md-4.chart
-				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "smart develop", "data-percent" => "#{city.smart_index}", "data-text" => "#{city.smart_index}%", "data-width" => "7"}
-			.col-xs-4.col-md-4.chart
-				.circle{"data-bgcolor" => "#eee", "data-dimension" => "100", "data-fgcolor" => "#61a9dc", "data-fill" => "#ddd", "data-fontsize" => "18", "data-info" => "visitantes", "data-percent" => "#{city.visitors}", "data-text" => "#{city.visitors}%", "data-width" => "7"}
-.row
-	.col-md-12.cities-list
-		.row.title
-			.col-md-12
-				%h1
-					Destacado en
-					%span
-						#{city.name}
 
-.row.featured
-	.col-md-6.featured-titles							
-		.row
-			%ul.slider
+%header.swiper1
+	.swiper-container
+		.swiper-wrapper
+			- city.images.each do |image|
+				.swiper-slide{:style => "background-image: url(#{image.file.url(:high)})"}
+					.intro-text
+						.container
+							.intro-heading
+								#{city.title}
+							.intro-lead-in
+								#{city.subtitle}
+							
+							= link_to('Be Smart', '#', class: 'btn btn-xl')
+		.swiper-pagination
+		.swiper-button-next
+		.swiper-button-prev
+
+= render 'shared/categories'
+
+%section#projects-1.text-center.grid.swiper-simple.bg-light-gray
+	.row
+		.container-fluid
+			.col-md-12
+				.row.title
+					.col-md-12
+						%h2.section-heading
+							Proyectos en
+							%span
+								#{city.name}.
+	.swiper-container
+		.swiper-wrapper
+			- @projects_home.each do |project|
+				.swiper-slide
+					.container
+						.row
+							.col-md-12.item.item-lg
+								.item-wrap.bg-white
+									.row
+										.col-md-6
+											= link_to(project_path(project), class: 'item-link') do
+												- if project.images.empty?
+													.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+												- else
+													- project.images.each do |image|
+														- if image.cover == true
+															.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:large)})"}
+												.item-hover
+													.item-hover-content
+														%i.fa.fa-plus.fa-3x
+										.col-md-6
+											.row
+												.item-caption
+													
+													%h4
+														#{truncate(project.title, :length => 70)}
+													%p
+														#{project.subtitle}
+													.no-gutter
+														.col-md-4
+															= link_to('#', :class => "item-cat icon #{project.category.name} icon-#{project.category.name}") do
+																#{project.category.name}
+														.col-md-4
+															= link_to(city_path(project.city), class: 'item-city') do
+																%span.icon.icon-earth-globe-streamline
+																#{project.city.name}
+														.col-md-4
+															= link_to('Leer Más →', project_path(project))
+		.swiper-pagination
+		.swiper-button-next.swiper-button-black
+		.swiper-button-prev.swiper-button-black
+
+%section#projects-2.text-center.grid.swiper-carousel.bg-light-gray
+	.container
+		.swiper-container
+			.swiper-wrapper
 				- @projects_home.each do |project|
-					%li.slide
-						.info
-							.row
-								%p.date
-									#{project.created_at.to_date.to_formatted_s(:long)}
-							.row
-								= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
-							.row.hidden-xs
-								%p
-									#{simple_format truncate(project.description, :length => 420)}
-							.row.bottom
-								.col-xs-6.col-sm-4.col-md-4
-									= link_to(city_project_path(city,project), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{project.category.name}.svg"}
-										#{project.category.name}
-								.col-xs-4.col-sm-4.col-md-4.hidden-xs
-									.actions-box
-										.actions
-											.action
-												%a.icon.icon-map-streamline-user
-											.action
-												%a.icon.icon-like-love-streamline
-											.action
-												%a.icon.icon-envellope-mail-streamline
-								.col-xs-6.col-sm-4.col-md-4
-									%p.user
-										%i.icon.icon-man-people-streamline-user
-										= link_to(project.user.name, '#')
-				- @posts_home.each do |post|
-					%li.slide
-						.info
-							.row
-								%p.date
-									#{post.created_at.to_date.to_formatted_s(:long)}
-							.row
-								= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
-							.row.hidden-xs
-								%p
-									#{simple_format truncate(post.description, :length => 420)}
-							.row.bottom
-								.col-xs-6.col-sm-4.col-md-4
-									= link_to(city_post_path(city,post), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{post.category.name}.svg"}
-										#{post.category.name}
-								.col-xs-4.col-sm-4.col-md-4.hidden-xs
-									.actions-box
-										.actions
-											.action
-												%a.icon.icon-map-streamline-user
-											.action
-												%a.icon.icon-like-love-streamline
-											.action
-												%a.icon.icon-envellope-mail-streamline
-								.col-xs-6.col-sm-4.col-md-4
-									%p.user
-										%i.icon.icon-man-people-streamline-user
-										= link_to(post.user.name, '#')
-											
-	.col-md-6.featured-slide
-		.row
-			%ul.slider
-				- @projects_home.each do |project|
-					%li
-						.row.slide
-							.col-sm-12.col-md-12
+					.swiper-slide.item
+						.item-wrap
+							= link_to(project_path(project), class: 'item-link') do
 								- if project.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
 								- else
 									- project.images.each do |image|
 										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-				- @posts_home.each do |post|
-					%li
-						.row.slide
-							.col-sm-12.col-md-12
-								- if post.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- post.images.each do |image|
-										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
+											.item-photo.item-photo-sm{:style => "background-image: url(#{image.file.url(:large)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus.fa-3x
+							.item-caption.text-left
+								%p.text-muted
+									#{project.created_at.to_date.to_formatted_s(:long)}
+								%h4
+									#{truncate(project.title, :length => 70)}
+									%br
+									—
+								= link_to('#', :class => "item-cat icon #{project.category.name} icon-#{project.category.name}") do
+									#{project.category.name}
+								= link_to(city_path(project.city), class: 'item-city') do
+									%span.icon.icon-earth-globe-streamline
+									#{project.city.name}
+							.item-actions
+								.col-md-3.action
+									%a.icon.icon-map-streamline-user
+								.col-md-3.action
+									%a.icon.icon-like-love-streamline
+								.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline
+								.col-md-3.action
+									%a.icon-man-people-streamline-user
+			.swiper-pagination
+			.swiper-button-next.swiper-button-black
+			.swiper-button-prev.swiper-button-black
+		= link_to('Ver todos los proyectos', projects_path, class: 'btn btn-lg btn-grey')
 
-/ Posts & Projects
 
-.row
-	.col-xs-12.col-sm-12.col-md-6.projects-list
-		.row.title
-			.col-sm-10.col-md-10
-				%h1
-					Proyectos en
-					%span
-						#{city.name}
-			.col-sm-1.col-md-1.hidden-xs	
-				#prev-projects
-			.col-sm-1.col-md-1.hidden-xs	
-				#next-projects
-		.row.sliderbox
-			%ul.slider
-				- @projects_section.in_groups_of(2, false).each do |slide|
-					%li.slide
-						- slide.each do |project|
-							.col-md-12.item
-								.row
-									.col-sm-6.col-md-6.info
-										.row
-											.col-xs-6.col-md-6
-												%p.date
-													#{project.created_at.to_date.to_formatted_s(:long)}
-											.col-xs-6.col-md-6
-												= link_to(city_project_path(city,project), class: 'cat-icon') do
-													#{image_tag "cat_icons/#{project.category.name}.svg"}
-													#{project.category.name}
-										.row.header
-											= link_to(truncate(project.title, :length => 70), city_project_path(city,project))
-										.row.bottom	
-											.col-xs-6.col-md-6
-												.actions
-													.action
-														%a.icon.icon-map-streamline-user
-													.action
-														%a.icon.icon-like-love-streamline
-													.action
-														%a.icon.icon-envellope-mail-streamline
-											.col-xs-6.col-md-6
-												%p.user
-													%i.icon.icon-man-people-streamline-user
-													= link_to(project.user.name, '#')
-									.col-sm-6.col-md-6
-										- if project.images.empty?
-											.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-										- else
-											- project.images.each do |image|
-												- if image.cover == true
-													.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-	.col-xs-12.col-sm-12.col-md-6.posts-list
-		.row.title
-			.col-sm-10.col-md-10
-				%h1
-					Novedades en
-					%span
-						#{city.name}
-			.col-sm-1.col-md-1.hidden-xs	
-				#prev-news
-			.col-sm-1.col-md-1.hidden-xs	
-				#next-news
-		.row.sliderbox
-			%ul.slider
-				- @posts_section.in_groups_of(2, false).each do |slide|
-					%li.slide
-						- slide.each do |post|
-							.col-sm-6.col-md-6.item
-								- if post.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- post.images.each do |image|
-										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
-								.row.info
+
+
+
+
+%section#posts-1.text-center.grid.swiper-simple
+	.row
+		.container-fluid
+			.col-md-12
+				.row.title
+					.col-md-12
+						%h2.section-heading
+							Novedades en
+							%span
+								#{city.name}.
+	.swiper-container
+		.swiper-wrapper
+			- @posts_home.each do |post|
+				.swiper-slide
+					.container
+						.row
+							.col-md-12.item.item-lg
+								.item-wrap
 									.row
-										.col-xs-6.col-md-6
-											%p.date
-												#{post.created_at.to_date.to_formatted_s(:long)}
-										.col-xs-6.col-md-6
-											= link_to(city_post_path(city,post), class: 'cat-icon') do
-												#{image_tag "cat_icons/#{post.category.name}.svg"}
-												#{post.category.name}
-									.row.header
-										= link_to(truncate(post.title, :length => 70), city_post_path(city,post))
-									.row.bottom	
-										.col-xs-6.col-md-6
-											.actions
-												.action
-													%a.icon.icon-map-streamline-user
-												.action
-													%a.icon.icon-like-love-streamline
-												.action
-													%a.icon.icon-envellope-mail-streamline
-										.col-xs-6.col-md-6
-											%p.user
-												%i.icon.icon-man-people-streamline-user
-												= link_to(post.user.name, '#')
+										.col-md-6
+											= link_to(post_path(post), class: 'item-link') do
+												- if post.images.empty?
+													.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+												- else
+													- post.images.each do |image|
+														- if image.cover == true
+															.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:large)})"}
+												.item-hover
+													.item-hover-content
+														%i.fa.fa-plus.fa-3x
+										.col-md-6
+											.row
+												.item-caption
+													%p.text-muted
+														#{post.created_at.to_date.to_formatted_s(:long)}
+													%h4
+														#{truncate(post.title, :length => 70)}
+													%p
+														#{truncate(post.description, :length => 240)}
+		.swiper-pagination
+		.swiper-button-next.swiper-button-black
+		.swiper-button-prev.swiper-button-black
+
+%section#posts-2.text-center.grid.swiper-carousel
+	.container
+		.swiper-container
+			.swiper-wrapper
+				- @posts_home.each do |post|
+					.swiper-slide.item
+						.item-wrap
+							= link_to(post_path(post), class: 'item-link') do
+								- if post.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-sm{:style => "background-image: url(#{image.file.url(:large)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus.fa-3x
+							.item-caption.text-left
+								%p.text-muted
+									#{post.created_at.to_date.to_formatted_s(:long)}
+								%h4
+									#{truncate(post.title, :length => 70)}
+									%br
+									—
+								= link_to('#', :class => "item-cat icon #{post.category.name} icon-#{post.category.name}") do
+									#{post.category.name}
+									= link_to(city_path(post.city), class: 'item-city') do
+										%span.icon.icon-earth-globe-streamline
+										#{post.city.name}
+							.item-actions
+								.col-md-3.action
+									%a.icon.icon-map-streamline-user
+								.col-md-3.action
+									%a.icon.icon-like-love-streamline
+								.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline
+								.col-md-3.action
+									%a.icon-man-people-streamline-user
+			.swiper-pagination
+			.swiper-button-next.swiper-button-black
+			.swiper-button-prev.swiper-button-black
+		= link_to('Ver todos las novedades', posts_path, class: 'btn btn-lg btn-grey')
+
 
 :javascript
-	$(function() {
-		windowHeight = $(window).height();
-		fadeStart = 0;
-		fadeUntil = windowHeight;
-		showingStats = false;
-
-		var slider = $('.featured-titles .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			pager:false,
-			controls:false,
-			onSlidePrev: function(){
-				slider2.goToPrevSlide();
-			},
-			onSlideNext: function(){
-				slider2.goToNextSlide();
-			}
+	$(function(){
+		var swiper = new Swiper('.swiper1 .swiper-container', {
+			pagination: '.swiper1 .swiper-pagination',
+			paginationClickable: true,
+			nextButton: '.swiper1 .swiper-button-next',
+			prevButton: '.swiper1 .swiper-button-prev',
+			loop: true
 		});
-		var slider2 = $('.featured-slide .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←',
-			onSlidePrev: function(){
-				slider.goToPrevSlide();
-			},
-			onSlideNext: function(){
-				slider.goToNextSlide();
-			}
+		var swiper = new Swiper('#projects-1 .swiper-container', {
+			pagination: '#projects-1 .swiper-pagination',
+			paginationClickable: true,
+			nextButton: '#projects-1 .swiper-button-next',
+			prevButton: '#projects-1 .swiper-button-prev',
+			loop: true
 		});
-		$('.posts-list .slider').bxSlider({
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			nextSelector: '#next-news',
-				prevSelector: '#prev-news',
-				nextText: '→',
-				prevText: '←',
-				pager: false
-
-		});
-		$('.projects-list .slider').bxSlider({
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			nextSelector: '#next-projects',
-				prevSelector: '#prev-projects',
-				nextText: '→',
-				prevText: '←',
-				pager: false
-			});
-		});
-		$(window).on("scroll", function() {
-			var fadeStart;
-			var offset = $(document).scrollTop()
-			    ,opacity=0
-			;
-			if( offset<=fadeStart ){
-			    opacity=1;
-			}else if( offset<=fadeUntil ){
-			    opacity=1-offset/(fadeUntil*0.5);
-			}
-			$('.splash .center').css('opacity',opacity);
-			if ($(this).scrollTop() > 100) {
-				if (showingStats == false){
-					$('.circle').circliful();
-					men = $('.mengraph').data('value');
-					women = $('.womengraph').data('value');
-					$('.men .percent').css('width', men + '%');
-					$('.women .percent').css('width', women + '%');
-					showingStats = true;
+		var swiper = new Swiper('#projects-2 .swiper-container', {
+			pagination: '#projects-2 .swiper-pagination',
+			slidesPerView: 4,
+			paginationClickable: true,
+			nextButton: '#projects-2 .swiper-button-next',
+			prevButton: '#projects-2 .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 4,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
 				}
 			}
 		});
+		var swiper = new Swiper('#posts-1 .swiper-container', {
+			pagination: '#posts-1 .swiper-pagination',
+			paginationClickable: true,
+			nextButton: '#posts-1 .swiper-button-next',
+			prevButton: '#posts-1 .swiper-button-prev',
+			loop: true
+		});
+		var swiper = new Swiper('#posts-2 .swiper-container', {
+			pagination: '#posts-2 .swiper-pagination',
+			slidesPerView: 3,
+			paginationClickable: true,
+			nextButton: '#posts-2 .swiper-button-next',
+			prevButton: '#posts-2 .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 3,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
+				}
+			}
+		});
+	});

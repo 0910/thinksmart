@@ -1,49 +1,27 @@
 / cities list
 
-.row
-	.col-md-12.cities-list
-		.row.title
-			.col-md-12
-				%h1
-					Ciudades
-					%span
-						Inteligentes.
-		.row
+%section#cities.text-center.grid
+	.row
+		.container-fluid
+			.col-md-12.cities-list
+				.row.title
+					.col-md-12
+						%h2.section-heading
+							Ciudades
+							%span
+								Inteligentes.
+	.row
+		.container
 			- @cities.each do |city|
 				.col-xs-12.col-sm-6.col-md-4.item
-					= link_to(city_path(city)) do
-						- if city.images.empty?
-							.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								%h1
+					.item-wrap
+						= link_to(city_path(city), class: 'item-link') do
+							- if city.images.empty?
+								.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+							- else
+								- city.images.each do |image|
+									- if image.cover == true
+										.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:small)})"}
+							.item-hover
+								.item-hover-content
 									#{city.name}
-						- else
-							- city.images.each do |image|
-								- if image.cover == true
-									.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
-										%h1
-											#{city.name}
-						
-				
-					
-
-/javascript functions
-
-:javascript
-	$(function() {
-		$('.featured-slide .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←'
-		});
-		$('.featured-titles .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			pager:false,
-			controls:false
-		});
-	});

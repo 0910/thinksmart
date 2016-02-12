@@ -1,5 +1,18 @@
 ready = ->
   $('.information').slideDown().delay(3000).slideUp()
+
+  toggleAbout = ->
+    if $('.about').hasClass('show')
+      # Do things on Nav Close
+      $('.about').removeClass 'show'
+      $('body').css('overflow', 'auto')
+    else
+      # Do things on Nav Open
+      $('.about').addClass 'show'
+      $(window).scrollTop(0)
+      $('body').css('overflow', 'hidden')
+    return
+
   toggleNav = ->
     if $('.wrapper').hasClass('show-nav')
       # Do things on Nav Close
@@ -10,16 +23,11 @@ ready = ->
       $('.wrapper').addClass 'show-nav'
       $('.site-menu').addClass 'show'
     return
-    
-  $(window).on 'scroll', ->
-      if $(this).scrollTop() > 100
-        $('body.home .navigation').addClass 'white'
-      else
-        $('body.home .navigation').removeClass 'white'
-      return
+  
 
   $ ->
 
+      
     # Toggle Nav on Click
     $('.toggle-nav').click (event) ->
       # Calling a function in case you want to expand upon this.

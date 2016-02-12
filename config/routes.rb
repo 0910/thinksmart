@@ -60,8 +60,6 @@ Rails.application.routes.draw do
   get '/community' => 'home#community'
   get '/innovation' => 'home#innovation'
 
-  # get 'subcategories/update_subcategories', as: 'update_subcategories'
-  get 'update_subcategories', to: 'subcategories#index'
 
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations]
   as :user do
@@ -100,13 +98,11 @@ Rails.application.routes.draw do
     end
   end
 
-  #devise_for :users, controllers: {
-  #  registrations: 'registrations',
-  #  sessions: 'sessions'
-  #}, sign_out_via: [ActiveAdmin.application.logout_link_method]
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root to: "home#index"
+  get 'projects/update_subcategories', as: 'update_subcategories'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

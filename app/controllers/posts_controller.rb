@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   def show
   	@post = Post.find(params[:id])
     @targets = Target.find(params[:id])
+    @previous = Post.where("id < ?", params[:id]).order(:id).first   
+    @next = Post.where("id > ?", params[:id]).order(:id).first 
   end
   def transport
     @transport = true

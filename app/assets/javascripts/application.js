@@ -16,8 +16,8 @@
 //= require bootstrap-sprockets
 //= require raphael
 //= require morris
-//= require bxslider
-//= require magic
+//= require swiper.jquery
 //= require select2
 //= require jquery.multiple.select
+//= require jpreloader
 //= require_tree .

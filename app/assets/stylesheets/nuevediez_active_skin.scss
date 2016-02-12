@@ -393,6 +393,10 @@ body.logged_out{
 
 /* 08 Multiple Select */
 
+#main_content_wrapper .select2-container{
+    width: 80% !important;
+}
+
 .ms-parent {
     display: inline-block;
     position: relative;
@@ -469,6 +473,13 @@ body.logged_out{
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+}
+.ms-drop ul > li label.optgroup {
+    font-weight: bold;
+    margin-left: -20px;
+}
+.ms-drop ul > li.ms-select-all label{
+    margin-left: -20px;
 }
 
 .ms-drop.bottom {

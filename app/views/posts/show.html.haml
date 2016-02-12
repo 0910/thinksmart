@@ -1,118 +1,106 @@
-/post slider
+= render 'shared/categories'
+%section
+	.container
+		.row
+			.item-wrap
+				.row.no-gutter.bg-darkest-gray
+					.col-md-7
+						.swiper-container
+							.swiper-wrapper
+								- @post.images.each do |image|
+									.swiper-slide{:style => "background-image: url(#{image.file.url(:high)})"}
+							.swiper-pagination
+							.swiper-button-next
+							.swiper-button-prev
+					.col-md-5.bg-darkest-gray
+						.section-box.section-box-padding.no-gutter
+							%p.section-body.date
+								#{@post.created_at.to_date.to_formatted_s(:long)}
+							%h2.section-heading
+								#{@post.title}
+							%p.section-body
+								#{@post.subtitle}
+							
+						.row.status-box.icons.text-center
+							.col-md-12
+								.col-xs-4.col-sm-12.col-md-4.category
+									= link_to(post_path(@post), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{@post.category.name}.svg"}
+										%h1
+											#{@post.category.name}
+								.col-xs-4.col-sm-12.col-md-4.target
+									.cat-icon
+										#{image_tag "cat_icons/target.svg"}
+										%h1
+											- @post.targets.each do |target|
+												#{target.name}
+								.col-xs-4.col-sm-12.col-md-4.health
+									.cat-icon
+										#{image_tag "cat_icons/#{@post.project_type.name}.svg"}
+										%h1
+											#{@post.project_type.name}
+				.row.no-gutter
+					.col-md-12
+						.col-md-7
+							.section-box-padding
+								%p.section-body
+									#{@post.description}
+								%h2.section-title
+									Problemas que soluciona
+								%p.section-body
+									#{@post.solved_problems}
+								%h2.section-title
+									Beneficios
+								%p.section-body
+									#{@post.benefit}
+						.col-md-5.bg-light-gray
+							.section-box-padding
+								%h2.section-title
+									Areas en la que aplica
+									%br
+									—
+								%ul
+									- @post.subcategories.each do |subcategory|
+										%li
+											%p
+												#{subcategory.title}
 
-.post
-	.row
-		.col-md-8.featured
-			.row
-				%ul.slider
-					- if @post.images.empty?
-						%li
-							.row.slide
-								.col-sm-12.col-md-12
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-					- else
-						- @post.images.each do |image|
-							%li
-								.row.slide
-									.col-sm-12.col-md-12
-										.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-			.row
-				.info
-					.row
-						%p.date
-							#{@post.created_at.to_date.to_formatted_s(:long)}
-					.row
-						%h1
-							#{@post.title}
-					.row.hidden-xs	
-						%p
-							#{simple_format(@post.description)}
-					.row.bottom
-						.col-xs-6.col-sm-4.col-md-4
-							= link_to(city_post_path(city,@post), class: 'cat-icon') do
-								#{image_tag "cat_icons/#{@post.category.name}.svg"}
-								#{@post.category.name}
-						.col-sm-4.col-md-4.hidden-xs
-							.actions-box
-								.actions
-									.action
-										%a.icon.icon-map-streamline-user
-									.action
-										%a.icon.icon-like-love-streamline
-									.action
-										%a.icon.icon-envellope-mail-streamline
-						.col-xs-6.col-sm-4.col-md-4
-							%p.user
-								%i.icon.icon-man-people-streamline-user
-								= link_to(@post.user.name, '#')
+								%h2.section-title
+									Link de interés
+									%br
+									—
+								%p.section-body
+									#{@post.link}
+					
 
-		.col-md-4.grey
-			.col-xs-12.col-sm-3.col-md-12.info
-				.icons
-					.row
-						.col-xs-4.col-sm-12.col-md-4.category
-							= link_to(city_post_path(city,@post), class: 'cat-icon') do
-								#{image_tag "cat_icons/#{@post.category.name}.svg"}
-								%p.visible-sm
-									#{@post.category.name}
-						.col-xs-4.col-sm-12.col-md-4.target
-							.cat-icon
-								#{image_tag "cat_icons/target.svg"}
-								- @project.targets.each do |target|
-									%p.visible-sm
-										#{target.name}
-						.col-xs-4.col-sm-12.col-md-4.health
-							.cat-icon
-								#{image_tag "cat_icons/health.svg"}
-								%h1
-									60%
-								%p.visible-sm
-									Status
-					.row.hidden-sm
-						.col-xs-4.col-sm-12.col-md-4.category
-							%p #{@post.category.name}
-						.col-xs-4.col-sm-12.col-md-4.target
-							- @project.targets.each do |target|
-								%p
-									#{target.name}
-						.col-xs-4.col-sm-12.col-md-4.health
-							%p
-								Status
-			.col-xs-12.col-sm-9.col-md-12.extend
-				.box
-					%h3
-						Areas en la que aplica
-					%ul
-						%li
-							%p
-								Infraestructura y servicios para la accesibilidad, la comunicación y el crecimiento de la ciudad.
-				.box
-					%h3
-						Problemas que soluciona
-					%p
-						#{@post.solved_problems}
-				.box
-					%h3
-						Beneficios
-					%p
-						#{@post.benefit}
-				.box
-					%h3
-						Link al proyecto
-					= link_to('www.link.com', 'www.link.com', target: '_blank')
-
+%section.bg-white.collapsed#bottom-nav
+	.container
+		.row.no-gutter
+			.col-xs-12.col-sm-3.col-md-3.hidden-xs
+				= link_to('← Noticia Anterior',@previous, class: 'post-nav')
+			.col-xs-12.col-sm-6.col-md-6
+				.item-actions
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-map-streamline-user
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-like-love-streamline
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-envellope-mail-streamline
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon-man-people-streamline-user
+			.col-xs-12.col-sm-3.col-md-3.hidden-xs
+				= link_to('Noticia Siguiente →',@next, class: 'post-nav pull-right')
 
 
 /javascript functions
 
 :javascript
-	$(function() {
-		$('.featured .slider').bxSlider({
-			auto: true,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←'
-		});
+	$(function(){
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				loop: true
+			});
 	});

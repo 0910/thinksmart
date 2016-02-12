@@ -1,123 +1,135 @@
 /project slider
 - if (@project.user = current_user ) && (@project.status = 'pending')
-	.row.pending
+	.row.pending.hidden
 		%p
 			Este Proyecto se encuentra en etapa de aprovacion. Este proceso tarda un maximo de 48hs habiles.
 			= link_to('Editar Proyecto', edit_project_path(@project))
-.project
-	.row
-		.col-md-8.featured
-			.row
-				%ul.slider
-					- if @project.images.empty?
-						%li
-							.row.slide
-								.col-sm-12.col-md-12
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-					- else
-						- @project.images.each do |image|
-							%li
-								.row.slide
-									.col-sm-12.col-md-12
-										.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-			.row
-				.info
-					.row
-						%p.date
-							#{@project.created_at.to_date.to_formatted_s(:long)}
-					.row
-						%h1
-							#{@project.title}
-					.row.hidden-xs	
-						%p
-							#{simple_format(@project.description)}
-					.row.bottom
-						.col-xs-6.col-sm-4.col-md-4
-							= link_to(project_path(@project), class: 'cat-icon') do
-								#{image_tag "cat_icons/#{@project.category.name}.svg"}
-								#{@project.category.name}
-						.col-sm-4.col-md-4.hidden-xs
-							.actions-box
-								.actions
-									.action
-										%a.icon.icon-map-streamline-user
-									.action
-										%a.icon.icon-like-love-streamline
-									.action
-										%a.icon.icon-envellope-mail-streamline
-						.col-xs-6.col-sm-4.col-md-4
-							%p.user
-								%i.icon.icon-man-people-streamline-user
-								= link_to(@project.user.name, '#')
+= render 'shared/categories'
+%section
+	.container
+		.row
+			.item-wrap
+				.row.no-gutter.bg-darkest-gray
+					.col-md-7
+						.swiper-container
+							.swiper-wrapper
+								- @project.images.each do |image|
+									.swiper-slide{:style => "background-image: url(#{image.file.url(:high)})"}
+							.swiper-pagination
+							.swiper-button-next
+							.swiper-button-prev
+					.col-md-5.bg-darkest-gray
+						.section-box.section-box-padding.no-gutter
+							%p.section-body.date
+								#{@project.created_at.to_date.to_formatted_s(:long)}
+							%h2.section-heading
+								#{@project.title}
+							%p.section-body
+								#{@project.subtitle}
+							.status
+								%h2.section-subtitle
+									Status:
+									%span
+										#{@project.phase.name}
+								%h2.section-subtitle
+									Avance:
+									%span
+										#{@project.advance}%
+							
+						.row.status-box.icons.text-center
+							.col-md-12
+								.col-xs-4.col-sm-12.col-md-4.category
+									= link_to(project_path(@project), class: 'cat-icon') do
+										#{image_tag "cat_icons/#{@project.category.name}.svg"}
+										%h1
+											#{@project.category.name}
+								.col-xs-4.col-sm-12.col-md-4.target
+									.cat-icon
+										#{image_tag "cat_icons/target.svg"}
+										%h1
+											- @project.targets.each do |target|
+												#{target.name}
+								.col-xs-4.col-sm-12.col-md-4.health
+									.cat-icon
+										#{image_tag "cat_icons/#{@project.project_type.name}.svg"}
+										%h1
+											#{@project.project_type.name}
+				.row.no-gutter
+					.col-md-7
+						.section-box-padding
+							%h2.section-title
+								Acerca del proyecto
+							%p.section-body
+								#{@project.description}
+							%h2.section-title
+								Problemas que soluciona
+							%p.section-body
+								#{@project.solved_problems}
+							%h2.section-title
+								Beneficios
+							%p.section-body
+								#{@project.benefit}
+					.col-md-5.bg-light-gray
+						.section-box-padding
+							%h2.section-title
+								Areas en la que aplica
+								%br
+								—
+							%ul
+								- @project.subcategories.each do |subcategory|
+									%li
+										%p
+											#{subcategory.title}
+							%h2.section-title
+								Partners
+								%br
+								—
+							%p.section-body
+								#{@project.partners}
 
-		.col-md-4.grey
-			.col-xs-12.col-sm-3.col-md-12.info
-				.icons
-					.row
-						.col-xs-4.col-sm-12.col-md-4.category
-							= link_to(project_path(@project), class: 'cat-icon') do
-								#{image_tag "cat_icons/#{@project.category.name}.svg"}
-								%p.visible-sm
-									#{@project.category.name}
-						.col-xs-4.col-sm-12.col-md-4.target
-							.cat-icon
-								#{image_tag "cat_icons/target.svg"}
-								- @project.targets.each do |target|
-									%p.visible-sm
-										#{target.name}
-						.col-xs-4.col-sm-12.col-md-4.health
-							.cat-icon
-								#{image_tag "cat_icons/health.svg"}
-								%h1
-									#{@project.project_type.name}
-								%p.visible-sm
-									#{@project.project_type.name}
-					.row.hidden-sm
-						.col-xs-4.col-sm-12.col-md-4.category
-							%p #{@project.category.name}
-						.col-xs-4.col-sm-12.col-md-4.target
-							- @project.targets.each do |target|
-								%p
-									#{target.name}
-						.col-xs-4.col-sm-12.col-md-4.health
-							%p
-								#{@project.project_type.name}
-			.col-xs-12.col-sm-9.col-md-12.extend
-				.box
-					%h3
-						Areas en la que aplica
-					%ul
-						- @project.subcategories.each do |subcategory|
-							%li
-								%p
-									#{subcategory.title}
-				.box
-					%h3
-						Problemas que soluciona
-					%p
-						#{@project.solved_problems}
-				.box
-					%h3
-						Beneficios
-					%p
-						#{@project.benefit}
-				.box
-					%h3
-						Link al proyecto
-					= link_to(@project.link, @project.link, target: '_blank')
+							%h2.section-title
+								Colaborar con el proyecto
+								%br
+								—
+							%p.section-body
+								#{@project.collaboration}
 
+							%h2.section-title
+								Link de interés
+								%br
+								—
+							%p.section-body
+								#{@project.link}
+				
+
+%section.bg-white.collapsed#bottom-nav
+	.container
+		.row.no-gutter
+			.col-xs-12.col-sm-3.col-md-3.hidden-xs
+				= link_to('← Novedad Anterior',@previous, class: 'project-nav')
+			.col-xs-12.col-sm-6.col-md-6
+				.item-actions
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-map-streamline-user
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-like-love-streamline
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-envellope-mail-streamline
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon-man-people-streamline-user
+			.col-xs-12.col-sm-3.col-md-3.hidden-xs
+				= link_to('Novedad Siguiente →',@next, class: 'project-nav pull-right')
 
 
 /javascript functions
 
 :javascript
-	$(function() {
-		$('.featured .slider').bxSlider({
-			auto: true,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←'
-		});
+	$(function(){
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				loop: true
+			});
 	});

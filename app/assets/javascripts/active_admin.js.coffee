@@ -1,20 +1,20 @@
 #= require active_admin/base
 #= require active_admin/select2
+#= require jquery.multiple.select
 
-$ ->
+ready = ->
+  $('#project_target_ids').multipleSelect({
+  	placeholder: "Selecccionar Target"
+  });
+  $('#project_subcategory_ids').multipleSelect({
+  	placeholder: "Selecccionar Subcategorias"
+  });
+  $('#post_target_ids').multipleSelect({
+  	placeholder: "Selecccionar Target"
+  });
+  $('#post_subcategory_ids').multipleSelect({
+  	placeholder: "Selecccionar Subcategorias"
+  });
 
-  $('#project_category_id').change ->
-    category_id = $(this).val()
-    $.ajax
-      type: 'GET'
-      url: '/admin/subcategories.json'
-      data: category_id: category_id
-      dataType: 'json'
-      success: (data) ->
-        $.each data, (index, element) ->
-          cat = data[index].category_id
-          if data[index].category_id == category_id
-            $('#project_relation_ids').append '<option id="' + data[index].id + '">' + data[index].title + '</option>'
-          return
-        return
-    return
+
+$(document).ready(ready);

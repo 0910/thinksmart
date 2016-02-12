@@ -1,13 +1,16 @@
 class ProjectsController < ApplicationController
+  
   def index
   	@projects = Project.all.reverse_order.where.not('priority_id = 3')
     @projects_home = Project.all.reverse_order.where('priority_id = 3')
   end
+
   def show
     @hide_city_menu = true
   	@project = Project.find(params[:id])
     @targets = Target.joins(:project_targets).where(:project_targets => {:proyect_id => @proyect})
-
+    @previous = Project.where("id < ?", params[:id]).order(:id).first   
+    @next = Project.where("id > ?", params[:id]).order(:id).first 
   end
 
   def new
@@ -28,12 +31,10 @@ class ProjectsController < ApplicationController
     redirect_to @project
   end
 
-
   def edit
     @hide_city_menu = true
     @project = Project.find(params[:id])
     @targets = Target.joins(:project_targets).where(:project_targets => {:proyect_id => @proyect})
-
   end
 
   def transport

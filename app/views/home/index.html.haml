@@ -1,378 +1,253 @@
 / Splash Screen
-.row.bigslide
-	%ul.slider
-		%li.slide
-			.splash{:style => "background-image: url('assets/home01.jpg')"}
-				.center
-					%h1
-						Bienvenido a ThinkSmart
-					%p
-						Sumate y ayudanos a construir ciudades mas inteligentes
-					%button.btn.btn-default
-						Be Smart!
-		%li.slide
-			.splash{:style => "background-image: url('assets/home02.jpg')"}
-				.center
-					%h1
-						¿Tenes una buena idea?
-					%p
-						Crea tu proyecto y compartilo con nuestra comunidad 
-					= link_to('Comenza tu proyecto', new_project_path, class: 'btn btn-default')
+
+%header
+	.swiper-container
+		.swiper-wrapper
+			.swiper-slide{:style => "background-image: url('assets/home01.jpg')"}
+				.intro-text
+					.container
+						.intro-heading
+							Bienvenido a ThinkSmart
+						.intro-lead-in
+							Sumate y ayudanos a construir ciudades mas inteligentes
 						
-		%li.slide
-			.splash{:style => "background-image: url('assets/home03.jpg')"}
-				.center
-					%h1
-						Descubri
-					%p
-						y aprende mas sobre ciudades inteligentes
-					= link_to('Descubrí Más', posts_path, class: 'btn btn-default')
+						= link_to('Be Smart', '#', class: 'howitworks btn btn-xl')
+			.swiper-slide{:style => "background-image: url('assets/home01.jpg')"}
+				.intro-text
+					.container
+						.intro-heading
+							¿Tenés una buena idea?
+						.intro-lead-in
+							Creá tu proyecto y compartilo con nuestra comunidad 
+						
+						= link_to('Comenzar', '#', class: 'btn btn-xl')
+			.swiper-slide{:style => "background-image: url('assets/home01.jpg')"}
+				.intro-text
+					.container
+						.intro-heading
+							Descubri
+						.intro-lead-in
+							y aprende mas sobre ciudades inteligentes 
+						
+						= link_to('Descubrir', '#', class: 'btn btn-xl')
+		.swiper-pagination
+		.swiper-button-next.hidden-xs
+		.swiper-button-prev.hidden-xs
 
-.row.categories.full
-	.col-xs-2.col-sm-2.col-md-2
-		- if @transport
-			= link_to root_path, class: 'cat transport selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/transport_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Transporte
-						%br
-						y movilidad
-		- else
-			= link_to transport_path, class: 'cat transport' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/transport.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Transporte
-						%br
-						y movilidad
-	.col-xs-2.col-sm-2.col-md-2
-		- if @development
-			= link_to root_path, class: 'cat development selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/development_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo
-						%br
-						urbano
-		- else
-			= link_to development_path, class: 'cat development' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/development.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo
-						%br
-						urbano
-	.col-xs-2.col-sm-2.col-md-2
-		- if @environment
-			= link_to root_path, class: 'cat environment selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/environment_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Medio ambiente
-						%br
-						y recursos nat.
-		- else
-			= link_to environment_path, class: 'cat environment' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/environment.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Medio ambiente
-						%br
-						y recursos nat.
-	.col-xs-2.col-sm-2.col-md-2
-		- if @people
-			= link_to root_path, class: 'cat people selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/people_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo de
-						%br
-						las personas
-		- else
-			= link_to people_path, class: 'cat people' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/people.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Desarrollo de
-						%br
-						las personas
-	.col-xs-2.col-sm-2.col-md-2
-		- if @community
-			= link_to root_path, class: 'cat community selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/community_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Comunidad
-		- else
-			= link_to community_path, class: 'cat community' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/community.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Comunidad
-	.col-xs-2.col-sm-2.col-md-2
-		- if @innovation
-			= link_to root_path, class: 'cat innovation selected' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/innovation_on.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Innovacion
-						%br
-						y desarrollo
-		- else
-			= link_to innovation_path, class: 'cat innovation' do
-				.col-xs-12.col-sm-6.col-md-3.icon
-					= image_tag('cat_icons/innovation.svg')
-				.col-sm-6.col-md-9.text.visible-lg
-					%p
-						Innovacion
-						%br
-						y desarrollo
-.row
-	.col-md-12.cities-list
-		.row.title
-			.col-md-12
-				%h1
-					Ciudades
-					%span
-						Inteligentes.
-		.row
-			.container
-				- @cities.each do |city|
-					.col-xs-12.col-sm-6.col-md-4.item
-						= link_to(city_path(city)) do
-							- if city.images.empty?
-								.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-									%h1
-										#{city.name}
-							- else
-								- city.images.each do |image|
-									- if image.cover == true
-										.row.photo{:style => "background-image: url(#{image.file.url(:small)})"}
-											%h1
-												#{city.name}
-.row
-	.col-md-12.cities-list
-		.row.title
-			.col-md-12
-				%h1
-					Proyectos
-					%span
-						Destacados.
+= render 'shared/categories'
 
-.row.featured
+
+%section#cities.text-center.grid.swiper-carousel
+	.row
+		.container-fluid
+			.col-md-12.cities-list
+				.row.title
+					.col-md-12
+						%h2.section-heading
+							Ciudades
+							%span
+								Inteligentes.
 	.container
-		.col-md-6.featured-titles							
-			.row
-				%ul.slider
-					- @projects_home.each do |project|
-						%li.slide
-							.info
-								.row
-									%p.date
-										#{project.created_at.to_date.to_formatted_s(:long)}
-								.row
-									= link_to(truncate(project.title, :length => 70), project_path(project))
-								.row.hidden-xs
-									%p
-										#{simple_format truncate(project.description, :length => 420)}
-								.row.bottom
-									.col-xs-6.col-sm-4.col-md-4
-										= link_to(project_path(project), class: 'cat-icon') do
-											#{image_tag "cat_icons/#{project.category.name}.svg"}
-											#{project.category.name}
-									.col-xs-4.col-sm-4.col-md-4.hidden-xs
-										.actions-box
-											.actions
-												.action
-													%a.icon.icon-map-streamline-user
-												.action
-													%a.icon.icon-like-love-streamline
-												.action
-													%a.icon.icon-envellope-mail-streamline
-									.col-xs-6.col-sm-4.col-md-4
-										%p.user
-											%i.icon.icon-man-people-streamline-user
-											= link_to(project.user.name, '#')
-					- @posts_home.each do |post|
-						%li.slide
-							.info
-								.row
-									%p.date
-										#{post.created_at.to_date.to_formatted_s(:long)}
-								.row
-									= link_to(truncate(post.title, :length => 70), post_path(post))
-								.row.hidden-xs
-									%p
-										#{simple_format truncate(post.description, :length => 420)}
-								.row.bottom
-									.col-xs-6.col-sm-4.col-md-4
-										= link_to(post_path(post), class: 'cat-icon') do
-											#{image_tag "cat_icons/#{post.category.name}.svg"}
-											#{post.category.name}
-									.col-xs-4.col-sm-4.col-md-4.hidden-xs
-										.actions-box
-											.actions
-												.action
-													%a.icon.icon-map-streamline-user
-												.action
-													%a.icon.icon-like-love-streamline
-												.action
-													%a.icon.icon-envellope-mail-streamline
-									.col-xs-6.col-sm-4.col-md-4
-										%p.user
-											%i.icon.icon-man-people-streamline-user
-											= link_to(post.user.name, '#')
-											
-		.col-md-6.featured-slide
-			.row
-				%ul.slider
-					- @projects_home.each do |project|
-						%li
-							.row.slide
-								.col-sm-12.col-md-12
-									- if project.images.empty?
-										.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-									- else
-										- project.images.each do |image|
-											- if image.cover == true
-												.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-					- @posts_home.each do |post|
-						%li
-							.row.slide
-								.col-sm-12.col-md-12
-									- if post.images.empty?
-										.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-									- else
-										- post.images.each do |image|
-											- if image.cover == true
-												.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
+		.swiper-container
+			.swiper-wrapper
+				- @cities.each do |city|
+					.swiper-slide.item
+						.item-wrap
+							= link_to(city_path(city), class: 'item-link') do
+								- if city.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- city.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:small)})"}
+								.item-hover
+									.item-hover-content
+										#{city.name}
+			.swiper-pagination
+			.swiper-button-next.swiper-button-black
+			.swiper-button-prev.swiper-button-black
+		= link_to('Ver todas las ciudades', cities_path, class: 'btn btn-lg btn-grey')
 
+%section#projects.text-center.bg-light-gray.grid.swiper-carousel
+	.row
+		.container-fluid
+			.col-md-12.cities-list
+				.row.title
+					.col-md-12
+						%h2.section-heading
+							Proyectos
+							%span
+								Destacados.
+	.container
+		.swiper-container
+			.swiper-wrapper
+				- @projects_home.each do |project|
+					.swiper-slide.item
+						.item-wrap.text-left
+							= link_to(project_path(project), class: 'item-link') do
+								- if project.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- project.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:small)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus
+					
+							.item-caption
+								%p.text-muted
+									#{project.created_at.to_date.to_formatted_s(:long)}
+								
+								%h4
+									#{truncate(project.title, :length => 70)}
+									%br
+									—
+								= link_to('#', :class => "item-cat icon #{project.category.name} icon-#{project.category.name}") do
+									#{project.category.name}
+								= link_to(city_path(project.city), class: 'item-city') do
+									%span.icon.icon-earth-globe-streamline
+									#{project.city.name}
+							.item-actions
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-map-streamline-user
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-like-love-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon-man-people-streamline-user
+			.swiper-pagination
+			.swiper-button-next.swiper-button-black
+			.swiper-button-prev.swiper-button-black
+		= link_to('Ver todos los proyectos', projects_path, class: 'btn btn-lg btn-grey')
 
-.row.about
-	.col-md-4.box
-		= image_tag('about.png')
+%section#posts.text-center.grid.swiper-carousel
+	.row
+		.container-fluid
+			.col-md-12.cities-list
+				.row.title
+					.col-md-12
+						%h2.section-heading
+							Publicaciones
+							%span
+								Destacadas.
+	.container
+		.swiper-container
+			.swiper-wrapper
+				- @posts_home.each do |post|
+					.swiper-slide.item
+						.item-wrap.text-left
+							= link_to(post_path(post), class: 'item-link') do
+								- if post.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:small)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus
+					
+							.item-caption
+								%p.text-muted
+									#{post.created_at.to_date.to_formatted_s(:long)}
+								%h4
+									#{truncate(post.title, :length => 70)}
+									%br
+									—
+								= link_to('#', :class => "item-cat icon #{post.category.name} icon-#{post.category.name}") do
+									#{post.category.name}
+									= link_to(city_path(post.city), class: 'item-city') do
+										%span.icon.icon-earth-globe-streamline
+										#{post.city.name}
+							.item-actions
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-map-streamline-user
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-like-love-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon-man-people-streamline-user
+			.swiper-pagination
+			.swiper-button-next.swiper-button-black
+			.swiper-button-prev.swiper-button-black
+		= link_to('Ver todas las publicaciones', posts_path, class: 'btn btn-lg btn-grey')
 
-		%h1
-			Que es 
-			%span
-				ThinkSmart?
-		%p
-			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
-			<br/><br/>
-			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
-	.col-md-4.box
-		= image_tag('about.png')
-		%h1
-			Por que es
-			%span
-				importante?
-		%p
-			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
-			<br/><br/>
-			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
-	.col-md-4.box
-		= image_tag('about.png')
-		%h1
-			Como puedo
-			%span
-				participar?
-		%p
-			Amsterdam Smart City (ASC) is the innovation platform of the Amsterdam Metropolitan Area. It challenges businesses, residents, the municipality and knowledge institutions to suggest and apply innovative ideas & solutions for urban issues.
-			<br/><br/>
-			Since 2009 Amsterdam Smart City has grown into a platform comprising of in excess of 100 partners, who are actively involved in more than 89 innovative projects.
 :javascript
-	$(function() {
-		windowHeight = $(window).height();
-		fadeStart = 0;
-		fadeUntil = windowHeight;
-		showingStats = false;
-
-		$('.bigslide .slider').bxSlider({
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			nextText: '→',
-			prevText: '←',
-			mode: 'fade'
+	$(function(){
+		var swiper = new Swiper('header .swiper-container', {
+			pagination: 'header .swiper-pagination',
+			paginationClickable: true,
+			nextButton: 'header .swiper-button-next',
+			prevButton: 'header .swiper-button-prev',
+			loop: true
 		});
-		var slider = $('.featured-titles .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			pager:false,
-			controls:false,
-			onSlidePrev: function(){
-				slider2.goToPrevSlide();
-			},
-			onSlideNext: function(){
-				slider2.goToNextSlide();
-			}
-		});
-		var slider2 = $('.featured-slide .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←',
-			onSlidePrev: function(){
-				slider.goToPrevSlide();
-			},
-			onSlideNext: function(){
-				slider.goToNextSlide();
-			}
-		});
-		$('.posts-list .slider').bxSlider({
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			nextSelector: '#next-news',
-				prevSelector: '#prev-news',
-				nextText: '→',
-				prevText: '←',
-				pager: false
-
-		});
-		$('.projects-list .slider').bxSlider({
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			nextSelector: '#next-projects',
-				prevSelector: '#prev-projects',
-				nextText: '→',
-				prevText: '←',
-				pager: false
-			});
-		});
-		$(window).on("scroll", function() {
-			var fadeStart;
-			var offset = $(document).scrollTop()
-			    ,opacity=0
-			;
-			if( offset<=fadeStart ){
-			    opacity=1;
-			}else if( offset<=fadeUntil ){
-			    opacity=1-offset/(fadeUntil*0.5);
-			}
-			$('.splash .center').css('opacity',opacity);
-			if ($(this).scrollTop() > 100) {
-				if (showingStats == false){
-					$('.circle').circliful();
-					men = $('.mengraph').data('value');
-					women = $('.womengraph').data('value');
-					$('.men .percent').css('width', men + '%');
-					$('.women .percent').css('width', women + '%');
-					showingStats = true;
+		var swiper = new Swiper('#cities .swiper-container', {
+			pagination: '#cities .swiper-pagination',
+			slidesPerView: 3,
+			paginationClickable: true,
+			nextButton: '#cities .swiper-button-next',
+			prevButton: '#cities .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 3,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
 				}
 			}
 		});
+		var swiper = new Swiper('#projects .swiper-container', {
+			pagination: '#projects .swiper-pagination',
+			slidesPerView: 4,
+			paginationClickable: true,
+			nextButton: '#projects .swiper-button-next',
+			prevButton: '#projects .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 4,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
+				}
+			}
+		});
+		var swiper = new Swiper('#posts .swiper-container', {
+			pagination: '#posts .swiper-pagination',
+			slidesPerView: 4,
+			paginationClickable: true,
+			nextButton: '#posts .swiper-button-next',
+			prevButton: '#posts .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 4,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
+				}
+			}
+		});
+	});

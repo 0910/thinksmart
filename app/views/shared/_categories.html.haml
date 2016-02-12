@@ -1,0 +1,97 @@
+%section#categories
+	.container
+		.cat-item
+			- if @transport
+				= link_to root_path, class: 'cat transport selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Transporte
+							%br
+							y movilidad
+			- else
+				= link_to transport_path, class: 'cat transport' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Transporte
+							%br
+							y movilidad
+		.cat-item
+			- if @development
+				= link_to root_path, class: 'cat development selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							urbano
+			- else
+				= link_to development_path, class: 'cat development' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							urbano
+		.cat-item
+			- if @environment
+				= link_to root_path, class: 'cat environment selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Medio ambiente
+							%br
+							y recursos nat.
+			- else
+				= link_to environment_path, class: 'cat environment' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Medio ambiente
+							%br
+							y recursos nat.
+		.cat-item
+			- if @community
+				= link_to root_path, class: 'cat community selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							de la Comunidad
+			- else
+				= link_to community_path, class: 'cat community' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Desarrollo
+							%br
+							de la Comunidad
+		.cat-item
+			- if @innovation
+				= link_to root_path, class: 'cat innovation selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Innovacion
+							%br
+							y desarrollo
+			- else
+				= link_to innovation_path, class: 'cat innovation' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							Innovacion
+							%br
+							y desarrollo

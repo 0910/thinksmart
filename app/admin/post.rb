@@ -28,6 +28,7 @@ ActiveAdmin.register Post do
   show do |p|
     attributes_table do
       row :title
+      row :subtitle
       row :project_type
       row :description
       row :benefit
@@ -39,7 +40,7 @@ ActiveAdmin.register Post do
       end
       row :category
       row :subcategories do 
-        posts.subcategories.collect.each do |s|
+        post.subcategories.collect.each do |s|
           s.title
         end
       end
@@ -58,13 +59,13 @@ ActiveAdmin.register Post do
     f.inputs 'Details' do
       f.semantic_errors
       f.input :title, :require => true
+      f.input :subtitle, :require => true
       f.input :project_type_id, :as => :select2, :collection => ProjectType.all, :include_blank => false, :require => true
       f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true
-      f.input :subcategories, :as => :select2_multiple, :collection => Subcategory.all, :include_blank => false, :require => true
+      f.input :subcategories, :as => :select, :collection => option_groups_from_collection_for_select(Category.all, :subcategories, :name, :id, :title), :multiple => true
       f.input :priority, :as => :select2, :collection => Priority.all, :include_blank => false, :require => true
-      f.input :targets, :as => :select2_multiple, :collection => Target.all, :include_blank => false, :require => true
+      f.input :targets, :as => :select, :collection => Target.all, :include_blank => false, :require => true, :multiple => true
       f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true
-      f.input :priority, :as => :select2, :collection => Priority.all, :include_blank => false, :require => true
       f.input :description, :require => true
       f.input :benefit, :require => true
       f.input :solved_problems, :require => true

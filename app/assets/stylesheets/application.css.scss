@@ -1,12 +1,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bxslider';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import 'styles';
-
+@import 'home';
 @import 'projects';
 @import 'posts';
-@import 'cities';
 @import 'thinksmart-icons';
 @import 'select2';
 @import 'select2-bootstrap';
 @import 'multiple-select';
+@import 'swiper';
+@import 'jpreloader';
+@import 'queries';
