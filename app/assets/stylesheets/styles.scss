@@ -29,6 +29,9 @@ body{
     background-color: #fff;
     color: #2c2c2c;
 }
+.container{
+    width: 90%;
+}
 
 .text-muted {
     color: #777
@@ -81,7 +84,16 @@ h6 {
 h1{
     font-weight: 300;
 }
+.row.spaced{
+    margin-top: 30px;
+}
 
+.img-profile{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    background-color: #ccc;
+}
 .img-centered {
     margin: 0 auto
 }
@@ -236,6 +248,32 @@ fieldset[disabled] .btn-xl.active {
 .btn-grey:active,
 .btn-grey.active,
 .open .dropdown-toggle.btn-grey {
+    background-image: none
+}
+
+.btn-green {
+    color: #fff;
+    background-color: #2bde73;
+    border-color: #2bde73;
+    font-family: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    border-radius: 50px;
+    border-width: 2px;
+}
+
+.btn-green:hover,
+.btn-green:focus,
+.btn-green:active,
+.btn-green.active,
+.open .dropdown-toggle.btn-green {
+    color: #2bde73;
+    background-color: transparent;
+    border-color: #2bde73;
+}
+
+.btn-green:active,
+.btn-green.active,
+.open .dropdown-toggle.btn-green {
     background-image: none
 }
 
@@ -429,7 +467,39 @@ header {
 /* 04. Section */
 
 section {
+    position: relative;
     padding: 32px 0;
+    .section-box{
+        .item-progress-box{
+            padding: 0px;
+            .item-progress{
+                width: 100%;
+                background-color: #ccc;
+                height: 5px;
+                border-radius: 5px;
+                overflow: hidden;
+                .item-progress-bar{
+                    width: 50%;
+                    background-color: #2bde73;
+                    height: 5px;
+                }
+            }
+        }
+        .btn{
+            margin-top: 30px;
+        }
+        p.target{
+            font-weight: 400;
+            font-size: 22px;
+            display: inline;
+        }
+        p.target::after {
+            content: " / ";
+        }
+        p.target:last-child::after {
+            content: "";
+        }
+    }
     h2.section-heading {
         font-size: 24px;
         margin-top: 0;
@@ -447,14 +517,19 @@ section {
         margin-bottom: 75px
     }
     h2.section-title {
-        font-size: 20px;
-        margin-top: 0;
+        font-size: 24px;
+        margin: 15px 0 0 0;
         font-weight: 400;
     }
     h2.section-subtitle {
-        font-size: 18px;
+        font-size: 22px;
         margin-top: 0;
         font-weight: 400;
+        line-height: 1.25;
+        span{
+            color: #a0a0a0;
+            font-weight: 300;
+        }
     }
     p.section-body {
         font-size: 15px;
@@ -469,7 +544,8 @@ section {
         margin: 0;
     }
     .section-box-padding{
-        padding: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
     .section-subinfo{
         padding-left:30px;
@@ -561,6 +637,13 @@ section.collapsed{
     overflow: hidden;
     border:1px solid #f7f7f7;
 }
+.swiper-arrows-custom{
+    height: 44px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 0 !important;
+}
 .grid{
     .item {
         margin: 0 0 15px;
@@ -606,21 +689,41 @@ section.collapsed{
         .item-caption {
             margin: 0 auto;
             background-color: #fff;
-            padding: 30px;
+            padding: 30px 30px 15px 30px;
             h4 {
                 text-transform: none;
                 margin: 0;
-                font-weight: 300;
-                font-size: 24px;
+                font-weight: 400;
+                font-size: 20px;
+                margin-bottom: 10px;
             }
             p {
                 color: #606060;
                 font-size: 15px;
-                margin: 0;
+                max-height: 90px;
+                overflow: hidden;
+                line-height: 1.5;
+                
             }
             a {
-                font-size: 15px;
+                font-size: 14px;
                 margin: 0;
+            }
+        }
+        .item-progress-box{
+            background-color: #fff;
+            padding: 0px 30px 30px 30px;
+            .item-progress{
+                width: 100%;
+                background-color: #ccc;
+                height: 3px;
+                border-radius: 5px;
+                overflow: hidden;
+                .item-progress-bar{
+                    width: 50%;
+                    background-color: #2bde73;
+                    height: 3px;
+                }
             }
         }
         .item-photo {
@@ -633,10 +736,10 @@ section.collapsed{
             height: 394px;
         }
         .item-photo-md {
-            height: 320px;
+            height: 280px;
         }
         .item-photo.item-photo-sm {
-            height: 213px;
+            height: 240px;
         }
         .item-photo.item-photo-xs {
             height: 185px;
@@ -982,42 +1085,40 @@ body {
         margin-bottom: 0px !important;
     }
     .btn{
-        margin-top: 40px;
-    }
-    .swiper-container-horizontal > .swiper-pagination{
-        bottom:-30px;
-        .swiper-pagination-bullet{
-            border:1px solid #ccc;
-        }
-        .swiper-pagination-bullet-active{
-            background: #ccc;
-        }
-    }
-    .swiper-container{
-        overflow: visible;
+        margin-top: 0px;
     }
     .swiper-button-prev{
-        left: -60px;
+        left: 60px;
     }
     .swiper-button-next{
-        right: -60px;
+        right: 60px;
+    }
+}
+.swiper-pagination{
+    position: relative;
+    .swiper-pagination-bullet{
+        border:1px solid #ccc;
+        margin: 0 2.5px;
+    }
+    .swiper-pagination-bullet-active{
+        background: #ccc;
     }
 }
 .swiper-simple{
     .item{
         margin-bottom: 0px !important;
     }
-    .swiper-container-horizontal > .swiper-pagination{
-        bottom:-45px;
-        .swiper-pagination-bullet{
-            border:1px solid #ccc;
-        }
-        .swiper-pagination-bullet-active{
-            background: #ccc;
-        }
-    }
     .swiper-container{
-        overflow: visible;
+    }
+}
+.swiper-container-horizontal > .swiper-pagination{
+    position: relative;
+    bottom:-45px;
+    .swiper-pagination-bullet{
+        border:1px solid #ccc;
+    }
+    .swiper-pagination-bullet-active{
+        background: #ccc;
     }
 }
 
@@ -1124,17 +1225,26 @@ nav.menu .menu-collapse.show{
 }
 
 nav.menu .menu-collapse ul.menu-nav {
-  text-align: right;
+  width: 100%;
+  text-align: center;
   list-style: none;
   position: absolute;
   right: 0%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
   opacity: 0;
   margin-top: 50px;
   transition: all 1s ease 0s;
   -webkit-transition: all 1s ease 0s;
+  .mini-about{
+    p{
+        text-align: left;
+        color: #fff;
+        font-size: 2.5em;
+        line-height: 1.25em;
+    }
+  }
 }
 
 .menu-nav > li{
@@ -1159,7 +1269,7 @@ nav.menu .menu-collapse ul.menu-nav li a {
 
 nav.menu .menu-collapse ul.menu-nav li a:hover, nav.menu .menu-collapse ul.menu-nav li a.active {
   color: #fff;
-  padding-right: 10px;
+  border-bottom: 2px solid #fff;
 }
 
 nav.menu .menu-social-link {

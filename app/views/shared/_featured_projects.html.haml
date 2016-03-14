@@ -1,0 +1,66 @@
+.row
+	.container-fluid
+		.col-md-12.cities-list
+			.row.title
+				.col-md-12
+					%h2.section-heading
+						Proyectos
+						%span
+							Destacados.
+.row
+	.container
+		.swiper-container
+			.swiper-wrapper
+				- @projects_home.each do |project|
+					.swiper-slide.item
+						.item-wrap.text-left
+							= link_to(project_path(project), class: 'item-link') do
+								- if project.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- project.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-sm{:style => "background-image: url(#{image.file.url(:small)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus
+
+							.item-caption
+								.row
+									.col-md-12
+										%p.text-muted
+											#{project.created_at.to_date.to_formatted_s(:long)}
+										
+										%h4
+											#{truncate(project.title, :length => 70)}
+											%br
+										%p
+											#{truncate(project.description, :length => 140)}
+								.row
+									.col-md-12.no-gutter
+										.col-xs-6.col-sm-6.col-md-6
+											= link_to(city_path(project.city), class: 'icon icon-earth-globe-streamline') do
+												#{project.city.name}
+										.col-xs-6.col-sm-6.col-md-6
+											= link_to('#', :class => "item-cat icon #{project.category.name} icon-#{project.category.name}") do
+												#{project.category.name}
+										
+							.item-progress-box
+								%p
+									Evolución del proyecto: 50%
+								.item-progress
+									.item-progress-bar
+							.item-actions
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-map-streamline-user
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-like-love-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon-man-people-streamline-user
+	.swiper-pagination
+	= link_to('Ver todos los proyectos', projects_path, class: 'btn btn-lg btn-grey')
+	#projects-arrows.swiper-arrows-custom
+		.swiper-button-next.swiper-button-black
+		.swiper-button-prev.swiper-button-black

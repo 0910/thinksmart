@@ -1,4 +1,7 @@
 @media (min-width:767px) {
+	.container{
+	    width: 90%;
+	}
 	.navbar-default {
 		position: relative;
 	}
@@ -44,7 +47,7 @@
 				height: 320px;
 			}
 			.item-photo.item-photo-sm {
-				height: 213px;
+				height: 240px;
 			}
 			.item-photo.item-photo-xs {
 				height: 149px;
@@ -53,6 +56,9 @@
 	}
 }
 @media (min-width:1200px) {
+	.container{
+		width: 1100px;
+	}
 	.navbar-brand{
 		margin: 7px 0 0 0 !important;
 	}
@@ -91,7 +97,7 @@
 				height: 320px;
 			}
 			.item-photo.item-photo-sm {
-				height: 213px;
+				height: 240px;
 			}
 			.item-photo.item-photo-xs {
 				height: 185px;

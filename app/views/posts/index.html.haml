@@ -1,171 +1,30 @@
 = render 'shared/categories'
-%section#posts-1.text-center.grid.swiper-simple
+
+%header
 	.row
-		.container-fluid
-			.col-md-12
-				.row.title
-					.col-md-12
-						%h2.section-heading
-							Publicaciones 
-							%span
-								Destacadas
-	.swiper-container
-		.swiper-wrapper
-			- @posts_home.each do |post|
-				.swiper-slide
-					.container
-						.row
-							.col-md-12.item.item-lg
-								.item-wrap
-									.row
-										.col-md-6
-											= link_to(post_path(post), class: 'item-link') do
-												- if post.images.empty?
-													.item-photo{:style => "background-image: url(image-not-available.jpg)"}
-												- else
-													- post.images.each do |image|
-														- if image.cover == true
-															.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:large)})"}
-												.item-hover
-													.item-hover-content
-														%i.fa.fa-plus
-										.col-md-6
-											.row
-												.item-caption
-													%p.text-muted
-														#{post.created_at.to_date.to_formatted_s(:long)}
-													%h4
-														#{truncate(post.title, :length => 70)}
-													%p
-														#{truncate(post.description, :length => 240)}
-		.swiper-pagination
-		.swiper-button-next.swiper-button-black
-		.swiper-button-prev.swiper-button-black
+		.container
+			%h1
+				Publicaciones
 
-%section#posts-2.text-center.grid.swiper-carousel.collapsed
-	.container
-		.swiper-container
-			.swiper-wrapper
-				- @posts_home.each do |post|
-					.swiper-slide.item
-						.item-wrap
-							= link_to(post_path(post), class: 'item-link') do
-								- if post.images.empty?
-									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- post.images.each do |image|
-										- if image.cover == true
-											.item-photo.item-photo-sm{:style => "background-image: url(#{image.file.url(:large)})"}
-								.item-hover
-									.item-hover-content
-										%i.fa.fa-plus
-							.item-caption.text-left
-								%p.text-muted
-									#{post.created_at.to_date.to_formatted_s(:long)}
-								%h4
-									#{truncate(post.title, :length => 70)}
-							.item-actions
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-map-streamline-user
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-like-love-streamline
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-envellope-mail-streamline
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon-man-people-streamline-user
-			.swiper-pagination
-			.swiper-button-next.swiper-button-black
-			.swiper-button-prev.swiper-button-black
+%section#posts.text-center.grid.swiper-carousel.bg-light-gray
+	= render 'shared/featured_posts'
 
-%section#posts-3.text-center.bg-light-gray.grid.swiper-carousel
-	.row
-		.container-fluid
-			.col-md-12.cities-list
-				.row.title
-					.col-md-12
-						%h2.section-heading
-							Más
-							%span
-								Publicaciones.
-	.container
-		.swiper-container
-			.swiper-wrapper
-				- @posts_home.each do |post|
-					.swiper-slide.item
-						.item-wrap.text-left
-							= link_to(post_path(post), class: 'item-link') do
-								- if post.images.empty?
-									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- post.images.each do |image|
-										- if image.cover == true
-											.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:small)})"}
-								.item-hover
-									.item-hover-content
-										%i.fa.fa-plus
-					
-							.item-caption
-								%p.text-muted
-									#{post.created_at.to_date.to_formatted_s(:long)}
-								%h4
-									#{truncate(post.title, :length => 70)}
-							.item-actions
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-map-streamline-user
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-like-love-streamline
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-envellope-mail-streamline
-								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon-man-people-streamline-user
-			.swiper-pagination
-			.swiper-button-next.swiper-button-black
-			.swiper-button-prev.swiper-button-black
-
-/javascript functions
+%section.text-center.grid.swiper-carousel.bg-white
+	= render 'shared/posts'	
 
 :javascript
 	$(function() {
-		var swiper = new Swiper('#posts-1 .swiper-container', {
-			pagination: '#posts-1 .swiper-pagination',
-			paginationClickable: true,
-			nextButton: '#posts-1 .swiper-button-next',
-			prevButton: '#posts-1 .swiper-button-prev',
-			loop: true
-		});
-		var swiper = new Swiper('#posts-2 .swiper-container', {
-			pagination: '#posts-2 .swiper-pagination',
+		var swiper = new Swiper('#posts .swiper-container', {
+			pagination: '#posts .swiper-pagination',
 			slidesPerView: 3,
 			paginationClickable: true,
-			nextButton: '#posts-2 .swiper-button-next',
-			prevButton: '#posts-2 .swiper-button-prev',
-			spaceBetween: 30,
+			nextButton: '#posts-arrows .swiper-button-next',
+			prevButton: '#posts-arrows .swiper-button-prev',
+			spaceBetween: 35,
 			breakpoints: {
 				1200: {
 					slidesPerView: 3,
-					spaceBetween: 30
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 15
-				},
-				460: {
-					slidesPerView: 1,
-					spaceBetween: 15
-				}
-			}
-		});
-		var swiper = new Swiper('#posts-3 .swiper-container', {
-			pagination: '#posts-3 .swiper-pagination',
-			slidesPerView: 4,
-			paginationClickable: true,
-			nextButton: '#posts-3 .swiper-button-next',
-			prevButton: '#posts-3 .swiper-button-prev',
-			spaceBetween: 30,
-			breakpoints: {
-				1200: {
-					slidesPerView: 4,
-					spaceBetween: 30
+					spaceBetween: 45
 				},
 				768: {
 					slidesPerView: 3,

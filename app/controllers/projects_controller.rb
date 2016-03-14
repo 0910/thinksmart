@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   
   def index
   	@projects = Project.all.reverse_order.where.not('priority_id = 3')
-    @projects_home = Project.all.reverse_order.where('priority_id = 3')
+    @projects_home = Project.all.reverse_order.where(priority_id: 3)
   end
 
   def show

@@ -15,6 +15,9 @@ ready = ->
   $('#post_subcategory_ids').multipleSelect({
   	placeholder: "Selecccionar Subcategorias"
   });
+  $('#app_target_ids').multipleSelect({
+    placeholder: "Selecccionar Target"
+  });
 
 
 $(document).ready(ready);

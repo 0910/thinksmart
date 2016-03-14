@@ -1,6 +1,19 @@
+.projects.index{
+	header{
+		background-color: #4bb3d2;
+		background-image: image-url('projects.jpg');
+		height: auto;
+		h1{
+			margin: 100px 0;
+			font-weight: 200;
+			font-size: 3.5em;
+			text-align: left;
+		}
+	}
+}
 .projects.show{
 	.swiper-container{
-		height: 460px;
+		height: 407px;
 	}
 	h2.section-heading{
 		font-size: 36px;
@@ -13,7 +26,6 @@
 		}
 	}
 	.section-box{
-		height: 460px;
 	}
 	.status-box{
 		position: absolute;

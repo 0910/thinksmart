@@ -25,6 +25,7 @@ ActiveAdmin.register User do
       row :id
       row :email
       row :name
+      row :location
       row :role
     end
   end
@@ -36,6 +37,8 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
       f.input :role, as: :select, :collection => ['user', 'moderator', 'admin'], :include_blank => false
+      f.input :location
+      f.input :image, :as => :file, label: 'Image', hint: f.object.new_record? ? f.template.content_tag(:span, "No Image Yet") : image_tag(f.object.image.url(:thumb))
     end
     f.actions
   end

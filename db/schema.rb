@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212195937) do
+ActiveRecord::Schema.define(version: 20160314225411) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -46,6 +46,34 @@ ActiveRecord::Schema.define(version: 20160212195937) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "app_targets", force: :cascade do |t|
+    t.integer  "app_id",     limit: 4
+    t.integer  "target_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "app_targets", ["app_id"], name: "index_app_targets_on_app_id", using: :btree
+  add_index "app_targets", ["target_id"], name: "index_app_targets_on_target_id", using: :btree
+
+  create_table "apps", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.text     "description",     limit: 65535
+    t.text     "benefit",         limit: 65535
+    t.text     "solved_problems", limit: 65535
+    t.integer  "target_id",       limit: 4
+    t.integer  "user_id",         limit: 4
+    t.integer  "city_id",         limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "apple",           limit: 255
+    t.string   "android",         limit: 255
+  end
+
+  add_index "apps", ["city_id"], name: "index_apps_on_city_id", using: :btree
+  add_index "apps", ["target_id"], name: "index_apps_on_target_id", using: :btree
+  add_index "apps", ["user_id"], name: "index_apps_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -84,8 +112,10 @@ ActiveRecord::Schema.define(version: 20160212195937) do
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.boolean  "cover",             limit: 1,   default: false
+    t.integer  "app_id",            limit: 4
   end
 
+  add_index "images", ["app_id"], name: "index_images_on_app_id", using: :btree
   add_index "images", ["city_id"], name: "index_images_on_city_id", using: :btree
   add_index "images", ["post_id"], name: "index_images_on_post_id", using: :btree
   add_index "images", ["project_id"], name: "index_images_on_project_id", using: :btree
@@ -280,11 +310,22 @@ ActiveRecord::Schema.define(version: 20160212195937) do
     t.datetime "updated_at",                                      null: false
     t.string   "name",                   limit: 255
     t.string   "role",                   limit: 255
+    t.string   "image_file_name",        limit: 255
+    t.string   "image_content_type",     limit: 255
+    t.integer  "image_file_size",        limit: 4
+    t.datetime "image_updated_at"
+    t.string   "location",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "app_targets", "apps"
+  add_foreign_key "app_targets", "targets"
+  add_foreign_key "apps", "cities"
+  add_foreign_key "apps", "targets"
+  add_foreign_key "apps", "users"
+  add_foreign_key "images", "apps"
   add_foreign_key "post_subcategories", "posts"
   add_foreign_key "post_subcategories", "subcategories"
   add_foreign_key "post_targets", "posts"

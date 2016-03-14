@@ -1,0 +1,60 @@
+.row
+	.container-fluid
+		.col-md-12.cities-list
+			.row.title
+				.col-md-12
+					%h2.section-heading
+						Publicaciones
+						%span
+							Destacadas.
+.row
+	.container
+		.swiper-container
+			.swiper-wrapper
+				- @posts_home.each do |post|
+					.swiper-slide.item
+						.item-wrap.text-left
+							= link_to(post_path(post), class: 'item-link') do
+								- if post.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- post.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-sm{:style => "background-image: url(#{image.file.url(:small)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus
+					
+							.item-caption
+								.row
+									.col-md-12
+										%p.text-muted
+											#{post.created_at.to_date.to_formatted_s(:long)}
+										
+										%h4
+											#{truncate(post.title, :length => 70)}
+											%br
+										%p
+											#{truncate(post.description, :length => 140)}
+								.row
+									.col-md-12.no-gutter
+										.col-xs-6.col-sm-6.col-md-6
+											= link_to(city_path(post.city), class: 'icon icon-earth-globe-streamline') do
+												#{post.city.name}
+										.col-xs-6.col-sm-6.col-md-6
+											= link_to('#', :class => "item-cat icon #{post.category.name} icon-#{post.category.name}") do
+												#{post.category.name}
+							.item-actions
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-map-streamline-user
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-like-love-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon-man-people-streamline-user
+	.swiper-pagination
+	= link_to('Ver todas las publicaciones', posts_path, class: 'btn btn-lg btn-grey')
+	#posts-arrows.swiper-arrows-custom
+		.swiper-button-next.swiper-button-black
+		.swiper-button-prev.swiper-button-black

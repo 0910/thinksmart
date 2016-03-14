@@ -5,6 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :projects
   has_many :posts
+
+  has_attached_file :image, :styles => { :thumb => "120x120>", :large => '480x480>' },
+            :url  => "/assets/users/:id/:style/:basename.:extension",
+            :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
+            
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
   def role?(r)
     role.include? r.to_s
   end

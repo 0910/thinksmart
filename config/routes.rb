@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
  
+  get 'apps/index'
+
+  get 'apps/show'
+
   resources :cities, only: [:show, :index] do
     resources :projects, only: [:show, :index] do
       collection do
@@ -20,6 +24,8 @@ Rails.application.routes.draw do
         get "community"
         get "innovation"
       end
+    end
+    resources :apps do
     end
     collection do
       get "transport"
@@ -49,6 +55,8 @@ Rails.application.routes.draw do
       get "community"
       get "innovation"
     end
+  end
+  resources :apps do
   end
 
   # Home routes

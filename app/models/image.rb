@@ -5,4 +5,5 @@ class Image < ActiveRecord::Base
   belongs_to :project
   belongs_to :city
   belongs_to :user
+  belongs_to :app
 end

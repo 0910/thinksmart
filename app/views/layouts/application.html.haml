@@ -53,28 +53,33 @@
 		%nav.menu
 			.menu-collapse
 				%ul.menu-nav
-					%li.active
-						= link_to('Home', root_path)
-					%li
-						= link_to('Ciudades', cities_path)
-					%li
-						= link_to('Publicaciones', posts_path)
-					%li
-						= link_to('Proyectos', projects_path)
-					%li
-						= link_to('Location', '#venues')
-					= link_to('http://www.facebook.com', class: 'menu-social-link') do
-						%span
-							= icon('facebook')
-					= link_to('http://www.facebook.com', class: 'menu-social-link') do
-						%span
-							= icon('instagram')
-					= link_to('http://www.facebook.com', class: 'menu-social-link') do
-						%span
-							= icon('twitter')
-					= link_to('http://www.facebook.com', class: 'menu-social-link') do
-						%span
-							= icon('youtube')
+					.container-fluid
+						%li.active
+							= link_to('Home', root_path)
+						%li
+							= link_to('About', '#venues')
+						%li
+							= link_to('Ciudades', cities_path)
+						%li
+							= link_to('Publicaciones', posts_path)
+						%li
+							= link_to('Proyectos', projects_path)
+						%li
+							= link_to('Aplicaciones', apps_path)
+						%li
+							= link_to('Contacto', '#venues')
+						= link_to('http://www.facebook.com', class: 'menu-social-link') do
+							%span
+								= icon('facebook')
+						= link_to('http://www.facebook.com', class: 'menu-social-link') do
+							%span
+								= icon('instagram')
+						= link_to('http://www.facebook.com', class: 'menu-social-link') do
+							%span
+								= icon('twitter')
+						= link_to('http://www.facebook.com', class: 'menu-social-link') do
+							%span
+								= icon('youtube')
 
 
 		%nav.navbar.navbar-default
