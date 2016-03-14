@@ -9,9 +9,9 @@
 							Publicaciones.
 .row
 	.container
-		- @posts_home.each do |post|
-			.item.col-sm-3
-				.row
+		.row
+			- @posts_home.each do |post|
+				.item.col-sm-3
 					.item-wrap
 						= link_to(post_path(post), class: 'item-link') do
 							- if post.images.empty?
