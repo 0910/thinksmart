@@ -1,6 +1,7 @@
 .posts.index{
 	header{
 		background-color: #4bb3d2;
+		background-image: image-url('apps.jpg');
 		height: auto;
 		h1{
 			margin: 100px 0;
@@ -10,6 +11,7 @@
 		}
 	}
 }
+
 .posts.show{
 	.swiper-container{
 		height: 460px;
