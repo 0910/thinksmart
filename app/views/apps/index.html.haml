@@ -3,48 +3,39 @@
 		.container
 			%h1
 				Aplicaciones
-%section#apps.text-center.bg-light-gray.grid
-	.row
-		.container-fluid
-			.col-md-12.cities-list
-				.row.title
-					.col-md-12
-						%h2.section-heading
-							Aplicaciones
 	.row
 		.container
 			- @apps.each do |app|
 				.item.col-sm-3
-					.row
-						.item-wrap
-							= link_to(app_path(app), class: 'item-link') do
-								- if app.images.empty?
-									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- app.images.each do |image|
-										- if image.cover == true
-											.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:large)})"}
-								.item-hover
-									.item-hover-content
-										%i.fa.fa-plus.fa-3x
-							.item-caption.text-left
-								%p.text-muted
-									#{app.created_at.to_date.to_formatted_s(:long)}
-								%h4
-									#{truncate(app.name, :length => 70)}
-									%br
-									—
-								= link_to('#') do
-									%i.fa.fa-apple
-								= link_to('#') do
-									%i.fa.fa-android
-							.item-actions
-								.col-md-3.action
-									%a.icon.icon-map-streamline-user
-								.col-md-3.action
-									%a.icon.icon-like-love-streamline
-								.col-md-3.action
-									%a.icon.icon-envellope-mail-streamline
-								.col-md-3.action
-									%a.icon-man-people-streamline-user
+					.item-wrap
+						= link_to(app_path(app), class: 'item-link') do
+							- if app.images.empty?
+								.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+							- else
+								- app.images.each do |image|
+									- if image.cover == true
+										.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:large)})"}
+							.item-hover
+								.item-hover-content
+									%i.fa.fa-plus
+						.item-caption.text-left
+							%p.text-muted
+								#{app.created_at.to_date.to_formatted_s(:long)}
+							%h4
+								#{truncate(app.name, :length => 70)}
+								%br
+								—
+							= link_to('#') do
+								%i.fa.fa-apple
+							= link_to('#') do
+								%i.fa.fa-android
+						.item-actions
+							.col-md-3.action
+								%a.icon.icon-map-streamline-user
+							.col-md-3.action
+								%a.icon.icon-like-love-streamline
+							.col-md-3.action
+								%a.icon.icon-envellope-mail-streamline
+							.col-md-3.action
+								%a.icon-man-people-streamline-user
 

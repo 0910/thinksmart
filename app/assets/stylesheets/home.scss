@@ -2,29 +2,9 @@
 
 .home{
     header{
-        height: calc(100% - 88px);
+        height: calc(100% - 165px);
     }
 }
 @media (min-width:768px) {
-    .home{
-        .navbar-default {
-            position: fixed;
-            z-index: 1030;
-            background-color: transparent;
-            border-color: transparent;
-            .navbar-brand {
-                color: #fff;
-                padding: 0;
-            }
-            .navbar-brand:hover,
-            .navbar-brand:focus,
-            .navbar-brand:active,
-            .navbar-brand.active {
-                color: #fff;
-            }
-            .nav li a {
-                color: #fff;
-            }
-        }
-    }
+
 }

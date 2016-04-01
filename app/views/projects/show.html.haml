@@ -64,7 +64,7 @@
 								Evolución del proyecto:
 							#{@project.advance}%
 						.item-progress
-							.item-progress-bar
+							.item-progress-bar{:style => "width: #{@project.advance}%"}
 					= link_to('Colaborar con este proyecto', cities_path, class: 'btn btn-lg btn-green')
 
 %section

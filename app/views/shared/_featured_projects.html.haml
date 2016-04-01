@@ -47,9 +47,9 @@
 										
 							.item-progress-box
 								%p
-									Evolución del proyecto: 50%
+									Evolución del proyecto: #{project.advance}%
 								.item-progress
-									.item-progress-bar
+									.item-progress-bar{:style => "width: #{project.advance}%"}
 							.item-actions
 								.col-xs-3.col-sm-3.col-md-3.action
 									%a.icon.icon-map-streamline-user
