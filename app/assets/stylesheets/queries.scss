@@ -78,7 +78,7 @@
 	section {
 		padding: 45px 0;
 		h2.section-heading {
-			font-size: 26px;
+			font-size: 32px;
 			margin-top: 0;
 			margin-bottom: 45px;
 			font-weight: 300;
@@ -102,11 +102,19 @@
 			.item-photo.item-photo-xs {
 				height: 185px;
 			}
+			.item-hover-content{
+				font-size: 32px;
+			}
 		}
 	}
 	section#bottom{
 		h1{
 			font-size: 52px;
 		}
+	}
+}
+@media (min-width:1400px) {
+	.container{
+		width: 1240px;
 	}
 }

@@ -4,9 +4,7 @@
 			.row.title
 				.col-md-12
 					%h2.section-heading
-						Más
-						%span
-							Publicaciones.
+						= t('posts.all')
 .row
 	.container
 		.row
@@ -45,4 +43,4 @@
 							.col-md-3.action
 								%a.icon-man-people-streamline-user
 
-		= link_to('Ver todos las publicaciones', posts_path, class: 'btn btn-lg btn-grey')
+		= link_to(t('posts.view_more'), posts_path, class: 'btn btn-lg btn-grey')

@@ -15,7 +15,7 @@
 							- else
 								- app.images.each do |image|
 									- if image.cover == true
-										.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:large)})"}
+										.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:large)})"}
 							.item-hover
 								.item-hover-content
 									%i.fa.fa-plus
@@ -26,9 +26,9 @@
 								#{truncate(app.name, :length => 70)}
 								%br
 								—
-							= link_to('#') do
+							= link_to('#', class: 'btn btn-sm btn-green') do
 								%i.fa.fa-apple
-							= link_to('#') do
+							= link_to('#', class: 'btn btn-sm btn-green') do
 								%i.fa.fa-android
 						.item-actions
 							.col-md-3.action

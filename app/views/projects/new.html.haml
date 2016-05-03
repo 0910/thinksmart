@@ -47,6 +47,18 @@
 								= f.label :target_ids, '¿A quiénes esta dirigido?', class: 'control-label'
 								= f.collection_select :target_ids, Target.all, :id, :name, {include_blank: false}, {:multiple => true}
 						.row
+							.form-group.simple-select
+								= f.label :phase, 'Phase', class: 'control-label'
+								= f.collection_select :city_id, Phase.all, :id, :name, {include_blank: false}
+						.row
+							.form-group
+								= f.label :advance, 'Porcentaje de avance', class: 'control-label'
+								= f.text_field :advance, autofocus: true, class: 'form-control'
+						.row
+							.form-group
+								= f.label :Images, 'Imagenes', class: 'control-label'
+								= file_field_tag "images[]", type: :file, multiple: true 
+						.row
 							.form-group
 								= f.submit "CREAR PROYECTO", class: 'btn btn-success'
 :javascript

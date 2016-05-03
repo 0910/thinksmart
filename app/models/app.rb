@@ -7,4 +7,5 @@ class App < ActiveRecord::Base
 
   has_many :app_targets, :dependent => :destroy
   has_many :targets, :through => :app_targets
+  active_admin_translates :name, :description, :benefit, :solved_problems
 end

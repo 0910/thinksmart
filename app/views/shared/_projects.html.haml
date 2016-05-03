@@ -4,9 +4,7 @@
 			.row.title
 				.col-md-12
 					%h2.section-heading
-						Más
-						%span
-							Proyectos.
+						= t('projects.all')
 .row
 	.container
 		.row
@@ -43,4 +41,4 @@
 							.col-xs-3.col-sm-3.col-md-3.action
 								%a.icon-man-people-streamline-user
 .row			
-	= link_to('Ver todos los proyectos', projects_path, class: 'btn btn-lg btn-grey')
+	= link_to(t('projects.view_more'), projects_path, class: 'btn btn-lg btn-grey')

@@ -1,11 +1,30 @@
 Rails.application.routes.draw do
  
-  get 'apps/index'
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
 
-  get 'apps/show'
-
-  resources :cities, only: [:show, :index] do
-    resources :projects, only: [:show, :index] do
+    resources :cities, only: [:show, :index] do
+      resources :projects, only: [:show, :index] do
+        collection do
+          get "transport"
+          get "development"
+          get "environment"
+          get "people"
+          get "community"
+          get "innovation"
+        end
+      end
+      resources :posts, only: [:show, :index] do
+        collection do
+          get "transport"
+          get "development"
+          get "environment"
+          get "people"
+          get "community"
+          get "innovation"
+        end
+      end
+      resources :apps do
+      end
       collection do
         get "transport"
         get "development"
@@ -25,48 +44,28 @@ Rails.application.routes.draw do
         get "innovation"
       end
     end
+    resources :projects do
+      collection do
+        get "transport"
+        get "development"
+        get "environment"
+        get "people"
+        get "community"
+        get "innovation"
+      end
+    end
     resources :apps do
     end
-    collection do
-      get "transport"
-      get "development"
-      get "environment"
-      get "people"
-      get "community"
-      get "innovation"
-    end
-  end
-  resources :posts, only: [:show, :index] do
-    collection do
-      get "transport"
-      get "development"
-      get "environment"
-      get "people"
-      get "community"
-      get "innovation"
-    end
-  end
-  resources :projects do
-    collection do
-      get "transport"
-      get "development"
-      get "environment"
-      get "people"
-      get "community"
-      get "innovation"
-    end
-  end
-  resources :apps do
-  end
 
-  # Home routes
-  get 'home/index'
-  get '/transport' => 'home#transport'
-  get '/development' => 'home#development'
-  get '/environment' => 'home#environment'
-  get '/people' => 'home#people'
-  get '/community' => 'home#community'
-  get '/innovation' => 'home#innovation'
+    # Home routes
+    get 'home/index'
+    get '/transport' => 'home#transport'
+    get '/development' => 'home#development'
+    get '/environment' => 'home#environment'
+    get '/people' => 'home#people'
+    get '/community' => 'home#community'
+    get '/innovation' => 'home#innovation'
+  end
 
 
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations]
@@ -109,6 +108,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  get '/:locale' => 'home#index'
+  get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
   root to: "home#index"
   get 'projects/update_subcategories', as: 'update_subcategories'
   # The priority is based upon order of creation: first created -> highest priority.

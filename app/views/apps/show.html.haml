@@ -1,0 +1,113 @@
+= render 'shared/categories'
+%section.bg-light-gray
+	.container
+		.row.text-center
+			%h2.section-heading
+				#{@app.name}
+			%p.section-body.date
+				Por 
+		.row.spaced	
+			.col-md-6.col-md-offset-3
+				.item-wrap.item-phone
+					.swiper-container
+						.swiper-wrapper
+							- @app.images.each do |image|
+								.swiper-slide{:style => "background-image: url(#{image.file.url(:large)})"}
+						.swiper-pagination
+						.swiper-button-next
+						.swiper-button-prev
+				.phoneline
+		.row
+			.col-md-6.col-md-offset-3
+				.section-box.no-gutter.section-box-padding
+					.status
+						.col-md-12
+							.row
+								%h2.section-subtitle
+									%span
+										Publicado el:
+									#{@app.created_at.to_date.to_formatted_s(:long)}
+							.row
+								%h2.section-subtitle
+									%span
+										Ciudad:
+									#{@app.city.name}
+							.row
+								%h2.section-subtitle
+									%span
+										Frente:
+									
+							.row
+								%h2.section-subtitle
+									%span
+										Categoría:
+									
+							.row
+								%h2.section-subtitle
+									%span
+										Target:
+									.item-wrap
+							.row
+								%h2.section-subtitle
+									%span
+										Status:
+							.row
+								= link_to('#', class: 'btn btn-lg btn-green') do
+									Descargar para
+									%i.fa.fa-apple
+								= link_to('#', class: 'btn btn-lg btn-green') do
+									Descargar para
+									%i.fa.fa-android
+%section
+	.container
+		.row
+			.col-md-6.col-md-offset-3
+				%p.section-body
+					#{@app.description}
+				%h2.section-title
+					Problemas que soluciona
+				%p.section-body
+					#{@app.solved_problems}
+				%h2.section-title
+					Beneficios
+				%p.section-body
+					#{@app.benefit}
+			
+		
+%section
+	.container
+		.row
+			
+				
+
+%section.bg-white.collapsed#bottom-nav
+	.container
+		.row
+			.col-xs-12.col-sm-3.col-md-3.hidden-xs
+				= link_to('← App Anterior',@previous, class: 'app-nav')
+			.col-xs-12.col-sm-6.col-md-6
+				.item-actions
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-map-streamline-user
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-like-love-streamline
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon.icon-envellope-mail-streamline
+					.col-xs-3.col-sm-3.col-md-3.action
+						%a.icon-man-people-streamline-user
+			.col-xs-12.col-sm-3.col-md-3.hidden-xs
+				= link_to('App Siguiente →',@next, class: 'app-nav pull-right')
+
+
+/javascript functions
+
+:javascript
+	$(function(){
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				loop: true
+			});
+	});

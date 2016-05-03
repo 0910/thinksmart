@@ -20,6 +20,7 @@ ActiveAdmin.register App do
     column :id
     column :name
     column :user
+    translation_status
     actions
   end
 
@@ -48,12 +49,14 @@ ActiveAdmin.register App do
   form html: { multipart: true } do |f|
     f.inputs 'Details' do
       f.semantic_errors
-      f.input :name, :require => true
+      f.translated_inputs 'ignored title', switch_locale: true, available_locales: I18n.available_locales do |t|
+        t.input :name, :require => true
+        t.input :description, :require => true
+        t.input :benefit, :require => true
+        t.input :solved_problems, :require => true
+      end
       f.input :targets, :as => :select, :collection => Target.all, :include_blank => false, :require => true, :multiple => true
       f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true
-      f.input :description, :require => true
-      f.input :benefit, :require => true
-      f.input :solved_problems, :require => true
       f.input :apple
       f.input :android
     end

@@ -4,9 +4,7 @@
 			.row.title
 				.col-md-12
 					%h2.section-heading
-						Proyectos
-						%span
-							Destacados.
+						= t('projects.featured')
 .row
 	.container
 		.swiper-container
@@ -47,7 +45,8 @@
 										
 							.item-progress-box
 								%p
-									Evolución del proyecto: #{project.advance}%
+									= t('projects.evolution') + ':'
+									#{project.advance}%
 								.item-progress
 									.item-progress-bar{:style => "width: #{project.advance}%"}
 							.item-actions
@@ -60,7 +59,7 @@
 								.col-xs-3.col-sm-3.col-md-3.action
 									%a.icon-man-people-streamline-user
 	.swiper-pagination
-	= link_to('Ver todos los proyectos', projects_path, class: 'btn btn-lg btn-grey')
+	= link_to(t('projects.view_more'), projects_path, class: 'btn btn-lg btn-grey')
 	#projects-arrows.swiper-arrows-custom
 		.swiper-button-next.swiper-button-black
 		.swiper-button-prev.swiper-button-black

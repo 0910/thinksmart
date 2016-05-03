@@ -3,4 +3,5 @@ class Category < ActiveRecord::Base
 	has_many :posts
 	has_many :subcategories
 	belongs_to :city
+	active_admin_translates :name, :description
 end

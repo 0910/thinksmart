@@ -3,38 +3,23 @@
 %header
 	.swiper-container
 		.swiper-wrapper
-			.swiper-slide{:style => "background-image: url('assets/home01.jpg')"}
-				.intro-text
-					.container
-						.intro-heading
-							Bienvenido a ThinkSmart
-						.intro-lead-in
-							Sumate y ayudanos a construir ciudades mas inteligentes
-						
-						= link_to('Como Funciona?', '#', class: 'howitworks btn btn-xl')
-			.swiper-slide{:style => "background-image: url('assets/home02.jpg')"}
-				.intro-text
-					.container
-						.intro-heading
-							¿Tenés una buena idea?
-						.intro-lead-in
-							Creá tu proyecto y compartilo con nuestra comunidad 
-						
-						= link_to('Comenzar', '#', class: 'btn btn-xl')
-			.swiper-slide{:style => "background-image: url('assets/home03.jpg')"}
-				.intro-text
-					.container
-						.intro-heading
-							Descubri
-						.intro-lead-in
-							y aprende mas sobre ciudades inteligentes 
-						
-						= link_to('Descubrir', '#', class: 'btn btn-xl')
+			- @splashes.each do |splash|
+				.swiper-slide{:style => "background-image: url(#{splash.image.url(:high)})"}
+					.intro-text
+						.container
+							.intro-heading
+								#{splash.title}
+							.intro-lead-in
+								#{splash.subtitle}
+							
+							= link_to(splash.call_to_action, splash.link, class: 'howitworks btn btn-xl')
 		.swiper-pagination
 		.swiper-button-next.hidden-xs
 		.swiper-button-prev.hidden-xs
 
 = render 'shared/categories'
+
+= render 'shared/categories_desc'
 
 
 %section#cities.text-center.grid.swiper-carousel
@@ -44,9 +29,7 @@
 				.row.title
 					.col-md-12
 						%h2.section-heading
-							Ciudades
-							%span
-								Inteligentes.
+							= t('cities.title')
 	.row
 		.container
 			.swiper-container
@@ -65,7 +48,7 @@
 										.item-hover-content
 											#{city.name}
 		.swiper-pagination
-		= link_to('Ver todas las ciudades', cities_path, class: 'btn btn-lg btn-grey')
+		= link_to(t('cities.view_more'), cities_path, class: 'btn btn-lg btn-grey')
 		#cities-arrows.swiper-arrows-custom
 			.swiper-button-next.swiper-button-black
 			.swiper-button-prev.swiper-button-black

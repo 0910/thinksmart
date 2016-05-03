@@ -9,6 +9,7 @@ ActiveAdmin.register City do
     column :slug
     column :created_at
     column :updated_at
+    translation_status
     actions
   end
 
@@ -42,8 +43,10 @@ ActiveAdmin.register City do
       f.input :slug, :require => true
       f.input :latitude, :require => true
       f.input :longitude, :require => true
-      f.input :title, :require => true
-      f.input :subtitle, :require => true
+      f.translated_inputs 'ignored title', switch_locale: true, available_locales: I18n.available_locales do |t|
+        t.input :title, :require => true
+        t.input :subtitle, :require => true
+      end
       f.input :population, :require => true
       f.input :man, :require => true
       f.input :woman, :require => true

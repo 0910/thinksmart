@@ -23,6 +23,7 @@ ActiveAdmin.register Project do
     column :city
     column :priority
     column :user
+    translation_status
     actions
   end
   
@@ -61,8 +62,14 @@ ActiveAdmin.register Project do
   form html: { multipart: true } do |f|
     f.inputs 'Details' do
       f.semantic_errors
-      f.input :title, :require => true
-      f.input :subtitle, :require => true
+      f.translated_inputs 'ignored title', switch_locale: true, available_locales: I18n.available_locales do |t|
+        t.input :title, :require => true
+        t.input :subtitle, :require => true
+        t.input :description, :require => true
+        t.input :benefit
+        t.input :solved_problems
+        t.input :collaboration
+      end
       f.input :status, as: :select2, :collection => ['pending', 'aproved', 'rejected'], :include_blank => false
       f.input :advance
       f.input :project_type_id, :as => :select2, :collection => ProjectType.all, :include_blank => false, :require => true
@@ -72,9 +79,7 @@ ActiveAdmin.register Project do
       f.input :priority, :as => :select2, :collection => Priority.all, :include_blank => false, :require => true
       f.input :targets, :as => :select, :collection => Target.all, :include_blank => false, :require => true, :multiple => true
       f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true
-      f.input :description, :require => true
-      f.input :benefit
-      f.input :solved_problems
+      
       f.input :link
     end
     f.inputs "Images" do

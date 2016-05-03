@@ -57,17 +57,17 @@
 						%li.active
 							= link_to('Home', root_path)
 						%li
-							= link_to('About', '#venues')
+							= link_to(t('menu.about'), '#venues')
 						%li
-							= link_to('Ciudades', cities_path)
+							= link_to(t('menu.cities'), cities_path)
 						%li
-							= link_to('Publicaciones', posts_path)
+							= link_to(t('menu.posts'), posts_path)
 						%li
-							= link_to('Proyectos', projects_path)
+							= link_to(t('menu.projects'), projects_path)
 						%li
-							= link_to('Aplicaciones', apps_path)
+							= link_to(t('menu.apps'), apps_path)
 						%li
-							= link_to('Contacto', '#venues')
+							= link_to(t('menu.contact'), '#venues')
 						= link_to('http://www.facebook.com', class: 'menu-social-link') do
 							%span
 								= icon('facebook')
@@ -100,9 +100,9 @@
 				.collapse.navbar-collapse#bs-example-navbar-collapse-1
 					%ul.nav.navbar-nav
 						%li
-							= link_to('Descubrir', projects_path)
+							= link_to(t('menu.discover'), projects_path)
 						%li
-							= link_to('Empezar un proyecto', new_project_path)
+							= link_to(t('menu.start'), new_project_path)
 					%ul.nav.navbar-nav.navbar-right
 						%li
 							- if city
@@ -114,12 +114,40 @@
 								= link_to(cities_path) do
 									%span.icon.icon-earth-globe-streamline
 									%span
-										Elegir Ciudad
+										= t('menu.city')
 						%li
 							%a.hidden-xs.toggle-nav(href="#")
 								%span.icon-menu
 								%span.hidden-xs
 									Menu
+
+									
+						%li
+							.dropdown
+								%button.dropdown-toggle.btn{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+									= t('menu.lang')
+									%span.caret
+								%ul.dropdown-menu
+									%li
+										= link_to 'English', '/en'
+									%li
+										= link_to 'Español', '/es'
+						%li
+							- if user_signed_in?
+								.dropdown
+									%button.dropdown-toggle.btn{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+										#{current_user.name}
+										%span.caret
+									%ul.dropdown-menu
+										%li
+											= link_to(t('user.profile'), edit_user_registration_path)
+										- if current_user.role?(:admin)
+											%li
+												= link_to t('user.admin'), admin_root_path
+										%li
+											= link_to(t('user.logout'), destroy_user_session_path, method: :delete)
+							- else
+								= link_to t('user.login'), "#login", "data-toggle" => "modal", :class => 'btn btn-default'
 						
 		= yield
 		%section#bottom.text-center.bg-cyan

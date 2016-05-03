@@ -6,7 +6,7 @@
 			%h2.section-heading
 				#{@post.title}
 			%p.section-body.date
-				Por #{@post.user.name}
+				= t('post.by')
 		.row.spaced	
 			.col-md-7
 				.item-wrap
@@ -24,29 +24,29 @@
 							.row
 								%h2.section-subtitle
 									%span
-										Publicado el:
+										= t('post.published') + ':'
 									#{@post.created_at.to_date.to_formatted_s(:long)}
 							.row
 								%h2.section-subtitle
 									%span
-										Ciudad:
+										= t('post.city') + ':'
 									#{@post.city.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Frente:
+										= t('post.front') + ':'
 									#{image_tag "cat_icons/#{@post.project_type.name}.svg"}
 									#{@post.project_type.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Categoría:
+										= t('post.category') + ':'
 									#{image_tag "cat_icons/#{@post.project_type.name}.svg"}
 									#{@post.project_type.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Target:
+										= t('post.target') + ':'
 									.item-wrap
 
 %section
@@ -58,17 +58,17 @@
 				%p.section-body
 					#{@post.description}
 				%h2.section-title
-					Problemas que soluciona
+					= t('post.problems')
 				%p.section-body
 					#{@post.solved_problems}
 				%h2.section-title
-					Beneficios
+					= t('post.benefits')
 				%p.section-body
 					#{@post.benefit}
 			.col-md-5.bg-light-gray.item-wrap
 				.col-md-12.section-box-padding
 					%h2.section-subtitle
-						Areas en la que aplica
+						= t('post.areas')
 
 					%ul
 						- @post.subcategories.each do |subcategory|
@@ -77,7 +77,7 @@
 									#{subcategory.title}
 
 					%h2.section-subtitle
-						Link de interés
+						= t('post.links')
 
 					%p.section-body
 						#{@post.link}
@@ -87,7 +87,7 @@
 	.container
 		.row
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to('← Publicación Anterior',@previous, class: 'post-nav')
+				= link_to('← ' + t('post.prev'),@previous, class: 'post-nav')
 			.col-xs-12.col-sm-6.col-md-6
 				.item-actions
 					.col-xs-3.col-sm-3.col-md-3.action
@@ -99,7 +99,7 @@
 					.col-xs-3.col-sm-3.col-md-3.action
 						%a.icon-man-people-streamline-user
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to('Publicación Siguiente →',@next, class: 'post-nav pull-right')
+				= link_to(t('post.next') + ' →',@next, class: 'post-nav pull-right')
 
 
 /javascript functions

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314225411) do
+ActiveRecord::Schema.define(version: 20160503205019) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 20160314225411) do
   add_index "app_targets", ["app_id"], name: "index_app_targets_on_app_id", using: :btree
   add_index "app_targets", ["target_id"], name: "index_app_targets_on_target_id", using: :btree
 
+  create_table "app_translations", force: :cascade do |t|
+    t.integer  "app_id",          limit: 4,     null: false
+    t.string   "locale",          limit: 255,   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "name",            limit: 255
+    t.text     "description",     limit: 65535
+    t.text     "benefit",         limit: 65535
+    t.text     "solved_problems", limit: 65535
+  end
+
+  add_index "app_translations", ["app_id"], name: "index_app_translations_on_app_id", using: :btree
+  add_index "app_translations", ["locale"], name: "index_app_translations_on_locale", using: :btree
+
   create_table "apps", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.text     "description",     limit: 65535
@@ -76,10 +90,23 @@ ActiveRecord::Schema.define(version: 20160314225411) do
   add_index "apps", ["user_id"], name: "index_apps_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "description", limit: 65535
   end
+
+  create_table "category_translations", force: :cascade do |t|
+    t.integer  "category_id", limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+  end
+
+  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
+  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -99,6 +126,18 @@ ActiveRecord::Schema.define(version: 20160314225411) do
     t.string   "title",       limit: 255
     t.string   "subtitle",    limit: 255
   end
+
+  create_table "city_translations", force: :cascade do |t|
+    t.integer  "city_id",    limit: 4,   null: false
+    t.string   "locale",     limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",      limit: 255
+    t.string   "subtitle",   limit: 255
+  end
+
+  add_index "city_translations", ["city_id"], name: "index_city_translations_on_city_id", using: :btree
+  add_index "city_translations", ["locale"], name: "index_city_translations_on_locale", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "file_file_name",    limit: 255
@@ -146,6 +185,21 @@ ActiveRecord::Schema.define(version: 20160314225411) do
 
   add_index "post_targets", ["post_id"], name: "index_post_targets_on_post_id", using: :btree
   add_index "post_targets", ["target_id"], name: "index_post_targets_on_target_id", using: :btree
+
+  create_table "post_translations", force: :cascade do |t|
+    t.integer  "post_id",         limit: 4,     null: false
+    t.string   "locale",          limit: 255,   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "title",           limit: 255
+    t.string   "subtitle",        limit: 255
+    t.text     "description",     limit: 65535
+    t.text     "benefit",         limit: 65535
+    t.text     "solved_problems", limit: 65535
+  end
+
+  add_index "post_translations", ["locale"], name: "index_post_translations_on_locale", using: :btree
+  add_index "post_translations", ["post_id"], name: "index_post_translations_on_post_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",           limit: 255
@@ -208,6 +262,22 @@ ActiveRecord::Schema.define(version: 20160314225411) do
   add_index "project_targets", ["project_id"], name: "index_project_targets_on_project_id", using: :btree
   add_index "project_targets", ["target_id"], name: "index_project_targets_on_target_id", using: :btree
 
+  create_table "project_translations", force: :cascade do |t|
+    t.integer  "project_id",      limit: 4,     null: false
+    t.string   "locale",          limit: 255,   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "title",           limit: 255
+    t.string   "subtitle",        limit: 255
+    t.text     "description",     limit: 65535
+    t.text     "benefit",         limit: 65535
+    t.text     "solved_problems", limit: 65535
+    t.text     "collaboration",   limit: 65535
+  end
+
+  add_index "project_translations", ["locale"], name: "index_project_translations_on_locale", using: :btree
+  add_index "project_translations", ["project_id"], name: "index_project_translations_on_project_id", using: :btree
+
   create_table "project_types", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -261,12 +331,30 @@ ActiveRecord::Schema.define(version: 20160314225411) do
   add_index "relations", ["project_id"], name: "index_relations_on_project_id", using: :btree
   add_index "relations", ["subcategory_id"], name: "index_relations_on_subcategory_id", using: :btree
 
+  create_table "splash_translations", force: :cascade do |t|
+    t.integer  "splash_id",      limit: 4,   null: false
+    t.string   "locale",         limit: 255, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "title",          limit: 255
+    t.string   "subtitle",       limit: 255
+    t.string   "call_to_action", limit: 255
+  end
+
+  add_index "splash_translations", ["locale"], name: "index_splash_translations_on_locale", using: :btree
+  add_index "splash_translations", ["splash_id"], name: "index_splash_translations_on_splash_id", using: :btree
+
   create_table "splashes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "subtitle",   limit: 255
-    t.string   "link",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "title",              limit: 255
+    t.string   "subtitle",           limit: 255
+    t.string   "link",               limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "call_to_action",     limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
   end
 
   create_table "sponsors", force: :cascade do |t|

@@ -9,4 +9,5 @@ class City < ActiveRecord::Base
   	validates :name, uniqueness: true
   	validates :slug, presence: true
 	validates :slug, uniqueness: true
+	active_admin_translates :title, :subtitle
 end

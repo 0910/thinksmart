@@ -19,4 +19,5 @@ class Project < ActiveRecord::Base
   validates :title, uniqueness: true
   validates :description, presence: true
   scope :category_id, -> (category_id) { where category_id: category_id }
+  active_admin_translates :title, :subtitle, :description, :benefit, :solved_problems, :collaboration
 end

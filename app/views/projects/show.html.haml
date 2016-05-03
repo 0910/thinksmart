@@ -1,9 +1,12 @@
 /project slider
 - if (@project.user = current_user ) && (@project.status = 'pending')
-	.row.pending.hidden
-		%p
-			Este Proyecto se encuentra en etapa de aprovacion. Este proceso tarda un maximo de 48hs habiles.
-			= link_to('Editar Proyecto', edit_project_path(@project))
+	.row.pending.box.bg-warning.text-center
+		.container
+			%p
+				Este Proyecto se encuentra en etapa de aprovacion. Esto quiere decir que por el momento, solo tu puedes verlo.
+				%br
+				Este proceso tarda un maximo de 48hs habiles. Si quieres modificarlo puedes hacer click
+				= link_to('Aquí', edit_project_path(@project))
 = render 'shared/categories'
 %section.bg-light-gray
 	.container
@@ -11,7 +14,7 @@
 			%h2.section-heading
 				#{@project.title}
 			%p.section-body.date
-				Por 
+				= t('project.by')
 		.row.spaced	
 			.col-md-7
 				.item-wrap
@@ -29,43 +32,43 @@
 							.row
 								%h2.section-subtitle
 									%span
-										Publicado el:
+										= t('project.published') + ':'
 									#{@project.created_at.to_date.to_formatted_s(:long)}
 							.row
 								%h2.section-subtitle
 									%span
-										Ciudad:
+										= t('project.city') + ':'
 									#{@project.city.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Frente:
+										= t('project.front') + ':'
 									#{image_tag "cat_icons/#{@project.category.name}.svg"}
 									#{@project.category.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Categoría:
+										= t('project.category') + ':'
 									#{image_tag "cat_icons/#{@project.project_type.name}.svg"}
 									#{@project.project_type.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Target:
+										= t('project.target') + ':'
 									.item-wrap
 							.row
 								%h2.section-subtitle
 									%span
-										Status:
-									#{@project.phase.name}
+										= t('project.status') + ':'
+									
 					.item-progress-box
 						%h2.section-subtitle
 							%span
-								Evolución del proyecto:
+								= t('project.evolution') + ':'
 							#{@project.advance}%
 						.item-progress
 							.item-progress-bar{:style => "width: #{@project.advance}%"}
-					= link_to('Colaborar con este proyecto', cities_path, class: 'btn btn-lg btn-green')
+					= link_to(t('project.collaborate'), cities_path, class: 'btn btn-lg btn-green')
 
 %section
 	.container
@@ -76,17 +79,17 @@
 				%p.section-body
 					#{@project.description}
 				%h2.section-title
-					Problemas que soluciona
+					= t('project.problems')
 				%p.section-body
 					#{@project.solved_problems}
 				%h2.section-title
-					Beneficios
+					= t('project.benefits')
 				%p.section-body
 					#{@project.benefit}
 			.col-md-5.bg-light-gray.item-wrap
 				.col-md-12.section-box-padding
 					%h2.section-subtitle
-						Areas en la que aplica
+						= t('project.areas')
 
 					%ul
 						- @project.subcategories.each do |subcategory|
@@ -94,19 +97,19 @@
 								%p
 									#{subcategory.title}
 					%h2.section-subtitle
-						Partners
+						= t('project.partners')
 
 					%p.section-body
 						#{@project.partners}
 
 					%h2.section-subtitle
-						Colaborar con el proyecto
+						= t('project.collaborate')
 
 					%p.section-body
 						#{@project.collaboration}
 
 					%h2.section-subtitle
-						Link de interés
+						= t('project.links')
 
 					%p.section-body
 						#{@project.link}
@@ -116,7 +119,7 @@
 	.container
 		.row
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to('← Proyecto Anterior',@previous, class: 'project-nav')
+				= link_to('← ' + t('post.prev'),@previous, class: 'project-nav')
 			.col-xs-12.col-sm-6.col-md-6
 				.item-actions
 					.col-xs-3.col-sm-3.col-md-3.action
@@ -128,7 +131,7 @@
 					.col-xs-3.col-sm-3.col-md-3.action
 						%a.icon-man-people-streamline-user
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to('Proyecto Siguiente →',@next, class: 'project-nav pull-right')
+				= link_to(t('post.prev') + ' →',@next, class: 'project-nav pull-right')
 
 
 /javascript functions

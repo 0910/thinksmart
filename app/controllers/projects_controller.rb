@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
     @cat_menu_alt = true
     @cities = City.all
     @project = Project.new
+    authorize! :new, @project, :message => "You must be registered."
   end
 
   def create
@@ -76,6 +77,6 @@ class ProjectsController < ApplicationController
 
   private 
   def project_params
-    params.require(:project).permit(:title, :project_type_id, :description, :benefit, :solved_problems, :category_id, :link, :city_id, {:target_ids => []}).merge(user_id: current_user.id)
+    params.require(:project).permit(:title, :project_type_id, :description, :benefit, :solved_problems, :phase, :advance, :category_id, :link, :city_id, {:target_ids => []}).merge(user_id: current_user.id, status: 'pending')
   end
 end
