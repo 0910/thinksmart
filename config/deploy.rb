@@ -1,4 +1,4 @@
-server '40.122.204.211', roles: [:web, :app, :db], primary: true
+server '52.165.36.86', roles: [:web, :app, :db], primary: true
 set :domain, "thinksmart.cloudapp.net"
 set :repo_url,        'git@github.com:0910/thinksmart.git'
 set :application,     'thinksmart'
