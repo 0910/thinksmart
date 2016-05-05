@@ -305,3 +305,9 @@ es:
     links: "Links relacionados"
     next: "Proyecto siguiente"
     prev: "Proyecto anterior"
+  fronts:
+    transport: "Transporte y Movilidad"
+    development: "Desarrollo Urbano"
+    environment: "Medio Ambiente y Recursos Nat."
+    community: "Desarrollo de la comunidad"
+    innovation: "Innovación y Desarrollo"

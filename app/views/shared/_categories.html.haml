@@ -7,18 +7,14 @@
 						= image_tag('cat_icons/transport_on.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Transporte
-							%br
-							y movilidad
+							= t('fronts.transport')
 			- else
 				= link_to transport_path, class: 'cat transport' do
 					.col-xs-12.col-sm-6.col-md-3.icon
 						= image_tag('cat_icons/transport.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Transporte
-							%br
-							y movilidad
+							= t('fronts.transport')
 		.cat-item
 			- if @development
 				= link_to root_path, class: 'cat development selected' do
@@ -26,18 +22,14 @@
 						= image_tag('cat_icons/development_on.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Desarrollo
-							%br
-							urbano
+							= t('fronts.development')
 			- else
 				= link_to development_path, class: 'cat development' do
 					.col-xs-12.col-sm-6.col-md-3.icon
 						= image_tag('cat_icons/development.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Desarrollo
-							%br
-							urbano
+							= t('fronts.development')
 		.cat-item
 			- if @environment
 				= link_to root_path, class: 'cat environment selected' do
@@ -45,18 +37,14 @@
 						= image_tag('cat_icons/environment_on.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Medio ambiente
-							%br
-							y recursos nat.
+							= t('fronts.environment')
 			- else
 				= link_to environment_path, class: 'cat environment' do
 					.col-xs-12.col-sm-6.col-md-3.icon
 						= image_tag('cat_icons/environment.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Medio ambiente
-							%br
-							y recursos nat.
+							= t('fronts.environment')
 		.cat-item
 			- if @community
 				= link_to root_path, class: 'cat community selected' do
@@ -64,18 +52,14 @@
 						= image_tag('cat_icons/community_on.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Desarrollo
-							%br
-							de la Comunidad
+							= t('fronts.community')
 			- else
 				= link_to community_path, class: 'cat community' do
 					.col-xs-12.col-sm-6.col-md-3.icon
 						= image_tag('cat_icons/community.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Desarrollo
-							%br
-							de la Comunidad
+							= t('fronts.community')
 		.cat-item
 			- if @innovation
 				= link_to root_path, class: 'cat innovation selected' do
@@ -83,15 +67,11 @@
 						= image_tag('cat_icons/innovation_on.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Innovacion
-							%br
-							y desarrollo
+							= t('fronts.innovation')
 			- else
 				= link_to innovation_path, class: 'cat innovation' do
 					.col-xs-12.col-sm-6.col-md-3.icon
 						= image_tag('cat_icons/innovation.svg')
 					.col-sm-6.col-md-9.text.visible-lg
 						%p
-							Innovacion
-							%br
-							y desarrollo
+							= t('fronts.innovation')

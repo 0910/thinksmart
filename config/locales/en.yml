@@ -86,3 +86,9 @@ en:
     links: "Related Links"
     next: "Next Project"
     prev: "Previous Project"
+  fronts:
+    transport: "Transport & Mobility"
+    development: "Urban Development"
+    environment: "Environment & Nat. Resources"
+    community: "Community Development"
+    innovation: "Innovation & Development"
