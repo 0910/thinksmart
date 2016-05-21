@@ -2,11 +2,16 @@ ActiveAdmin.register City do
   menu :if => proc{ can?(:manage, 'Admin' ) }
   #permit_params :name, :population, :man, :woman, :ranking, :smart_index, :visitors, :commitment
   
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end 
+  
   index do
     column :id
     column :name
     column :country
-    column :slug
     column :created_at
     column :updated_at
     translation_status
@@ -40,7 +45,6 @@ ActiveAdmin.register City do
       f.semantic_errors
       f.input :name, :require => true
       f.input :country, :require => true
-      f.input :slug, :require => true
       f.input :latitude, :require => true
       f.input :longitude, :require => true
       f.translated_inputs 'ignored title', switch_locale: true, available_locales: I18n.available_locales do |t|

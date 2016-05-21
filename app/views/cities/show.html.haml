@@ -17,7 +17,83 @@
 		.swiper-button-next
 		.swiper-button-prev
 
-= render 'shared/categories'
+%section#categories
+	.container
+		.cat-item
+			- if @transport
+				= link_to city_path(city), class: 'cat cat1 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat1_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+			- else
+				= link_to transport_city_path(city), class: 'cat cat1' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat1.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+		.cat-item
+			- if @development
+				= link_to root_path, class: 'cat cat2 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat2_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+			- else
+				= link_to development_city_path(city), class: 'cat cat2' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat2.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+		.cat-item
+			- if @environment
+				= link_to root_path, class: 'cat cat3 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat3_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+			- else
+				= link_to environment_city_path(city), class: 'cat cat3' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat3.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+		.cat-item
+			- if @community
+				= link_to root_path, class: 'cat cat5 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat5_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+			- else
+				= link_to community_city_path(city), class: 'cat cat5' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat5.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+		.cat-item
+			- if @innovation
+				= link_to root_path, class: 'cat cat6 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat6_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
+			- else
+				= link_to innovation_city_path(city), class: 'cat cat6' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat6.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
 
 %section#projects.text-center.bg-light-gray.grid.swiper-carousel
 	= render 'shared/featured_projects'

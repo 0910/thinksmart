@@ -12,6 +12,7 @@
 }
 .icon{
   font-size: 1em;
+  display: inline-block;
 }
 [data-icon]:before {
   font-family: "thinksmart" !important;
@@ -143,5 +144,59 @@
 }
 .icon-transport:before {
   content: "x";
+}
+.icon-1:before {
+  content: "x";
+  margin: 0px 5px 0 0 !important;
+  float: left;
+  font-size: 1.25em;
+}
+.icon-2:before {
+  content: "t";
+  margin: 0px 5px 0 0 !important;
+  float: left;
+  font-size: 1.25em;
+}
+.icon-3:before {
+  content: "u";
+  margin: 0px 5px 0 0 !important;
+  float: left;
+  font-size: 1.25em;
+}
+.icon-4:before {
+  content: "w";
+  margin: 0px 5px 0 0 !important;
+  float: left;
+  font-size: 1.25em;
+}
+.icon-5:before {
+  content: "w";
+  margin: 0px 5px 0 0 !important;
+  float: left;
+  font-size: 1.25em;
+}
+.icon-6:before {
+  content: "v";
+  margin: 0px 5px 0 0 !important;
+  float: left;
+  font-size: 1.25em;
+}
+.icon.cat1{
+  color: #3F799E;
+}
+.icon.cat2 {
+  color: #F78406;
+}
+.icon.cat3{
+  color: #03D84F;
+}
+.icon.cat4{
+  color: #05DDDD;
+}
+.icon.cat5{
+  color: #8B4B9D;
+}
+.icon.cat6{
+  color: #EAC324;
 }
 

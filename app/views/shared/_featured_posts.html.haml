@@ -36,23 +36,28 @@
 											#{truncate(post.description, :length => 140)}
 								.row
 									.col-md-12.no-gutter
-										.col-xs-6.col-sm-6.col-md-6
+										.col-xs-4.col-sm-4.col-md-4
 											= link_to(city_path(post.city), class: 'icon icon-earth-globe-streamline') do
 												#{post.city.name}
-										.col-xs-6.col-sm-6.col-md-6
-											= link_to('#', :class => "item-cat icon #{post.category.name} icon-#{post.category.name}") do
+										.col-xs-8.col-sm-8.col-md-8.text-right
+											= link_to('#', :class => "item-cat icon icon-#{post.category.id} cat#{post.category.id}") do
 												#{post.category.name}
 							.item-actions
 								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-map-streamline-user
+									%a.icon.icon-map-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-like-love-streamline
+									%a.icon.icon-like-love-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Me gusta"}
 								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon.icon-envellope-mail-streamline
+									%a.icon.icon-envellope-mail-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Compartir"}
 								.col-xs-3.col-sm-3.col-md-3.action
-									%a.icon-man-people-streamline-user
+									%a.icon-man-people-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 	.swiper-pagination
 	= link_to(t('posts.view_more'), posts_path, class: 'btn btn-lg btn-grey')
 	#posts-arrows.swiper-arrows-custom
 		.swiper-button-next.swiper-button-black
 		.swiper-button-prev.swiper-button-black
+
+:javascript
+	$(function(){
+		$('[data-toggle="tooltip"]').tooltip();
+	});

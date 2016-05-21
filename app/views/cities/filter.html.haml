@@ -1,0 +1,102 @@
+/ Splash Screen
+
+%header.swiper1
+	.swiper-container
+		.swiper-wrapper
+			- city.images.each do |image|
+				.swiper-slide{:style => "background-image: url(#{image.file.url(:high)})"}
+					.intro-text
+						.container
+							.intro-heading
+								#{city.title}
+							.intro-lead-in
+								#{city.subtitle}
+							
+							= link_to('Be Smart', '#', class: 'btn btn-xl')
+		.swiper-pagination
+		.swiper-button-next
+		.swiper-button-prev
+
+%section#categories
+	.container
+		.cat-item
+			- if @transport
+				= link_to city_path(city), class: 'cat transport selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+			- else
+				= link_to transport_city_path(city), class: 'cat transport' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/transport.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+		.cat-item
+			- if @development
+				= link_to root_path, class: 'cat development selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+			- else
+				= link_to development_city_path(city), class: 'cat development' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/development.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+		.cat-item
+			- if @environment
+				= link_to root_path, class: 'cat environment selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+			- else
+				= link_to environment_city_path(city), class: 'cat environment' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/environment.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+		.cat-item
+			- if @community
+				= link_to root_path, class: 'cat community selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+			- else
+				= link_to community_city_path(city), class: 'cat community' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/community.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+		.cat-item
+			- if @innovation
+				= link_to root_path, class: 'cat innovation selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
+			- else
+				= link_to innovation_city_path(city), class: 'cat innovation' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/innovation.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
+
+%section.text-center.grid
+	= render 'shared/projects'
+
+%section.text-center.grid
+	= render 'shared/posts'

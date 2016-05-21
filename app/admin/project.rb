@@ -3,6 +3,9 @@ ActiveAdmin.register Project do
   #permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :image_attributes, :target_id, :category_id, :link, :city_id, :user_id
   
   controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
     def scoped_collection
       if current_user.moderator?
         current_user.projects

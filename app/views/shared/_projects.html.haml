@@ -33,12 +33,17 @@
 
 						.item-actions
 							.col-xs-3.col-sm-3.col-md-3.action
-								%a.icon.icon-map-streamline-user
+								%a.icon.icon-map-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 							.col-xs-3.col-sm-3.col-md-3.action
-								%a.icon.icon-like-love-streamline
+								%a.icon.icon-like-love-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Me gusta"}
 							.col-xs-3.col-sm-3.col-md-3.action
-								%a.icon.icon-envellope-mail-streamline
+								%a.icon.icon-envellope-mail-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Compartir"}
 							.col-xs-3.col-sm-3.col-md-3.action
-								%a.icon-man-people-streamline-user
+								%a.icon-man-people-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 .row			
 	= link_to(t('projects.view_more'), projects_path, class: 'btn btn-lg btn-grey')
+
+:javascript
+	$(function(){
+		$('[data-toggle="tooltip"]').tooltip();
+	});

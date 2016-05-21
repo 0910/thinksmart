@@ -1,56 +1,54 @@
-= render 'shared/categories'
-%section.bg-light-gray
+/app slider
+%section#categories
+	.container
+		- @categories.each do |category|
+			.cat-item
+				= link_to(category_path(category), class: 'cat cat' + category.id.to_s) do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat' + category.id.to_s + '.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							#{category.name}
+
+%section
 	.container
 		.row.text-center
 			%h2.section-heading
 				#{@app.name}
-			%p.section-body.date
-				Por 
+			%p.date
+				= t('app.by')
+				#{@app.user.name}
 		.row.spaced	
-			.col-md-6.col-md-offset-3
-				.item-wrap.item-phone
+			.col-md-7
+				.item-wrap
 					.swiper-container
 						.swiper-wrapper
 							- @app.images.each do |image|
-								.swiper-slide{:style => "background-image: url(#{image.file.url(:large)})"}
+								- if image.cover == false
+									.swiper-slide{:style => "background-image: url(#{image.file.url(:high)})"}
 						.swiper-pagination
 						.swiper-button-next
 						.swiper-button-prev
-				.phoneline
-		.row
-			.col-md-6.col-md-offset-3
+			.col-md-5
 				.section-box.no-gutter.section-box-padding
 					.status
 						.col-md-12
 							.row
 								%h2.section-subtitle
 									%span
-										Publicado el:
+										= t('app.published') + ':'
 									#{@app.created_at.to_date.to_formatted_s(:long)}
 							.row
 								%h2.section-subtitle
 									%span
-										Ciudad:
+										= t('app.city') + ':'
 									#{@app.city.name}
 							.row
 								%h2.section-subtitle
 									%span
-										Frente:
-									
-							.row
-								%h2.section-subtitle
-									%span
-										Categoría:
-									
-							.row
-								%h2.section-subtitle
-									%span
-										Target:
-									.item-wrap
-							.row
-								%h2.section-subtitle
-									%span
-										Status:
+										= t('app.front') + ':'
+									= link_to('#', :class => "item-cat icon icon-#{@app.category.id} cat#{@app.category.id}")  do
+										#{@app.category.name}
 							.row
 								= link_to('#', class: 'btn btn-lg btn-green') do
 									Descargar para
@@ -58,56 +56,55 @@
 								= link_to('#', class: 'btn btn-lg btn-green') do
 									Descargar para
 									%i.fa.fa-android
-%section
+									
+
+%section.bg-light-gray
 	.container
 		.row
-			.col-md-6.col-md-offset-3
+			.col-md-7
+				%h2.section-title
+					Description
 				%p.section-body
 					#{@app.description}
 				%h2.section-title
-					Problemas que soluciona
+					= t('app.problems')
 				%p.section-body
 					#{@app.solved_problems}
 				%h2.section-title
-					Beneficios
+					= t('app.benefits')
 				%p.section-body
 					#{@app.benefit}
-			
-		
-%section
-	.container
-		.row
-			
 				
 
-%section.bg-white.collapsed#bottom-nav
+%section.bg-white#bottom-nav
 	.container
 		.row
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to('← App Anterior',@previous, class: 'app-nav')
+				= link_to('← ' + t('app.prev'),@previous, class: 'app-nav')
 			.col-xs-12.col-sm-6.col-md-6
 				.item-actions
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-map-streamline-user
+						%a.icon.icon-map-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-like-love-streamline
+						%a.icon.icon-like-love-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Me gusta"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-envellope-mail-streamline
+						%a.icon.icon-envellope-mail-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Compartir"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon-man-people-streamline-user
+						%a.icon-man-people-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to('App Siguiente →',@next, class: 'app-nav pull-right')
+				= link_to(t('app.prev') + ' →',@next, class: 'app-nav pull-right')
 
 
 /javascript functions
 
 :javascript
 	$(function(){
-			var swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination',
-				paginationClickable: true,
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
-				loop: true
-			});
+		$('[data-toggle="tooltip"]').tooltip()
+		var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			loop: true
+		});
 	});

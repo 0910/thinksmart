@@ -244,16 +244,20 @@ es:
         pt-PT: "Portugués (Portugal)"
         tr: "Turco"
   posts:
+    title: "Novedades alrededor del mundo"
     featured: "Novedades destacadas"
     all: "Más Novedades"
   projects:
+    title: "Proyectos alrededor del mundo"
     featured: "Proyectos destacados"
     all: "Más Proyectos"
+    list: "Proyectos"
   apps:
+    title: "Aplicaciones alrededor del mundo"
     featured: "Aplicaciones destacadas"
     all: "Más Aplicaciones"
   cities:
-    title: "Ciudades Inteligentes"
+    title: "Descrubrí Ciudades Inteligentes en el mundo"
   menu:
     lang: "ES"
     discover: "Descubrir"

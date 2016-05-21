@@ -17,9 +17,16 @@
 		.swiper-button-next.hidden-xs
 		.swiper-button-prev.hidden-xs
 
-= render 'shared/categories'
-
-= render 'shared/categories_desc'
+%section#categories
+	.container
+		- @categories.each do |category|
+			.cat-item
+				= link_to(category_path(category), class: 'cat cat' + category.id.to_s) do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat' + category.id.to_s + '.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							#{category.name}
 
 
 %section#cities.text-center.grid.swiper-carousel

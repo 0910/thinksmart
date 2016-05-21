@@ -1,122 +1,109 @@
+/ Splash Screen
 
+%header
+	.container
+		.row.text-left
+			%h1
+				#{@category.name}
+			%h2
+				#{@category.description}
 
-/featured projects
+%section#categories
+	.container
+		- @categories.each do |category|
+			.cat-item
+				= link_to(category_path(category), class: 'cat cat' + category.id.to_s) do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat' + category.id.to_s + '.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							#{category.name}
 
-.row.featured
-	.col-md-6.featured-slide
-		.row
-			%ul.slider
-				- @category.projects.each do |project|
-					%li
-						.row.slide
-							.col-sm-12.col-md-12
-								- if project.images.empty?
-									.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-								- else
-									- project.images.each do |image|
-										- if image.cover == true
-											.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-	.col-md-6.featured-titles							
-		.row
-			%ul.slider
-				- @category.projects.each do |project|
-					%li.slide
-						.info
-							.row
-								%p.date
-									#{project.created_at.to_date.to_formatted_s(:long)}
-							.row
-								= link_to(truncate(project.title, :length => 70), city_category_project_path(city,@category,project))
-								%p
-									#{simple_format truncate(project.description, :length => 420)}
-							.row.bottom
-								.col-xs-6.col-sm-4.col-md-4
-									= link_to(city_category_project_path(city,@category,project), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{project.category.name}.svg"}
-										#{project.category.name}
-								.col-sm-4.col-md-4.hidden-xs.actions-box
-									.actions
-										.action
-											%a.icon.icon-map-streamline-user
-										.action
-											%a.icon.icon-like-love-streamline
-										.action
-											%a.icon.icon-envellope-mail-streamline
-								.col-xs-6.col-sm-4.col-md-4
-									%p.user
-										%i.icon.icon-man-people-streamline-user
-										= link_to(project.user.name, '#')
+%section#projects.text-center.bg-light-gray.grid.swiper-carousel
+	= render 'shared/featured_projects'
 
-/ projects list
+%section#projects.text-center.bg-light-gray.grid.swiper-carousel
+	= render 'shared/projects'
+	
+%section#posts.text-center.grid.swiper-carousel.bg-light-gray			
+	= render 'shared/featured_posts'
 
-.row
-	.col-md-12.projects-list
-		.row.title
-			.col-md-12
-				%h1
-					Proyectos en
-					%span
-						Buenos Aires.
-		.row
-			- @category.projects.each do |project|
-				.col-md-6.item
-					.row
-						.col-sm-6.col-md-6.info
-							.row
-								.col-xs-6.col-md-6
-									%p.date
-										#{project.created_at.to_date.to_formatted_s(:long)}
-								.col-xs-6.col-md-6
-									= link_to(city_category_project_path(city,@category,project), class: 'cat-icon') do
-										#{image_tag "cat_icons/#{project.category.name}.svg"}
-										#{project.category.name}
-							.row.header
-								= link_to(truncate(project.title, :length => 70), city_category_project_path(city,@category,project))
-							.row.bottom	
-								.col-xs-6.col-md-6
-									.actions
-										.action
-											%a.icon.icon-map-streamline-user
-										.action
-											%a.icon.icon-like-love-streamline
-										.action
-											%a.icon.icon-envellope-mail-streamline
-								.col-xs-6.col-md-6
-									%p.user
-										%i.icon.icon-man-people-streamline-user
-										= link_to(project.user.name, '#')
-						.col-sm-6.col-md-6
-							- if project.images.empty?
-								.row.photo{:style => "background-image: url(image-not-available.jpg)"}
-							- else
-								- project.images.each do |image|
-									- if image.cover == true
-										.row.photo{:style => "background-image: url(#{image.file.url(:large)})"}
-
-/javascript functions
+%section#posts.text-center.grid.swiper-carousel.bg-light-gray			
+	= render 'shared/posts'
 
 :javascript
-	$(function() {
-		var slider = $('.featured-titles .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-			pager:false,
-			controls:false
+	$(function(){
+		var swiper = new Swiper('header .swiper-container', {
+			pagination: 'header .swiper-pagination',
+			paginationClickable: true,
+			nextButton: 'header .swiper-button-next',
+			prevButton: 'header .swiper-button-prev',
+			loop: true
 		});
-		$('.featured-slide .slider').bxSlider({
-			auto: false,
-			pause: 5000,
-			useCSS:true,
-			easing: 'cubic-bezier(.74,.14,.44,.71)',
-				nextText: '→',
-				prevText: '←',
-			onSlidePrev: function(){
-				slider.goToPrevSlide();
-			},
-			onSlideNext: function(){
-				slider.goToNextSlide();
+		var swiper = new Swiper('#cities .swiper-container', {
+			pagination: '#cities .swiper-pagination',
+			slidesPerView: 3,
+			paginationClickable: true,
+			nextButton: '#cities-arrows .swiper-button-next',
+			prevButton: '#cities-arrows .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 3,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
+				}
+			}
+		});
+		var swiper = new Swiper('#projects .swiper-container', {
+			pagination: '#projects .swiper-pagination',
+			slidesPerView: 3,
+			paginationClickable: true,
+			nextButton: '#projects-arrows .swiper-button-next',
+			prevButton: '#projects-arrows .swiper-button-prev',
+			spaceBetween: 35,
+			breakpoints: {
+				1200: {
+					slidesPerView: 3,
+					spaceBetween: 45
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
+				}
+			}
+		});
+		var swiper = new Swiper('#posts .swiper-container', {
+			pagination: '#posts .swiper-pagination',
+			slidesPerView: 3,
+			paginationClickable: true,
+			nextButton: '#posts-arrows .swiper-button-next',
+			prevButton: '#posts-arrows .swiper-button-prev',
+			spaceBetween: 30,
+			breakpoints: {
+				1200: {
+					slidesPerView: 3,
+					spaceBetween: 30
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 15
+				},
+				460: {
+					slidesPerView: 1,
+					spaceBetween: 15
+				}
 			}
 		});
 	});

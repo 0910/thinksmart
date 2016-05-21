@@ -19,4 +19,10 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
   scope :category_id, -> (category_id) { where category_id: category_id }
   active_admin_translates :title, :subtitle, :description, :benefit, :solved_problems
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+  
+  validates :title, presence: true
+  validates :title, uniqueness: true
 end

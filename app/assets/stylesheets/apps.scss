@@ -1,7 +1,7 @@
-.apps.index{
+.apps.index, .apps.transport, .apps.development, .apps.environment, .apps.community, .apps.innovation{
 	header{
 		background-color: #4bb3d2;
-		background-image: image-url('apps.jpg');
+		background-image: image-url('apps.png');
 		height: auto;
 		h1{
 			margin: 100px 0;
@@ -11,8 +11,41 @@
 		}
 	}
 }
+.apps.transport{
+	header{
+		background-color: #3F799E;
+	}
+}
+.apps.development{
+	header{
+		background-color: #F78406;
+	}
+}
+.apps.environment{
+	header{
+		background-color: #03D84F;
+	}
+}
+.apps.community{
+	header{
+		background-color: #8B4B9D;
+	}
+}
+.apps.innovation{
+	header{
+		background-color: #EAC324;
+	}
+}
 .apps.show{
 	.swiper-container{
 		height: 640px;
 	}
+}
+.bg-mobile{
+	border:2px solid #ccc;
+	padding-top: 30px;
+}
+.bg-mobile-curve{
+	border-radius: 50px;
+	padding-top: 0px;
 }

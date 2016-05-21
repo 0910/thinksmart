@@ -1,40 +1,28 @@
-%section
-	.container
-		- if @transport
-			%section
-				.row
-					.container-fluid
-						.col-md-12
-							%h2
-								Paquete de servicios de transporte público y privado e iniciativas ofrecidas a la comunidad para hacer frente a la alta y variada demanda de movilidad/desplazamiento urbano: Metro, Buses, Ferrocarriles, Bicicleta, Autos ecológicos, Autos compartidos.
-								
-		- if @development
-			%section
-				.row
-					.container-fluid
-						.col-md-12
-							%h2
-								Obras de infraestructura desarrolladas en las ciudades que promueven el aprovechamiento del espacio físico, la movilidad de las personas que las habitan y el cuidado del medio ambiente: Planeamiento urbanístico (convivencia entre los diversos usuarios del espacio público), zonificación por actividad de la ciudad, promoción de los espacios con límites territoriales.
-		- if @environment
-			%section
-				.row
-					.container-fluid
-						.col-md-12
-							%h2
-								Inteligencia en el desarrollo de productos que tengan impacto positivo en el medioambiente: Paneles de luz solar, reciclaje inteligente, promoción de prácticas cotidianas para ahorrar agua.
-		- if @community	
-			%section
-				.row
-					.container-fluid
-						.col-md-12
-							%h2
-								Oportunidades de educación, aprendizaje y desarrollo saludable del individuo en un sistema que promueva la identificación y reconocimiento de este, como también el desarrollo de sus habilidades para la coexistencia en un ecosistema de una comunidad de ciudad inteligente: Educación focalizada, programas de becas globales, estimulación temprana, desarrollo físico y deportivo, programas de acompañamiento desde temprana edad.
-		
-		- if @innovation
-			%section
-				.row
-					.container-fluid
-						.col-md-12
-							%h2
-								Acciones orientadas en materia de innovacion y desarrollo en la ciudad, que se posicionen como pioneras
-								en la ciudad que se trate y de forma global.
+- if @transport
+	%h1
+		Transporte & Movilidad
+	%h2
+		Paquete de servicios de transporte público y privado e iniciativas ofrecidas a la comunidad para hacer frente a la alta y variada demanda de movilidad/desplazamiento urbano: Metro, Buses, Ferrocarriles, Bicicleta, Autos ecológicos, Autos compartidos.
+						
+- if @development
+	%h1
+		Transporte & Movilidad
+	%h2
+		Obras de infraestructura desarrolladas en las ciudades que promueven el aprovechamiento del espacio físico, la movilidad de las personas que las habitan y el cuidado del medio ambiente: Planeamiento urbanístico (convivencia entre los diversos usuarios del espacio público), zonificación por actividad de la ciudad, promoción de los espacios con límites territoriales.
+- if @environment
+	%h1
+		Transporte & Movilidad
+	%h2
+		Inteligencia en el desarrollo de productos que tengan impacto positivo en el medioambiente: Paneles de luz solar, reciclaje inteligente, promoción de prácticas cotidianas para ahorrar agua.
+- if @community	
+	%h1
+		Transporte & Movilidad
+	%h2
+		Oportunidades de educación, aprendizaje y desarrollo saludable del individuo en un sistema que promueva la identificación y reconocimiento de este, como también el desarrollo de sus habilidades para la coexistencia en un ecosistema de una comunidad de ciudad inteligente: Educación focalizada, programas de becas globales, estimulación temprana, desarrollo físico y deportivo, programas de acompañamiento desde temprana edad.
+
+- if @innovation
+	%h1
+		Transporte & Movilidad
+	%h2
+		Acciones orientadas en materia de innovacion y desarrollo en la ciudad, que se posicionen como pioneras
+		en la ciudad que se trate y de forma global.

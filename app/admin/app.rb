@@ -3,6 +3,9 @@ ActiveAdmin.register App do
   #permit_params :title, :project_type_id, :description, :benefit, :solved_problems, :target_id, :category_id, :link, :city_id, :user_id
 
   controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
     def scoped_collection
       if current_user.moderator?
         current_user.apps
@@ -19,6 +22,7 @@ ActiveAdmin.register App do
   index do
     column :id
     column :name
+    column :category
     column :user
     translation_status
     actions
@@ -30,6 +34,7 @@ ActiveAdmin.register App do
       row :description
       row :benefit
       row :solved_problems
+      row :category
       row :targets do 
         app.targets.collect.each do |t|
           t.name
@@ -57,6 +62,7 @@ ActiveAdmin.register App do
       end
       f.input :targets, :as => :select, :collection => Target.all, :include_blank => false, :require => true, :multiple => true
       f.input :city_id, :as => :select2, :collection => City.all, :include_blank => false, :require => true
+      f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true  
       f.input :apple
       f.input :android
     end

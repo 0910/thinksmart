@@ -1,13 +1,13 @@
 class CategoriesController < ApplicationController
-  def index
-  	@projects = Project.all.reverse_order
-  	@posts = Post.all.reverse_order
-  	@categories = Category.all
-  end
   def show
-  	@category = Category.find(params[:id])
-  	@projects = city.projects.all
+    @categories = Category.all
+  	@category = Category.friendly.find(params[:id])
+  	@projects_home = @category.projects.all.reverse_order.where(priority_id: 3)
+    @projects = @category.projects.where.not(priority_id: 3)
+    @posts_home = @category.posts.all.reverse_order.where(priority_id: 3)
+    @posts = @category.posts.where.not(priority_id: 3)
   end
+  
   def transport
   	@projects = city.projects.where('category_id = 1')
   	@posts = city.posts.where('category_id = 1')

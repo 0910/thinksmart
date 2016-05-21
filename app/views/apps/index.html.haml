@@ -2,41 +2,108 @@
 	.row
 		.container
 			%h1
-				Aplicaciones
+				= t('apps.title')
+
+%section#categories
+	.container
+		.cat-item
+			- if @transport
+				= link_to apps_path, class: 'cat cat1 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat1_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+			- else
+				= link_to transport_apps_path, class: 'cat cat1' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat1.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+		.cat-item
+			- if @development
+				= link_to root_path, class: 'cat cat2 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat2_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+			- else
+				= link_to development_apps_path, class: 'cat cat2' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat2.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+		.cat-item
+			- if @environment
+				= link_to root_path, class: 'cat cat3 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat3_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+			- else
+				= link_to environment_apps_path, class: 'cat cat3' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat3.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+		.cat-item
+			- if @community
+				= link_to root_path, class: 'cat cat5 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat5_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+			- else
+				= link_to community_apps_path, class: 'cat cat5' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat5.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+		.cat-item
+			- if @innovation
+				= link_to root_path, class: 'cat cat6 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat6_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
+			- else
+				= link_to innovation_apps_path, class: 'cat cat6' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat6.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
+							
 %section.text-center.grid.bg-white
 	.row
-		.container
-			- @apps.each do |app|
-				.item.col-sm-3
-					.item-wrap
-						= link_to(app_path(app), class: 'item-link') do
-							- if app.images.empty?
-								.item-photo{:style => "background-image: url(image-not-available.jpg)"}
-							- else
-								- app.images.each do |image|
-									- if image.cover == true
-										.item-photo.item-photo-md{:style => "background-image: url(#{image.file.url(:large)})"}
-							.item-hover
-								.item-hover-content
-									%i.fa.fa-plus
-						.item-caption.text-left
-							%p.text-muted
-								#{app.created_at.to_date.to_formatted_s(:long)}
-							%h4
-								#{truncate(app.name, :length => 70)}
-								%br
-								—
-							= link_to('#', class: 'btn btn-sm btn-green') do
-								%i.fa.fa-apple
-							= link_to('#', class: 'btn btn-sm btn-green') do
-								%i.fa.fa-android
-						.item-actions
-							.col-md-3.action
-								%a.icon.icon-map-streamline-user
-							.col-md-3.action
-								%a.icon.icon-like-love-streamline
-							.col-md-3.action
-								%a.icon.icon-envellope-mail-streamline
-							.col-md-3.action
-								%a.icon-man-people-streamline-user
+		.container.bg-mobile.bg-mobile-curve
+			.col-md-12
+				= image_tag('mobile-top.svg')
+			.col-md-12
+				.col-md-12.bg-mobile
+					- @apps.each do |app|
+						.item.col-sm-2
+							= link_to(app_path(app), class: 'item-link') do
+								- if app.images.empty?
+									= image_tag('image-not-available.jpg', class: 'img-responsive')
+								- else
+									- app.images.each do |image|
+										- if image.cover == true
+											= image_tag(image.file.url(:large), class: 'img-responsive')
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus
+							.item-caption.text-left
+								%h4
+									#{truncate(app.name, :length => 70)}
+			.col-md-12
+				= image_tag('mobile-bottom.svg')
 

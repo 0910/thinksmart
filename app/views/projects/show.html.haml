@@ -7,14 +7,26 @@
 				%br
 				Este proceso tarda un maximo de 48hs habiles. Si quieres modificarlo puedes hacer click
 				= link_to('Aquí', edit_project_path(@project))
-= render 'shared/categories'
-%section.bg-light-gray
+
+%section#categories
+	.container
+		- @categories.each do |category|
+			.cat-item
+				= link_to(category_path(category), class: 'cat cat' + category.id.to_s) do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat' + category.id.to_s + '.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							#{category.name}
+
+%section
 	.container
 		.row.text-center
 			%h2.section-heading
 				#{@project.title}
-			%p.section-body.date
+			%p.date
 				= t('project.by')
+				#{@project.user.name}
 		.row.spaced	
 			.col-md-7
 				.item-wrap
@@ -43,23 +55,25 @@
 								%h2.section-subtitle
 									%span
 										= t('project.front') + ':'
-									#{image_tag "cat_icons/#{@project.category.name}.svg"}
-									#{@project.category.name}
+									= link_to('#', :class => "item-cat icon icon-#{@project.category.id} cat#{@project.category.id}")  do
+										#{@project.category.name}
 							.row
 								%h2.section-subtitle
 									%span
 										= t('project.category') + ':'
-									#{image_tag "cat_icons/#{@project.project_type.name}.svg"}
+									= image_tag('cat_icons/' + @project.project_type.name + '.svg', height: '30')
 									#{@project.project_type.name}
 							.row
 								%h2.section-subtitle
 									%span
 										= t('project.target') + ':'
-									.item-wrap
+									- @project.targets.each do |target|
+										· #{target.name}
 							.row
 								%h2.section-subtitle
 									%span
 										= t('project.status') + ':'
+									#{@project.status}
 									
 					.item-progress-box
 						%h2.section-subtitle
@@ -70,11 +84,11 @@
 							.item-progress-bar{:style => "width: #{@project.advance}%"}
 					= link_to(t('project.collaborate'), cities_path, class: 'btn btn-lg btn-green')
 
-%section
+%section.bg-light-gray
 	.container
 		.row
 			.col-md-7
-				%h2.section-subtitle
+				%h2.section-title
 					#{@project.subtitle}
 				%p.section-body
 					#{@project.description}
@@ -86,7 +100,7 @@
 					= t('project.benefits')
 				%p.section-body
 					#{@project.benefit}
-			.col-md-5.bg-light-gray.item-wrap
+			.col-md-5.bg-mid-gray.item-wrap
 				.col-md-12.section-box-padding
 					%h2.section-subtitle
 						= t('project.areas')
@@ -112,10 +126,10 @@
 						= t('project.links')
 
 					%p.section-body
-						#{@project.link}
+						= link_to(@project.link, target: '_blank')
 				
 
-%section.bg-white.collapsed#bottom-nav
+%section.bg-white#bottom-nav
 	.container
 		.row
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
@@ -123,13 +137,13 @@
 			.col-xs-12.col-sm-6.col-md-6
 				.item-actions
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-map-streamline-user
+						%a.icon.icon-map-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-like-love-streamline
+						%a.icon.icon-like-love-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Me gusta"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-envellope-mail-streamline
+						%a.icon.icon-envellope-mail-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Compartir"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon-man-people-streamline-user
+						%a.icon-man-people-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
 				= link_to(t('post.prev') + ' →',@next, class: 'project-nav pull-right')
 
@@ -138,11 +152,12 @@
 
 :javascript
 	$(function(){
-			var swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination',
-				paginationClickable: true,
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
-				loop: true
-			});
+		$('[data-toggle="tooltip"]').tooltip();
+		var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			loop: true
+		});
 	});

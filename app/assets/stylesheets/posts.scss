@@ -1,7 +1,7 @@
-.posts.index{
+.posts.index, .posts.transport, .posts.development, .posts.environment, .posts.community, .posts.innovation{
 	header{
 		background-color: #4bb3d2;
-		background-image: image-url('apps.jpg');
+		background-image: image-url('posts.png');
 		height: auto;
 		h1{
 			margin: 100px 0;
@@ -11,7 +11,31 @@
 		}
 	}
 }
-
+.posts.transport{
+	header{
+		background-color: #3F799E;
+	}
+}
+.posts.development{
+	header{
+		background-color: #F78406;
+	}
+}
+.posts.environment{
+	header{
+		background-color: #03D84F;
+	}
+}
+.posts.community{
+	header{
+		background-color: #8B4B9D;
+	}
+}
+.posts.innovation{
+	header{
+		background-color: #EAC324;
+	}
+}
 .posts.show{
 	.swiper-container{
 		height: 460px;

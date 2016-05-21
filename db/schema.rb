@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503205019) do
+ActiveRecord::Schema.define(version: 20160521180106) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -83,17 +83,25 @@ ActiveRecord::Schema.define(version: 20160503205019) do
     t.datetime "updated_at",                    null: false
     t.string   "apple",           limit: 255
     t.string   "android",         limit: 255
+    t.string   "slug",            limit: 255
+    t.integer  "category_id",     limit: 4
   end
 
+  add_index "apps", ["category_id"], name: "index_apps_on_category_id", using: :btree
   add_index "apps", ["city_id"], name: "index_apps_on_city_id", using: :btree
   add_index "apps", ["target_id"], name: "index_apps_on_target_id", using: :btree
   add_index "apps", ["user_id"], name: "index_apps_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.text     "description", limit: 65535
+    t.string   "name",               limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.text     "description",        limit: 65535
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.string   "slug",               limit: 255
   end
 
   create_table "category_translations", force: :cascade do |t|
@@ -217,6 +225,7 @@ ActiveRecord::Schema.define(version: 20160503205019) do
     t.integer  "priority_id",     limit: 4
     t.integer  "category2",       limit: 4
     t.string   "subtitle",        limit: 255
+    t.string   "slug",            limit: 255
   end
 
   add_index "posts", ["category_id"], name: "index_posts_on_category_id", using: :btree
@@ -308,6 +317,7 @@ ActiveRecord::Schema.define(version: 20160503205019) do
     t.integer  "category2",        limit: 4
     t.text     "collaboration",    limit: 65535
     t.text     "partners",         limit: 65535
+    t.string   "slug",             limit: 255
   end
 
   add_index "projects", ["category2_id"], name: "index_projects_on_category2_id", using: :btree
@@ -410,6 +420,7 @@ ActiveRecord::Schema.define(version: 20160503205019) do
 
   add_foreign_key "app_targets", "apps"
   add_foreign_key "app_targets", "targets"
+  add_foreign_key "apps", "categories"
   add_foreign_key "apps", "cities"
   add_foreign_key "apps", "targets"
   add_foreign_key "apps", "users"

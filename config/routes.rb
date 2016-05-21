@@ -2,7 +2,17 @@ Rails.application.routes.draw do
  
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
 
-    resources :cities, only: [:show, :index] do
+    resources :categories, only: [:show]
+
+    resources :cities, only: [:show, :index, :filter] do
+      member do
+        get "transport"
+        get "development"
+        get "environment"
+        get "people"
+        get "community"
+        get "innovation"
+      end
       resources :projects, only: [:show, :index] do
         collection do
           get "transport"
@@ -24,14 +34,14 @@ Rails.application.routes.draw do
         end
       end
       resources :apps do
-      end
-      collection do
-        get "transport"
-        get "development"
-        get "environment"
-        get "people"
-        get "community"
-        get "innovation"
+        collection do
+          get "transport"
+          get "development"
+          get "environment"
+          get "people"
+          get "community"
+          get "innovation"
+        end
       end
     end
     resources :posts, only: [:show, :index] do
@@ -55,16 +65,18 @@ Rails.application.routes.draw do
       end
     end
     resources :apps do
+      collection do
+        get "transport"
+        get "development"
+        get "environment"
+        get "people"
+        get "community"
+        get "innovation"
+      end
     end
 
     # Home routes
     get 'home/index'
-    get '/transport' => 'home#transport'
-    get '/development' => 'home#development'
-    get '/environment' => 'home#environment'
-    get '/people' => 'home#people'
-    get '/community' => 'home#community'
-    get '/innovation' => 'home#innovation'
   end
 
 

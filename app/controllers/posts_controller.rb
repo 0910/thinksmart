@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.reverse_order.where.not('priority_id = 3')
-    @posts_home = Post.all.reverse_order.where('priority_id = 3')
+    @posts = Post.all.reverse_order
   end
   def show
-  	@post = Post.find(params[:id])
-    @targets = Target.find(params[:id])
+  	@post = Post.friendly.find(params[:id])
+    @posts = Post.joins(:project_posts).where(:project_posts => {:proyect_id => @proyect})
     @previous = Post.where("id < ?", params[:id]).order(:id).first   
-    @next = Post.where("id > ?", params[:id]).order(:id).first 
+    @next = Post.where("id > ?", params[:id]).order(:id).first
+    @categories = Category.all 
   end
   def transport
     @transport = true

@@ -22,7 +22,7 @@ body, html {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 100%;
     position: relative;
-    letter-spacing: -0.035em;
+    letter-spacing: 0.015em !important;
 }
 body{
     font-size: 11px;
@@ -81,7 +81,7 @@ h4,
 h5,
 h6 {
     font-family: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
-    letter-spacing: -0.035em;
+    letter-spacing: 0.015em;
 }
 h1{
     font-weight: 300;
@@ -104,6 +104,9 @@ h1{
 }
 .bg-light-gray {
     background-color: #fafafa;
+}
+.bg-mid-gray {
+    background-color: #eaeaea;
 }
 .bg-darkest-gray {
     background-color: #4c4c4c;
@@ -531,8 +534,8 @@ section {
     }
     h2.section-title {
         font-size: 24px;
-        margin: 15px 0 0 0;
         font-weight: 400;
+        margin-top: 0;
     }
     h2.section-subtitle {
         font-size: 22px;
@@ -546,12 +549,12 @@ section {
     }
     p.section-body {
         font-size: 15px;
-        letter-spacing: .2px;
-        line-height: 1.75;
+        line-height: 1.85;
         color: #6c6c6c;
         text-transform: none;
         font-weight: 300;
         margin-bottom: 30px;
+        padding-right: 5%;
     }
     p.section-body.date{
         margin: 0;
@@ -610,6 +613,7 @@ section {
         }
     }
 }
+
 section.collapsed{
     padding: 0;
 }
@@ -638,6 +642,12 @@ section.collapsed{
 
 /* 05. Grid */
 
+.col-sm-25 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 .no-gutter > [class*=col-] {
     padding-right: 0;
     padding-left: 0;
@@ -930,22 +940,22 @@ section#categories{
             }
         }
     }
-    .cat.transport p{
+    .cat.cat1 p{
         color: #3F799E;
     }
-    .cat.development p{
+    .cat.cat2 p{
         color: #F78406;
     }
-    .cat.environment p{
+    .cat.cat3 p{
         color: #03D84F;
     }
-    .cat.people p{
+    .cat.cat4 p{
         color: #05DDDD;
     }
-    .cat.community p{
+    .cat.cat5 p{
         color: #8B4B9D;
     }
-    .cat.innovation p{
+    .cat.cat6 p{
         color: #EAC324;
     }
 }
@@ -971,7 +981,6 @@ section#bottom-nav{
         margin: 15px 0;
         display: block;
     }
-    padding: 0 0 60px 0;
     .item-actions{
         background-color: #fff;
         text-align: center;
@@ -985,6 +994,9 @@ section#bottom-nav{
                 color: #909090;
                 font-size: 24px;
                 margin: 0;
+            }
+            a:hover{
+                text-decoration: none;
             }
         }
         .action:last-child{

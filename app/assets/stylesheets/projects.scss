@@ -1,7 +1,7 @@
-.projects.index{
+.projects.index, .projects.transport, .projects.development, .projects.environment, .projects.community, .projects.innovation{
 	header{
 		background-color: #4bb3d2;
-		background-image: image-url('projects.jpg');
+		background-image: image-url('projects.png');
 		height: auto;
 		h1{
 			margin: 100px 0;
@@ -9,6 +9,31 @@
 			font-size: 3.5em;
 			text-align: left;
 		}
+	}
+}
+.projects.transport{
+	header{
+		background-color: #3F799E;
+	}
+}
+.projects.development{
+	header{
+		background-color: #F78406;
+	}
+}
+.projects.environment{
+	header{
+		background-color: #03D84F;
+	}
+}
+.projects.community{
+	header{
+		background-color: #8B4B9D;
+	}
+}
+.projects.innovation{
+	header{
+		background-color: #EAC324;
 	}
 }
 .projects.show{

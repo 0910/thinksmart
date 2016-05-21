@@ -22,17 +22,21 @@
 en:
   hello: "Hello world"
   cities:
-    title: "Smart Cities"
+    title: "Discover Smart Cities around the world"
     view_more: "View All Cities"
   posts:
+    title: "Posts all over the world"
     featured: "Featured Posts"
     all: "More Posts"
     view_more: "View All Posts"
   projects:
+    title: "Projects all over the world"
     featured: "Featured Projects"
     all: "More Projects"
+    list: "Projects"
     view_more: "View All Projects"
   apps:
+    title: "Apps all over the world"
     featured: "Featured Apps"
     all: "More Apps"
   menu:

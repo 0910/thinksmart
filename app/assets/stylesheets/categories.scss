@@ -1,3 +1,16 @@
-// Place all the styles related to the categories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.categories.show{
+	header{
+		background-color: #4bb3d2;
+		background-image: image-url('projects.jpg');
+		height: auto;
+		padding: 50px 0;
+		h1{
+			font-weight: 300;
+			font-size: 3.5em;
+			text-align: left;
+		}
+		h2{
+			font-weight: 100;
+		}
+	}
+}

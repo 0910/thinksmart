@@ -1,12 +1,23 @@
 /post slider
-= render 'shared/categories'
-%section.bg-light-gray
+%section#categories
+	.container
+		- @categories.each do |category|
+			.cat-item
+				= link_to(category_path(category), class: 'cat cat' + category.id.to_s) do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat' + category.id.to_s + '.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							#{category.name}
+
+%section
 	.container
 		.row.text-center
 			%h2.section-heading
 				#{@post.title}
-			%p.section-body.date
+			%p.date
 				= t('post.by')
+				#{@post.user.name}
 		.row.spaced	
 			.col-md-7
 				.item-wrap
@@ -35,25 +46,21 @@
 								%h2.section-subtitle
 									%span
 										= t('post.front') + ':'
-									#{image_tag "cat_icons/#{@post.project_type.name}.svg"}
-									#{@post.project_type.name}
+									= link_to('#', :class => "item-cat icon icon-#{@post.category.id} cat#{@post.category.id}")  do
+										#{@post.category.name}
 							.row
 								%h2.section-subtitle
 									%span
 										= t('post.category') + ':'
-									#{image_tag "cat_icons/#{@post.project_type.name}.svg"}
+									= image_tag('cat_icons/' + @post.project_type.name + '.svg', height: '30')
 									#{@post.project_type.name}
-							.row
-								%h2.section-subtitle
-									%span
-										= t('post.target') + ':'
-									.item-wrap
+									
 
-%section
+%section.bg-light-gray
 	.container
 		.row
 			.col-md-7
-				%h2.section-subtitle
+				%h2.section-title
 					#{@post.subtitle}
 				%p.section-body
 					#{@post.description}
@@ -65,7 +72,7 @@
 					= t('post.benefits')
 				%p.section-body
 					#{@post.benefit}
-			.col-md-5.bg-light-gray.item-wrap
+			.col-md-5.bg-mid-gray.item-wrap
 				.col-md-12.section-box-padding
 					%h2.section-subtitle
 						= t('post.areas')
@@ -75,15 +82,9 @@
 							%li
 								%p
 									#{subcategory.title}
-
-					%h2.section-subtitle
-						= t('post.links')
-
-					%p.section-body
-						#{@post.link}
 				
 
-%section.bg-white.collapsed#bottom-nav
+%section.bg-white#bottom-nav
 	.container
 		.row
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
@@ -91,26 +92,27 @@
 			.col-xs-12.col-sm-6.col-md-6
 				.item-actions
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-map-streamline-user
+						%a.icon.icon-map-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-like-love-streamline
+						%a.icon.icon-like-love-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Me gusta"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon.icon-envellope-mail-streamline
+						%a.icon.icon-envellope-mail-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Compartir"}
 					.col-xs-3.col-sm-3.col-md-3.action
-						%a.icon-man-people-streamline-user
+						%a.icon-man-people-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 			.col-xs-12.col-sm-3.col-md-3.hidden-xs
-				= link_to(t('post.next') + ' →',@next, class: 'post-nav pull-right')
+				= link_to(t('post.prev') + ' →',@next, class: 'post-nav pull-right')
 
 
 /javascript functions
 
 :javascript
 	$(function(){
-			var swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination',
-				paginationClickable: true,
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
-				loop: true
-			});
+		$('[data-toggle="tooltip"]').tooltip()
+		var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			loop: true
+		});
 	});

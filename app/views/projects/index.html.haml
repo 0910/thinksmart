@@ -4,16 +4,125 @@
 			%h1
 				= t('projects.title')
 
-= render 'shared/categories'
-
-%section#projects.text-center.bg-light-gray.grid.swiper-carousel
-	= render 'shared/featured_projects'
+%section#categories
+	.container
+		.cat-item
+			- if @transport
+				= link_to projects_path, class: 'cat cat1 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat1_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+			- else
+				= link_to transport_projects_path, class: 'cat cat1' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat1.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.transport')
+		.cat-item
+			- if @development
+				= link_to root_path, class: 'cat cat2 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat2_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+			- else
+				= link_to development_projects_path, class: 'cat cat2' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat2.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.development')
+		.cat-item
+			- if @environment
+				= link_to root_path, class: 'cat cat3 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat3_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+			- else
+				= link_to environment_projects_path, class: 'cat cat3' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat3.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.environment')
+		.cat-item
+			- if @community
+				= link_to root_path, class: 'cat cat5 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat5_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+			- else
+				= link_to community_projects_path, class: 'cat cat5' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat5.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.community')
+		.cat-item
+			- if @innovation
+				= link_to root_path, class: 'cat cat6 selected' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat6_on.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
+			- else
+				= link_to innovation_projects_path, class: 'cat cat6' do
+					.col-xs-12.col-sm-6.col-md-3.icon
+						= image_tag('cat_icons/cat6.svg')
+					.col-sm-6.col-md-9.text.visible-lg
+						%p
+							= t('fronts.innovation')
 
 %section.text-center.grid.bg-white
-	= render 'shared/projects'	
+
+	.row
+		.container
+			.row
+				- @projects.each do |project|
+					.item.col-sm-25
+						.item-wrap.text-left
+							= link_to(project_path(project), class: 'item-link') do
+								- if project.images.empty?
+									.item-photo{:style => "background-image: url(image-not-available.jpg)"}
+								- else
+									- project.images.each do |image|
+										- if image.cover == true
+											.item-photo.item-photo-xs{:style => "background-image: url(#{image.file.url(:small)})"}
+								.item-hover
+									.item-hover-content
+										%i.fa.fa-plus
+					
+							.item-caption
+								.row
+									.col-md-12
+										%p.text-muted
+											#{project.created_at.to_date.to_formatted_s(:long)}
+										
+										%h4
+											#{truncate(project.title, :length => 70)}
+
+							.item-actions
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-map-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-like-love-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Me gusta"}
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon.icon-envellope-mail-streamline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Compartir"}
+								.col-xs-3.col-sm-3.col-md-3.action
+									%a.icon-man-people-streamline-user{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Aplica a mi ciudad"}
 
 :javascript
 	$(function() {
+		$('[data-toggle="tooltip"]').tooltip();
 		var swiper = new Swiper('#projects .swiper-container', {
 			pagination: '#projects .swiper-pagination',
 			slidesPerView: 3,
